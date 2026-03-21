@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gabarit d'article | EcoBalcon</title>
+  <meta name="description" content="Gabarit simple pour convertir les exports SingleFile en articles statiques propres pour EcoBalcon.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark">
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon">
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="../index.html">Accueil</a>
+            <a href="index.html" aria-current="page">Articles</a>
+            <a href="../galerie.html">Galerie</a>
+          </nav>
+          <div class="social-nav" aria-label="Reseaux sociaux">
+            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4.2"></circle>
+                <circle cx="17.4" cy="6.6" r="1"></circle>
+              </svg>
+            </a>
+            <a class="social-link" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l16 16"></path>
+                <path d="M20 4L4 20"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="article-shell">
+        <header class="article-header">
+          <span class="eyebrow">Gabarit reutilisable</span>
+          <h1 class="article-title">Titre de l'article</h1>
+          <div class="article-meta">
+            <span>Categorie</span>
+            <span>•</span>
+            <span>Date</span>
+            <span>•</span>
+            <span>Temps de lecture</span>
+          </div>
+          <p class="article-intro">
+            Remplace ce resume par l'introduction utile issue du fichier dans <code>raw-singlefile/</code>.
+            Garde seulement le contenu editorial et supprime tout le bruit Hostinger / SingleFile.
+          </p>
+        </header>
+
+        <figure class="hero-image">
+          <img src="https://placehold.co/1600x900/e9e2d3/2f6f59?text=Image+hero" alt="Illustration de l'article">
+          <figcaption>Optionnel : legende ou credit.</figcaption>
+        </figure>
+
+        <div class="article-grid">
+          <article class="article-prose">
+            <h2>Structure conseillee</h2>
+            <ul class="prose-list">
+              <li>Une introduction courte et lisible.</li>
+              <li>Des intertitres clairs reprenant les vraies sections de l'article source.</li>
+              <li>Des listes HTML simples au lieu de paragraphes brouillons.</li>
+              <li>Une conclusion ou un resume utile.</li>
+            </ul>
+
+            <div class="callout">
+              Pense a corriger l'encodage quand le brut affiche du texte du type
+              <code>Ã©</code> ou <code>â€™</code>.
+            </div>
+
+            <h2>Checklist de conversion</h2>
+            <ol>
+              <li>Recuperer le titre, le resume, l'image hero et les sections utiles.</li>
+              <li>Recomposer le contenu dans une structure HTML legere.</li>
+              <li>Relier la page au <code>../css/style.css</code> commun.</li>
+              <li>Ajouter le lien vers cette page dans <code>articles/index.html</code>.</li>
+            </ol>
+          </article>
+
+          <aside class="sidebar-stack">
+            <div class="template-note">
+              <h3>Source</h3>
+              <p>Exemple de source brute : <code>raw-singlefile/nom-de-la-page.html</code>.</p>
+            </div>
+
+            <div class="checklist">
+              <h3>A garder</h3>
+              <ul class="article-list">
+                <li>Le fond editorial.</li>
+                <li>Les images utiles.</li>
+                <li>Les liens internes quand ils pointent vers des pages converties.</li>
+              </ul>
+            </div>
+
+            <div class="checklist">
+              <h3>A supprimer</h3>
+              <ul class="article-list">
+                <li>Les scripts Hostinger, Astro et analytics.</li>
+                <li>Les formulaires embarques non fonctionnels.</li>
+                <li>Les wrappers et styles inline inutiles.</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>EcoBalcon | Gabarit d'article</div>
+        <div><a class="muted-link" href="index.html">Retour a la liste</a></div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
