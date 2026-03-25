@@ -592,7 +592,7 @@ $relatedCardsHtml
                 <circle cx="17.4" cy="6.6" r="1"></circle>
               </svg>
             </a>
-            <a class="social-link" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 4l16 16"></path>
                 <path d="M20 4L4 20"></path>
@@ -860,7 +860,7 @@ function Build-HomeHtml {
                 <circle cx="17.4" cy="6.6" r="1"></circle>
               </svg>
             </a>
-            <a class="social-link" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 4l16 16"></path>
                 <path d="M20 4L4 20"></path>
@@ -1084,7 +1084,7 @@ function Build-ArticlesIndexHtml {
                 <circle cx="17.4" cy="6.6" r="1"></circle>
               </svg>
             </a>
-            <a class="social-link" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 4l16 16"></path>
                 <path d="M20 4L4 20"></path>
