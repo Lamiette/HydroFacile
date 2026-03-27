@@ -359,8 +359,36 @@
 
     <footer class="footer">
       <div class="footer-inner">
-        <div>EcoBalcon</div>
-        <div><a class="muted-link" href="../index.html">Retour &agrave; l'accueil</a></div>
+        <div class="footer-main">
+          <div class="footer-brand">
+            <strong>EcoBalcon</strong>
+            <p>Astuces pour jardiner en milieu urbain.</p>
+          </div>
+          <div class="footer-social" aria-label="R&eacute;seaux sociaux">
+            <a class="footer-social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4.2"></circle>
+                <circle cx="17.4" cy="6.6" r="1"></circle>
+              </svg>
+            </a>
+            <a class="footer-social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l16 16"></path>
+                <path d="M20 4L4 20"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-side">
+          <strong>Sur le site</strong>
+          <ul class="footer-list">
+            <li>Potager de balcon et cultures faciles</li>
+            <li>Plantes adapt&eacute;es au soleil comme &agrave; l'ombre</li>
+            <li>Gestes sobres pour l'eau, le compost et la biodiversit&eacute;</li>
+          </ul>
+        </div>
+        <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s.</div>
       </div>
     </footer>
   </div>
@@ -385,7 +413,7 @@
         currentUrl.searchParams.set("q", rawValue);
       }
 
-      window.history.replaceState({}, "", ${currentUrl.pathname});
+      window.history.replaceState({}, "", `${currentUrl.pathname}${currentUrl.search}`);
     };
 
     const filterArticles = () => {
