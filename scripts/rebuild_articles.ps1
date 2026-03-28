@@ -1059,6 +1059,47 @@ function Build-ArticleBody {
   return ($builder.ToString().TrimEnd() -replace '(?s)<a href="(?<url>[^"]+)"(?<attrs>[^>]*)>(?<text>[^<]+)</a>\s*<a href="\k<url>"[^>]*>\k<url></a>', '<a href="${url}"${attrs}>${text}</a> ')
 }
 
+function Ensure-AffiliateDisclosure {
+  param([string]$bodyHtml)
+
+  if ([string]::IsNullOrWhiteSpace($bodyHtml)) { return "" }
+  if ($bodyHtml -match 'class="affiliate-disclosure"') { return $bodyHtml }
+
+  $affiliatePattern = 'href="https?://(?:www\.)?(?:amzn\.to|amazon\.)'
+  if ($bodyHtml -notmatch $affiliatePattern) { return $bodyHtml }
+
+  $disclosureLine = '            <p class="affiliate-disclosure">Liens affiliés Amazon. En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>'
+  $lines = [System.Collections.Generic.List[string]]::new()
+  foreach ($line in ($bodyHtml -split "`r?`n")) {
+    [void]$lines.Add($line)
+  }
+
+  $affiliateIndex = -1
+  for ($i = 0; $i -lt $lines.Count; $i++) {
+    if ($lines[$i] -match $affiliatePattern) {
+      $affiliateIndex = $i
+      break
+    }
+  }
+
+  if ($affiliateIndex -lt 0) { return $bodyHtml }
+
+  $insertIndex = $affiliateIndex
+  for ($i = $affiliateIndex; $i -ge 0; $i--) {
+    if ($lines[$i] -match '<(ul|ol)\b') {
+      $insertIndex = $i
+      break
+    }
+
+    if ($i -lt $affiliateIndex -and $lines[$i] -match '<(p|h2|h3)\b|</(ul|ol)>') {
+      break
+    }
+  }
+
+  $lines.Insert($insertIndex, $disclosureLine)
+  return ($lines -join "`n")
+}
+
 function Get-JsonLdScriptTags {
   param([object[]]$objects)
 
@@ -1199,6 +1240,7 @@ function Build-ArticleHtml {
   $content = Get-Content -Raw -Encoding UTF8 $article.SourcePath
   $heroCaption = if ($article.ImageAlt) { $article.ImageAlt } else { Get-HeroCaption $content }
   $bodyHtml = if ($article.BodyHtml) { $article.BodyHtml.TrimEnd() } else { Build-ArticleBody $content }
+  $bodyHtml = Ensure-AffiliateDisclosure $bodyHtml
   $dateText = Convert-IsoDateToFrench $article.DatePublished
   $timeText = Convert-TimeRequired $article.TimeRequired
   $canonicalUrl = "$siteUrl/articles/$($article.OutputName)"

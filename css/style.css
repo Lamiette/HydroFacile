@@ -1243,6 +1243,15 @@ a {
   font-weight: 600;
 }
 
+.affiliate-disclosure {
+  margin: 1rem 0 0.85rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(47, 111, 89, 0.12);
+  color: rgba(35, 55, 50, 0.58);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
 .checklist,
 .recipe-card,
 .template-note {
@@ -1738,6 +1747,12 @@ a {
   .article-prose ul,
   .article-prose ol {
     padding: 0.95rem 0.95rem 0.95rem 1.8rem;
+  }
+
+  .affiliate-disclosure {
+    margin: 0.9rem 0 0.75rem;
+    padding-top: 0.5rem;
+    font-size: 0.72rem;
   }
 
   .cards,
