@@ -77,7 +77,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -86,7 +86,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Plantes &amp; semis</span>
           <h1 class="article-title">Balcon gourmand : cultiver des petits fruits en pot</h1>
           <div class="article-meta">
@@ -97,12 +97,12 @@
           <p class="article-intro">Les petits fruits ont toute leur place sur un balcon : ils sont décoratifs, gourmands et souvent plus accessibles qu’on l’imagine. Le vrai secret consiste à choisir les espèces en fonction du volume des pots, de la lumière et du rythme d’arrosage.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/fruits-AVLaZbRrwRcWW7ba.webp" alt="Petits fruits rouges et bleus cultivés en pot sur un balcon, avec fraises et groseilles" title="Petits fruits rouges et bleus cultivés en pot sur un balcon, avec fraises et groseilles" loading="eager" decoding="async" fetchpriority="high" width="1280" height="719">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <h2>Pourquoi les petits fruits sont intéressants sur balcon</h2>
             <p>Les petits fruits réunissent plusieurs qualités précieuses en ville : ils produisent quelque chose de concret, embellissent le balcon et créent un lien immédiat avec les saisons. Récolter une poignée de fraises ou quelques framboises au bon moment change vraiment la perception d’un petit espace.</p>
             <p>Ils demandent toutefois plus d’anticipation que de simples aromatiques. Le choix du contenant, la stabilité de l’humidité et le renouvellement des plants comptent davantage, surtout pour les arbustes fruitiers.</p>
@@ -139,7 +139,7 @@
             <p>Pour réussir des petits fruits en pot sur balcon, commence avec les fraises, puis élargis vers les framboisiers nains, groseilliers ou myrtilles si ton exposition et tes contenants le permettent. Les petits fruits demandent un peu plus d’anticipation que des légumes rapides, mais offrent en échange une récolte très gratifiante et un balcon vraiment vivant.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -159,7 +159,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -167,7 +167,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/fleur-comestibles-pots-A1a5P978aOsXE2oX.webp" alt="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," title="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," loading="lazy" decoding="async" width="1024" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -175,7 +175,7 @@
               <p>Découvrez comment cultiver facilement des fleurs comestibles et mellifères sur votre balcon pour un jardin gourmand, écologique, et un véritable...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/calendrier-jardin-m7V30NjjgZFX47R8.webp" alt="Agenda de jardinage posé parmi des feuilles, symbole d’un calendrier de culture pour balcon" title="Agenda de jardinage posé parmi des feuilles, symbole d’un calendrier de culture pour balcon" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -183,7 +183,7 @@
               <p>Calendrier du jardin de balcon : semis, plantations, tailles, protection et récoltes mois par mois pour suivre le bon rythme sans se disperser.</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/design-sans-titre-3-AzGXWy4Ee1uDKR83.png" alt="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" title="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" loading="lazy" decoding="async" width="1080" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -231,43 +231,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

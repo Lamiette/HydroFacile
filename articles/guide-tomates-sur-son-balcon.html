@@ -77,7 +77,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -86,7 +86,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Fiches Techniques</span>
           <h1 class="article-title">Guide complet pour cultiver des tomates sur son balcon</h1>
           <div class="article-meta">
@@ -97,12 +97,12 @@
           <p class="article-intro">La tomate est l’une des cultures les plus désirées sur balcon, mais aussi l’une des plus exigeantes. Avec un bon volume de terre, beaucoup de lumière et un suivi régulier, elle peut pourtant devenir une vraie réussite en ville.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/tomates-cocktails-A85VXRZp26h99glk.webp" alt="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" title="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" loading="eager" decoding="async" fetchpriority="high" width="1280" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <h2>Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Exposition : plein soleil, 6 à 8 h par jour minimum<br>Type de pot : 25 à 40 L selon la variété, profond et stable<br>Substrat : terreau potager riche, drainant, mélangé à du compost mûr<br>Plantation : après les dernières gelées, d’avril à juin selon climat<br>Arrosage : régulier, abondant, sans à-coups extrêmes<br>Fertilisation : toutes les 2 semaines en période de croissance active<br>Récolte : juillet à octobre selon variété et météo<br>Variétés conseillées : tomates cerises compactes, cocktails, Roma naines, variétés déterminées pour pot</p>
             <h2>Pourquoi la tomate demande un peu plus d’attention en pot</h2>
@@ -152,7 +152,7 @@
             <p>Pour réussir des tomates sur balcon, il faut surtout réunir quatre conditions : beaucoup de lumière, un grand pot, une humidité stable et une plante bien accompagnée. Ce n’est pas la culture la plus indulgente, mais c’est l’une des plus gratifiantes quand les bases sont solides.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -172,7 +172,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/tomates-cerises-A0xl8Plja6u66Mq7.webp" alt="Tomates cerises mûres sur un balcon cultivées en pot, prêtes à être récoltées" title="Tomates cerises mûres sur un balcon cultivées en pot, prêtes à être récoltées" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -188,7 +188,7 @@
               <p>Tomates cerises sur balcon : variétés compactes, pot adapté, soleil, arrosage, taille et récolte. Un guide clair pour produire facilement en pot...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/poivrons-balcon-guide-A20260327.png" alt="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" title="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -196,7 +196,7 @@
               <p>Apprenez à cultiver des poivrons sur son balcon : variétés compactes, pot idéal, soleil, arrosage, entretien, récolte et astuces pour obtenir des...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/fraises-balcon-Yg2ykaMxZKt1DBg8.webp" alt="Grosse fraise bien mûre dans un potager de balcon, entourée de feuilles et paillée" title="Grosse fraise bien mûre dans un potager de balcon, entourée de feuilles et paillée" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -244,43 +244,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

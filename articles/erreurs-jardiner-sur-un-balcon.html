@@ -76,7 +76,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -85,7 +85,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Entretien &amp; astuces</span>
           <h1 class="article-title">Les erreurs à éviter pour bien jardiner sur un balcon en ville</h1>
           <div class="article-meta">
@@ -96,12 +96,12 @@
           <p class="article-intro">Évitez les erreurs courantes pour jardiner sur un balcon : optimisez votre espace, cultivez un potager sur votre balcon et réussissez vos plantations urbaines.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/design-sans-titre-3-YBg7ZnGX3QiV0nvl.png" alt="Balcon encombré avec plantes mal entretenues et pots cassés, illustrant les erreurs de jardinage." title="Balcon encombré avec plantes mal entretenues et pots cassés, illustrant les erreurs de jardinage." loading="eager" decoding="async" fetchpriority="high" width="1080" height="411">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <h2>Introduction au jardinage urbain</h2>
             <p>Le jardinage en milieu urbain est une activité de plus en plus prisée par les citadins désireux de profiter de la nature tout en vivant en ville. Créer un petit coin de verdure sur son balcon permet de se détendre, d’embellir son espace de vie et même de cultiver ses propres herbes aromatiques ou légumes. Toutefois, jardiner en ville comporte quelques particularités, et il est essentiel de bien s’informer pour éviter les erreurs courantes qui pourraient nuire à vos plantations. Dans cet article, nous vous proposons de découvrir les principales erreurs à éviter pour réussir votre jardinage sur un balcon en ville.</p>
             <h2>1. Négliger l'exposition au soleil</h2>
@@ -130,7 +130,7 @@
             <p>N’oubliez pas, chaque jardin est unique et demande une attention particulière. Prenez le temps d’observer vos plantes, d’expérimenter et de vous adapter. Profitez de votre espace vert et de la satisfaction qu’il peut vous apporter !</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -150,7 +150,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -158,7 +158,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/compost-balcon-dWxvWqgNo4h1vyGL.webp" alt="composteur sur un balcon entouré de plantes en pots, illustrant le compostage urbain." title="composteur sur un balcon entouré de plantes en pots, illustrant le compostage urbain." loading="lazy" decoding="async" width="1024" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -166,7 +166,7 @@
               <p>Apprends à utiliser le compost sur balcon pour nourrir tes plantes, réduire tes déchets et jardiner en ville facilement. Astuces, conseils et...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/jardin-balcon-9-A3Q2kVxJe4irwQED.webp" alt="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" title="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" loading="lazy" decoding="async" width="1216" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -174,7 +174,7 @@
               <p>Découvrez nos 10 astuces pour démarrer un jardin sur balcon : cultivez facilement un potager balcon, des plantes en pot et créez un espace vert...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/jardin-lasagne-balcon-AGBbw5VWqzSB3B3e.webp" alt="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" title="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -222,43 +222,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

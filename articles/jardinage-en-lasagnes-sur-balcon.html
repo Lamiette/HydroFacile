@@ -77,7 +77,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -86,7 +86,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Entretien &amp; astuces</span>
           <h1 class="article-title">Jardinage en lasagnes sur balcon : guide pratique</h1>
           <div class="article-meta">
@@ -97,12 +97,12 @@
           <p class="article-intro">Découvrez comment créer un jardinage en lasagnes sur balcon pour un potager fertile, écologique et simple, même en ville avec peu d’espace. A vous de jouer !</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/jardin-lasagne-balcon-AGBbw5VWqzSB3B3e.webp" alt="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" title="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" loading="eager" decoding="async" fetchpriority="high" width="1440" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <p>Vous rêvez d’un balcon verdoyant et productif, mais vous manquez de place et ne savez pas comment enrichir votre terreau sans vous ruiner en sacs de substrat ? Le jardinage en lasagnes est une technique ingénieuse qui peut transformer votre balcon en un véritable potager fertile, même sans sol naturel.</p>
             <p>Née des principes de la permaculture, cette méthode consiste à superposer différentes couches de matières organiques pour créer un substrat riche, vivant et autosuffisant. Et contrairement à ce que l’on pourrait penser, elle s’adapte parfaitement aux petits espaces urbains.</p>
             <h2>Qu’est-ce que le jardinage en lasagnes ?</h2>
@@ -166,7 +166,7 @@
             <p>👉 Pour aller encore plus loin, explorez notre <a href="jardiner-sur-un-balcon.html">guide ultime du potager</a> en pot et découvrez comment tirer le meilleur parti de votre balcon urbain.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -186,7 +186,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -194,7 +194,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/coccinelle-dOqDvrReK6c4Kg20.webp" alt="Coccinelle sur une feuille verte, un insecte utile au jardin pour lutter contre les pucerons" title="Coccinelle sur une feuille verte, un insecte utile au jardin pour lutter contre les pucerons" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -202,7 +202,7 @@
               <p>Découvrez 10 insectes utiles sur un balcon pour un potager sain, productif et écologique : coccinelles, abeilles solitaires, syrphes… et comment...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/jardin-balcon-9-A3Q2kVxJe4irwQED.webp" alt="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" title="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" loading="lazy" decoding="async" width="1216" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -210,7 +210,7 @@
               <p>Découvrez nos 10 astuces pour démarrer un jardin sur balcon : cultivez facilement un potager balcon, des plantes en pot et créez un espace vert...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/canicule-balcon-mxBXq1QqyeTR1PLZ.webp" alt="Rayon de soleil intense dans un ciel bleu profond avec une herbe haute en contre-jour" title="Rayon de soleil intense dans un ciel bleu profond avec une herbe haute en contre-jour" loading="lazy" decoding="async" width="1280" height="720">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -258,43 +258,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

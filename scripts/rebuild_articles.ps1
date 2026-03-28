@@ -1232,15 +1232,13 @@ function Build-ArticleHtml {
         </nav>
 "@
   $relatedCardsHtml = if ($relatedArticles.Count -gt 0) {
-    (($relatedArticles | ForEach-Object -Begin { $relatedIndex = 0 } -Process {
-          $delay = 250 + ($relatedIndex * 70)
-          $relatedIndex++
-          (Build-ArticleCardHtml -article $_ -hrefPrefix "" -imagePrefix "../images/articles/" -extraClass " related-card") -replace '<article class="article-card related-card">', "<article class=`"article-card related-card`" data-reveal style=`"--reveal-delay: ${delay}ms;`">"
+    (($relatedArticles | ForEach-Object {
+          Build-ArticleCardHtml -article $_ -hrefPrefix "" -imagePrefix "../images/articles/" -extraClass " related-card"
         }) -join "`n")
   } else { "" }
   $relatedSection = if ($relatedCardsHtml) {
 @"
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -1327,10 +1325,10 @@ $tagManagerBody
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
 $breadcrumbHtml
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">$(HtmlEscape $article.Category)</span>
           <h1 class="article-title">$(HtmlEscape $article.Title)</h1>
           <div class="article-meta">
@@ -1339,16 +1337,16 @@ $breadcrumbHtml
           <p class="article-intro">$(HtmlEscape $article.Intro)</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="$heroImageSrc" alt="$(HtmlEscape $heroCaption)" title="$(HtmlEscape $heroTitle)" loading="eager" decoding="async" fetchpriority="high"$heroImageDimensions>
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
 $bodyHtml
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -1371,44 +1369,6 @@ $relatedSection
 
 $(Get-SiteFooterHtml)
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>
 "@

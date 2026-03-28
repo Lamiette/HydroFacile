@@ -75,7 +75,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -84,7 +84,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Entretien &amp; astuces</span>
           <h1 class="article-title">Plantes qui survivent à la canicule</h1>
           <div class="article-meta">
@@ -95,12 +95,12 @@
           <p class="article-intro">Plantes qui survivent à la canicule : découvrez les espèces résistantes à la chaleur pour un balcon fleuri et productif tout l’été, même par forte chaleur.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/canicule-balcon-mxBXq1QqyeTR1PLZ.webp" alt="Rayon de soleil intense dans un ciel bleu profond avec une herbe haute en contre-jour" title="Rayon de soleil intense dans un ciel bleu profond avec une herbe haute en contre-jour" loading="eager" decoding="async" fetchpriority="high" width="1280" height="720">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <p>Les canicules deviennent de plus en plus fréquentes, surtout en milieu urbain où les balcons se transforment en véritables fournaises. Face à ces conditions extrêmes, de nombreuses plantes souffrent, s’assèchent ou brûlent littéralement au soleil. Pourtant, il existe des plantes résistantes, capables de survivre (et même de prospérer !) dans un environnement chaud, sec et exposé.</p>
             <p>Dans cet article, tu découvriras une sélection de plantes qui supportent la chaleur en pot, des conseils pour les entretenir malgré les températures élevées, et des astuces pour garder ton balcon verdoyant même en plein été.</p>
             <h2>Pourquoi certaines plantes ne résistent pas à la canicule ?</h2>
@@ -275,7 +275,7 @@
             </ul>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -295,7 +295,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -303,7 +303,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/jardin-balcon-9-A3Q2kVxJe4irwQED.webp" alt="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" title="Petit balcon urbain décoré avec de nombreuses plantes en pots, , idéal pour un jardin de balcon" loading="lazy" decoding="async" width="1216" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -311,7 +311,7 @@
               <p>Découvrez nos 10 astuces pour démarrer un jardin sur balcon : cultivez facilement un potager balcon, des plantes en pot et créez un espace vert...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/jardin-lasagne-balcon-AGBbw5VWqzSB3B3e.webp" alt="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" title="Pot de culture en lasagnes sur un balcon, montrant les différentes couches de matières organiques" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -319,7 +319,7 @@
               <p>Découvrez comment créer un jardinage en lasagnes sur balcon pour un potager fertile, écologique et simple, même en ville avec peu d’espace. A vous...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/arrosage-jardin-AGBbalPK2XfxzJLJ.webp" alt="Arrosage précis au pistolet réglable sur un balcon, geste simple pour économiser l’eau" title="Arrosage précis au pistolet réglable sur un balcon, geste simple pour économiser l’eau" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Entretien &amp; astuces</span></div>
@@ -367,43 +367,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

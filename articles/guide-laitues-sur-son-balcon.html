@@ -77,7 +77,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -86,7 +86,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Fiches Techniques</span>
           <h1 class="article-title">Guide complet pour cultiver des laitues sur son balcon</h1>
           <div class="article-meta">
@@ -97,12 +97,12 @@
           <p class="article-intro">Les laitues sont parfaites pour un balcon parce qu’elles poussent vite, demandent peu de profondeur et apprécient souvent la lumière douce. Bien conduites, elles permettent d’échelonner les récoltes sur une grande partie de l’année.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/lettuce-5178889_1280-A1a5V3WepZHWp1W2.webp" alt="Feuilles de laitues pommées et frisées cultivées en pot sur un balcon" title="Feuilles de laitues pommées et frisées cultivées en pot sur un balcon" loading="eager" decoding="async" fetchpriority="high" width="1280" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <h2>Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Exposition : lumière douce à mi-ombre, 3 à 5 h par jour<br>Type de pot : jardinière ou bac de 15 à 20 cm de profondeur minimum<br>Substrat : terreau potager léger, frais, enrichi en compost mûr<br>Semis : de mars à octobre selon climat et variété<br>Arrosage : régulier, sans laisser le terreau sécher complètement<br>Récolte : 4 à 8 semaines après semis selon le type de laitue<br>Variétés conseillées : laitue à couper, feuille de chêne, batavia, romaine courte, Lollo Rossa</p>
             <h2>Pourquoi les laitues sont idéales pour débuter</h2>
@@ -139,7 +139,7 @@
             <p>Les laitues sont parmi les cultures les plus simples et les plus gratifiantes pour un balcon : peu de profondeur, croissance rapide et récoltes souples. Si tu combines lumière douce, arrosage stable et semis échelonnés, tu peux garder des salades tendres pendant une bonne partie de l’année.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -159,7 +159,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -167,7 +167,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/poivrons-balcon-guide-A20260327.png" alt="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" title="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -175,7 +175,7 @@
               <p>Apprenez à cultiver des poivrons sur son balcon : variétés compactes, pot idéal, soleil, arrosage, entretien, récolte et astuces pour obtenir des...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/tomates-cocktails-A85VXRZp26h99glk.webp" alt="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" title="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -183,7 +183,7 @@
               <p>Tomates sur balcon : variétés adaptées, pot généreux, soleil, tuteur, arrosage régulier et prévention des maladies. Le guide pour récolter en pot...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/radis-jardin-balcon-AoPJkX7pqbFZr1Oj.webp" alt="Radis fraîchement récoltés sur un balcon potager, avec fanes vertes et racines colorées" title="Radis fraîchement récoltés sur un balcon potager, avec fanes vertes et racines colorées" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -231,43 +231,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

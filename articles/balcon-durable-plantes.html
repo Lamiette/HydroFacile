@@ -75,7 +75,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -84,7 +84,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Plantes &amp; semis</span>
           <h1 class="article-title">Balcon durable : quelles plantes pour un jardin urbain résistant ?</h1>
           <div class="article-meta">
@@ -95,12 +95,12 @@
           <p class="article-intro">Plantes idéales pour un balcon durable : résistantes, écologiques et faciles à entretenir pour un jardin urbain éco-responsable, fleuri et accueillant. Découvrez nos astuces !</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/design-sans-titre-3-AzGXWy4Ee1uDKR83.png" alt="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" title="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" loading="eager" decoding="async" fetchpriority="high" width="1080" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <p>Aménager un jardin urbain sur votre balcon peut sembler un défi, surtout avec les contraintes de l'environnement urbain. Les conditions particulières, telles que la chaleur, la pollution de l'air, le vent et l'ombre, peuvent rendre le choix des plantes difficile. Cependant, il existe de nombreuses variétés de plantes résistantes qui prospèrent même dans ces conditions. Voici quelques conseils pour vous aider à faire le bon choix.</p>
             <h2>1. Comprendre les conditions de votre balcon</h2>
             <p>Avant de choisir vos plantes, il est important de bien comprendre les conditions spécifiques de votre balcon. Celles-ci incluent :</p>
@@ -137,7 +137,7 @@
             <p>Choisir des plantes adaptées aux conditions urbaines nécessite de prendre en compte plusieurs facteurs, notamment l'exposition au soleil, le vent, la chaleur et la pollution de l'air. En optant pour des plantes résistantes et adaptées à votre environnement, vous pouvez créer un jardin urbain à la fois beau et durable. N'oubliez pas de prendre soin de vos plantes en les installant dans des pots appropriés et en ajustant les besoins en eau selon les saisons. Avec un peu de planification, votre balcon peut devenir un véritable havre de verdure, même en ville.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -157,7 +157,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -165,7 +165,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/soleil-AE0r4pPEeeHKn9qq.webp" alt="Soleil éclatant dans un ciel bleu dégagé, typique d’un balcon en plein soleil l’été." title="Soleil éclatant dans un ciel bleu dégagé, typique d’un balcon en plein soleil l’été." loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -173,7 +173,7 @@
               <p>Plantes pour un balcon plein soleil : découvrez les meilleures espèces résistantes au soleil, faciles à cultiver, pour embellir et réussir votre...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/fleur-comestibles-pots-A1a5P978aOsXE2oX.webp" alt="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," title="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," loading="lazy" decoding="async" width="1024" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -181,7 +181,7 @@
               <p>Découvrez comment cultiver facilement des fleurs comestibles et mellifères sur votre balcon pour un jardin gourmand, écologique, et un véritable...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/balcon-ombre-Y4LDry8r7Pi5P1WQ.webp" alt="Balcon ombragé avec pots de feuillages, aromatiques et fleurs adaptées à une lumière douce" title="Balcon ombragé avec pots de feuillages, aromatiques et fleurs adaptées à une lumière douce" loading="lazy" decoding="async" width="1216" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -229,43 +229,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

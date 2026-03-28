@@ -1122,11 +1122,20 @@ a {
 }
 
 .hero-image {
+  margin: 0;
   overflow: hidden;
+  width: 100%;
   border: 1px solid rgba(33, 48, 42, 0.08);
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadow);
   background: var(--surface);
+}
+
+.hero-image img {
+  width: 100%;
+  height: clamp(18rem, 40vw, 28rem);
+  object-fit: cover;
+  object-position: center;
 }
 
 .article-grid {
@@ -1466,6 +1475,14 @@ a {
 
   .sidebar-stack {
     position: static;
+  }
+
+  .hero-image {
+    max-width: none;
+  }
+
+  .hero-image img {
+    height: clamp(15rem, 52vw, 22rem);
   }
 
   .article-header .article-meta {

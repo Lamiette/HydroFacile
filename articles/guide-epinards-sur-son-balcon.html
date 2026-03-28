@@ -75,7 +75,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -84,7 +84,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Fiches Techniques</span>
           <h1 class="article-title">Guide complet pour cultiver des épinards sur son balcon</h1>
           <div class="article-meta">
@@ -95,12 +95,12 @@
           <p class="article-intro">Apprenez à cultiver des épinards sur son balcon : choix du pot, exposition, arrosage, entretien, récolte et astuces pour réussir vos épinards en pot toute l’année.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/epinards-balcon-pots-mk3J5W85G6fPPqoJ.webp" alt="Feuilles d’épinards fraîches récoltées, encore couvertes de gouttes d’eau, cultivées en pot" title="Feuilles d’épinards fraîches récoltées, encore couvertes de gouttes d’eau, cultivées en pot" loading="eager" decoding="async" fetchpriority="high" width="1280" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <h2>Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Exposition : mi ombre à soleil doux (3 à 5 h/jour)<br>Type de pot : minimum 20 cm de profondeur, bien drainé<br>Terreau : potager ou universel, enrichi avec du <a href="solutions-compostage-sur-balcon.html">compost</a>mûr<br>Arrosage : régulier, sans excès d’eau<br>Semis : février à mai, puis août à octobre selon les variétés<br>Plantation : de préférence en semis direct<br>Récolte : entre 5 et 8 semaines après semis<br>Variétés conseillées : Géant d’hiver, Monstrueux de Viroflay, Matador, Winter Giant</p>
             <h2>Le contenant idéal</h2>
@@ -144,7 +144,7 @@
             <p>Cultiver des épinards sur son balcon est à la fois simple, rapide et gratifiant. Que ce soit en jardinière, en bac ou en pot profond, cette plante potagère s’adapte bien à la culture urbaine. Elle offre de belles récoltes de feuilles tendres, à condition de respecter ses besoins en fraîcheur et en eau.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -164,7 +164,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -172,7 +172,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/poivrons-balcon-guide-A20260327.png" alt="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" title="Illustration de poivrons rouges et jaunes en pot sur un balcon ensoleillé" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -180,7 +180,7 @@
               <p>Apprenez à cultiver des poivrons sur son balcon : variétés compactes, pot idéal, soleil, arrosage, entretien, récolte et astuces pour obtenir des...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/tomates-cocktails-A85VXRZp26h99glk.webp" alt="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" title="Tomates mûres cultivées en pot sur un balcon ensoleillé, attachées à un tuteur" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -188,7 +188,7 @@
               <p>Tomates sur balcon : variétés adaptées, pot généreux, soleil, tuteur, arrosage régulier et prévention des maladies. Le guide pour récolter en pot...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/radis-jardin-balcon-AoPJkX7pqbFZr1Oj.webp" alt="Radis fraîchement récoltés sur un balcon potager, avec fanes vertes et racines colorées" title="Radis fraîchement récoltés sur un balcon potager, avec fanes vertes et racines colorées" loading="lazy" decoding="async" width="1280" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Fiches Techniques</span></div>
@@ -236,43 +236,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

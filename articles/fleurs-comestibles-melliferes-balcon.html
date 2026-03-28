@@ -75,7 +75,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -84,7 +84,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Plantes &amp; semis</span>
           <h1 class="article-title">Fleurs comestibles et mellifères pour balcon gourmand</h1>
           <div class="article-meta">
@@ -95,12 +95,12 @@
           <p class="article-intro">Découvrez comment cultiver facilement des fleurs comestibles et mellifères sur votre balcon pour un jardin gourmand, écologique, et un véritable refuge pour les pollinisateurs.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/fleur-comestibles-pots-A1a5P978aOsXE2oX.webp" alt="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," title="Fleurs comestibles en pots sur un balcon, incluant des soucis, des capucines," loading="eager" decoding="async" fetchpriority="high" width="1024" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <p>Cultiver des fleurs sur son balcon n’est pas seulement une affaire de décoration. Certaines variétés ont la particularité d’être à la fois comestibles et mellifères, c’est-à-dire qu’elles attirent les insectes pollinisateurs comme les abeilles, les bourdons ou les papillons. En plus d’embellir votre espace, elles enrichissent votre cuisine et participent activement à la biodiversité urbaine.</p>
             <p>Si vous rêvez d’un balcon à la fois esthétique, écologique et savoureux, ce guide complet est fait pour vous.</p>
             <h2>Pourquoi choisir des fleurs comestibles et mellifères ?</h2>
@@ -198,7 +198,7 @@
             <p>Que vous ayez un petit balcon ou une grande terrasse, ces fleurs s’intègrent partout et enrichissent votre quotidien, votre assiette… et la ville entière.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -218,7 +218,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -226,7 +226,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/design-sans-titre-3-AzGXWy4Ee1uDKR83.png" alt="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" title="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" loading="lazy" decoding="async" width="1080" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -234,7 +234,7 @@
               <p>Plantes idéales pour un balcon durable : résistantes, écologiques et faciles à entretenir pour un jardin urbain éco-responsable, fleuri et...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/fruits-AVLaZbRrwRcWW7ba.webp" alt="Petits fruits rouges et bleus cultivés en pot sur un balcon, avec fraises et groseilles" title="Petits fruits rouges et bleus cultivés en pot sur un balcon, avec fraises et groseilles" loading="lazy" decoding="async" width="1280" height="719">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -242,7 +242,7 @@
               <p>Petits fruits en pot sur balcon : fraisiers, framboisiers nains, myrtilles, groseilliers et cassissiers. Le guide pour récolter des fruits même en...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/calendrier-jardin-m7V30NjjgZFX47R8.webp" alt="Agenda de jardinage posé parmi des feuilles, symbole d’un calendrier de culture pour balcon" title="Agenda de jardinage posé parmi des feuilles, symbole d’un calendrier de culture pour balcon" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -290,43 +290,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>

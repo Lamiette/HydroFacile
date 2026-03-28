@@ -75,7 +75,7 @@
 
     <main class="article-layout">
       <div class="article-shell">
-        <div data-reveal>
+        <div>
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
@@ -84,7 +84,7 @@
           </ol>
         </nav>
         </div>
-        <header class="article-header" data-reveal style="--reveal-delay: 60ms;">
+        <header class="article-header">
           <span class="eyebrow">Plantes &amp; semis</span>
           <h1 class="article-title">Quelles plantes pour un balcon plein soleil ?</h1>
           <div class="article-meta">
@@ -95,12 +95,12 @@
           <p class="article-intro">Plantes pour un balcon plein soleil : découvrez les meilleures espèces résistantes au soleil, faciles à cultiver, pour embellir et réussir votre balcon en toute simplicité.</p>
         </header>
 
-        <figure class="hero-image" data-reveal style="--reveal-delay: 110ms;">
+        <figure class="hero-image">
           <img src="../images/articles/soleil-AE0r4pPEeeHKn9qq.webp" alt="Soleil éclatant dans un ciel bleu dégagé, typique d’un balcon en plein soleil l’été." title="Soleil éclatant dans un ciel bleu dégagé, typique d’un balcon en plein soleil l’été." loading="eager" decoding="async" fetchpriority="high" width="1280" height="756">
         </figure>
 
         <div class="article-grid">
-          <article class="article-prose" data-reveal style="--reveal-delay: 150ms;">
+          <article class="article-prose">
             <p>Un balcon baigné de soleil toute la journée, c’est une chance pour le jardinier urbain… à condition de bien choisir ses plantes et d’adopter les bons gestes ! Si l’exposition plein sud peut offrir des récoltes généreuses et des fleurs éclatantes, elle impose aussi des contraintes : chaleur intense, évaporation rapide, risque de coup de chaud pour certaines plantes.</p>
             <p>Dans cet article, on vous guide pour transformer votre balcon brûlant en coin de paradis végétal, productif et résistant à la sécheresse.</p>
             <h2>Les avantages et défis d’un balcon très ensoleillé</h2>
@@ -205,7 +205,7 @@
             <p>Pensez à tester, observer et ajuster : chaque balcon est unique ! Et si vous débutez, commencez petit… et laissez la magie opérer.</p>
           </article>
 
-          <aside class="sidebar-stack" data-reveal style="--reveal-delay: 190ms;">
+          <aside class="sidebar-stack">
             <div class="checklist article-note">
               <h3>Rep&egrave;res</h3>
               <ul class="article-list">
@@ -225,7 +225,7 @@
             </div>
           </aside>
         </div>
-        <section class="related-section" aria-labelledby="related-articles-heading" data-reveal style="--reveal-delay: 220ms;">
+        <section class="related-section" aria-labelledby="related-articles-heading">
           <div class="section-heading section-heading-compact">
             <div>
               <h2 id="related-articles-heading">À lire aussi</h2>
@@ -233,7 +233,7 @@
             </div>
           </div>
           <div class="cards cards-related">
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 250ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/design-sans-titre-3-AzGXWy4Ee1uDKR83.png" alt="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" title="Balcon urbain avec des plantes résistantes dans des pots en terre cuite" loading="lazy" decoding="async" width="1080" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -241,7 +241,7 @@
               <p>Plantes idéales pour un balcon durable : résistantes, écologiques et faciles à entretenir pour un jardin urbain éco-responsable, fleuri et...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 320ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/balcon-ombre-Y4LDry8r7Pi5P1WQ.webp" alt="Balcon ombragé avec pots de feuillages, aromatiques et fleurs adaptées à une lumière douce" title="Balcon ombragé avec pots de feuillages, aromatiques et fleurs adaptées à une lumière douce" loading="lazy" decoding="async" width="1216" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -249,7 +249,7 @@
               <p>Balcon à l’ombre : quelles plantes choisir, comment arroser, organiser l’espace et éviter les erreurs classiques. Un guide concret pour cultiver...</p>
             </div>
           </article>
-          <article class="article-card related-card" data-reveal style="--reveal-delay: 390ms;">
+          <article class="article-card related-card">
             <img src="../images/articles/plantes-fraiches-poussant-en-serre-A1aPWZqj2OIPnxby.webp" alt="Pots d’herbes aromatiques alignés sur un balcon lumineux, avec basilic, menthe et thym" title="Pots d’herbes aromatiques alignés sur un balcon lumineux, avec basilic, menthe et thym" loading="lazy" decoding="async" width="1440" height="756">
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">Plantes &amp; semis</span></div>
@@ -297,43 +297,5 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
-
-      if (!revealItems.length) {
-        return;
-      }
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      document.body.classList.add("reveal-ready");
-
-      if (!("IntersectionObserver" in window)) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.14
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-  </script>
 </body>
 </html>
