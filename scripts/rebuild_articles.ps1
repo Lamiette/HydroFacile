@@ -1,10 +1,16 @@
 ﻿$ErrorActionPreference = "Stop"
 
+# Safe by default: keep the current homepage unless the script is launched with -RebuildHome.
+$RebuildHome = @($args | Where-Object { $_ -ieq "-RebuildHome" }).Count -gt 0
+
 $root = Split-Path -Parent $PSScriptRoot
 $rawDir = Join-Path $root "raw-singlefile"
 $articlesDir = Join-Path $root "articles"
 $imagesDir = Join-Path $root "images\articles"
 $siteUrl = "https://ecobalcon.com"
+# GA4 is intended to be wired through GTM to avoid duplicate pageview tracking.
+$googleAnalyticsMeasurementId = "G-L952X34SHR"
+$googleTagManagerId = "GTM-MFRVPVFQ"
 $articleOverrides = @{}
 $articleOverridesPath = Join-Path $PSScriptRoot "article-overrides.ps1"
 
@@ -25,6 +31,26 @@ function HtmlEscape {
 
   if ($null -eq $text) { return "" }
   return [System.Security.SecurityElement]::Escape([string]$text)
+}
+
+function Get-TagManagerHeadHtml {
+  if ([string]::IsNullOrWhiteSpace($googleTagManagerId)) { return "" }
+
+  return @"
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','$googleTagManagerId');</script>
+  <!-- End Google Tag Manager -->
+"@
+}
+
+function Get-TagManagerBodyHtml {
+  if ([string]::IsNullOrWhiteSpace($googleTagManagerId)) { return "" }
+
+  return @"
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=$googleTagManagerId" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+"@
 }
 
 function Escape-Xml {
@@ -1149,6 +1175,8 @@ function Build-ArticleHtml {
   $heroImageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix "../images/articles/"
   $heroImageDimensions = Get-ArticleImageDimensionAttributes $article.ImageFileName
   $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
   $relatedArticles = @(Get-RelatedArticles -article $article -allArticles $allArticles -count 3)
 
   $articleSchema = [ordered]@{
@@ -1256,12 +1284,14 @@ $relatedCardsHtml
   <meta name="twitter:image" content="$($article.ImageCanonicalUrl)">
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroCaption)">
 $jsonLdScripts
+$tagManagerHead
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="article-page">
+$tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
@@ -1520,6 +1550,8 @@ function Build-HomeHtml {
     }
   )
   $weeklyArticlesJson = $weeklyArticlesForJs | ConvertTo-Json -Depth 5 -Compress
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
   $themeHtml = @"
           <article class="theme-card" data-reveal style="--reveal-delay: 60ms;">
             <span class="eyebrow">Fiches Techniques</span>
@@ -1619,12 +1651,14 @@ function Build-HomeHtml {
   <meta name="twitter:image" content="$featuredImage">
   <meta name="twitter:image:alt" content="$(HtmlEscape $featuredImageAlt)">
 $jsonLd
+$tagManagerHead
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="home-page">
+$tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
@@ -1958,6 +1992,8 @@ function Build-ArticlesIndexHtml {
   $heroImage = if ($allArticles.Count -gt 0) { $allArticles[0].ImageCanonicalUrl } else { "" }
   $heroImageAlt = if ($allArticles.Count -gt 0) { $allArticles[0].ImageAlt } else { "Articles EcoBalcon autour du jardinage sur balcon" }
   $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
   $jsonLd = Get-JsonLdScriptTags @([ordered]@{
       "@context" = "https://schema.org"
       "@type" = "CollectionPage"
@@ -1998,12 +2034,14 @@ function Build-ArticlesIndexHtml {
   <meta name="twitter:image" content="$heroImage">
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroImageAlt)">
 $jsonLd
+$tagManagerHead
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="articles-page">
+$tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
@@ -2538,9 +2576,30 @@ foreach ($article in $articles) {
 }
 
 Set-Content -Path (Join-Path $articlesDir "index.html") -Value (Build-ArticlesIndexHtml $articles) -Encoding UTF8
-Set-Content -Path (Join-Path $root "index.html") -Value (Build-HomeHtml $articles) -Encoding UTF8
+
+$homePath = Join-Path $root "index.html"
+$homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"
+$homeBackupStatus = ""
+
+if ($RebuildHome -or -not (Test-Path $homePath)) {
+  if ($RebuildHome -and (Test-Path $homePath)) {
+    $homeBackupDir = Join-Path $root "backups\homepage"
+    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $homeBackupPath = Join-Path $homeBackupDir "index-$timestamp.html"
+    New-Item -ItemType Directory -Path $homeBackupDir -Force | Out-Null
+    Copy-Item -Path $homePath -Destination $homeBackupPath -Force
+    $homeBackupStatus = "Homepage backup created: $homeBackupPath"
+  }
+
+  Set-Content -Path $homePath -Value (Build-HomeHtml $articles) -Encoding UTF8
+  $homeStatus = if ($RebuildHome) { "Homepage regenerated from the script" } else { "Homepage created from the script" }
+}
+
 Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $articles) -Encoding UTF8
 Set-Content -Path (Join-Path $root "robots.txt") -Value (Build-RobotsTxt) -Encoding UTF8
 
-Write-Output "Updated articles index, homepage, sitemap.xml and robots.txt"
-
+Write-Output "Updated articles index, sitemap.xml and robots.txt"
+if ($homeBackupStatus) {
+  Write-Output $homeBackupStatus
+}
+Write-Output $homeStatus
