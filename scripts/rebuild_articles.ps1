@@ -1099,7 +1099,7 @@ function Convert-KeyFactsSection {
         }
 
         $safeLabel = HtmlEscape $item.Label
-        [void]$builder.AppendLine("              <div class=`"article-key-facts-item`" role=`"listitem`"><strong>${safeLabel}&nbsp;:</strong><span>$($item.Value)</span></div>")
+        [void]$builder.AppendLine("              <div class=`"article-key-facts-item`" role=`"listitem`"><strong>${safeLabel}&nbsp;: </strong><span>$($item.Value)</span></div>")
       }
 
       [void]$builder.Append('            </div>')
