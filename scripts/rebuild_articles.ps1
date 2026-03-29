@@ -11,6 +11,7 @@ $sourceStylesheetPath = Join-Path $root "css\style.css"
 $minifiedStylesheetPath = Join-Path $root "css\style.min.css"
 $rootStylesheetHref = "css/style.min.css"
 $articleStylesheetHref = "../css/style.min.css"
+$articleDetailStylesheetHref = "../../css/style.min.css"
 $siteUrl = "https://ecobalcon.com"
 # GA4 is intended to be wired through GTM to avoid duplicate pageview tracking.
 $googleAnalyticsMeasurementId = "G-L952X34SHR"
@@ -155,6 +156,54 @@ function Get-ImagePagePath {
 
   if ([string]::IsNullOrWhiteSpace($fileName)) { return "" }
   return "$pagePrefix$fileName"
+}
+
+function Get-ArticleLegacyFileName {
+  param([pscustomobject]$article)
+
+  return "$($article.Slug).html"
+}
+
+function Get-ArticlePrettyHref {
+  param(
+    [pscustomobject]$article,
+    [string]$hrefPrefix = ""
+  )
+
+  return "$hrefPrefix$($article.Slug)/"
+}
+
+function Get-ArticleCanonicalUrl {
+  param([pscustomobject]$article)
+
+  return "$siteUrl/articles/$($article.Slug)/"
+}
+
+function Get-RedirectHtml {
+  param(
+    [string]$targetUrl,
+    [string]$title = "Redirection | EcoBalcon",
+    [string]$description = "Cette page a changé d'adresse."
+  )
+
+  return @"
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$(HtmlEscape $title)</title>
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="$(HtmlEscape $description)">
+  <link rel="canonical" href="$targetUrl">
+  <meta http-equiv="refresh" content="0; url=$targetUrl">
+  <script>window.location.replace("$targetUrl");</script>
+</head>
+<body>
+  <p>Redirection vers <a href="$targetUrl">$targetUrl</a>.</p>
+</body>
+</html>
+"@
 }
 
 try {
@@ -861,7 +910,7 @@ function Get-ArticleSources {
         SourcePath = $file.FullName
         SourceName = $file.Name
         Slug = $slug
-        OutputName = "$slug.html"
+        OutputName = Get-ArticleLegacyFileName ([PSCustomObject]@{ Slug = $slug })
         Title = [System.Net.WebUtility]::HtmlDecode($schema.name)
         SeoTitle = ""
         Description = [System.Net.WebUtility]::HtmlDecode($schema.description)
@@ -893,7 +942,7 @@ function Get-ArticleSources {
 $articles = @(Get-ArticleSources)
 $slugMap = @{}
 foreach ($article in $articles) {
-  $slugMap[$article.Slug] = $article.OutputName
+  $slugMap[$article.Slug] = Get-ArticlePrettyHref -article $article -hrefPrefix "../"
 }
 
 Ensure-ArticleImages $articles
@@ -913,6 +962,22 @@ function Resolve-Link {
     if ($slugMap.ContainsKey($slug)) {
       return $slugMap[$slug]
     }
+  }
+
+  if ($url -match '^(?<slug>[^/?#]+)\.html(?<suffix>[?#].*)?$') {
+    $slug = $matches["slug"]
+    $suffix = $matches["suffix"]
+    if ($slugMap.ContainsKey($slug)) {
+      return "$($slugMap[$slug])$suffix"
+    }
+  }
+
+  if ($url -match '^index\.html(?<suffix>[?#].*)?$') {
+    return "../$($matches["suffix"])"
+  }
+
+  if ($url -match '^\.\./index\.html(?<suffix>[?#].*)?$') {
+    return "../../$($matches["suffix"])"
   }
 
   return $url
@@ -1243,9 +1308,9 @@ function Build-ArticleHtml {
   $bodyHtml = Ensure-AffiliateDisclosure $bodyHtml
   $dateText = Convert-IsoDateToFrench $article.DatePublished
   $timeText = Convert-TimeRequired $article.TimeRequired
-  $canonicalUrl = "$siteUrl/articles/$($article.OutputName)"
+  $canonicalUrl = Get-ArticleCanonicalUrl $article
   $seoTitle = if ($article.SeoTitle) { $article.SeoTitle } else { $article.Title }
-  $heroImageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix "../images/articles/"
+  $heroImageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix "../../images/articles/"
   $heroImageDimensions = Get-ArticleImageDimensionAttributes $article.ImageFileName
   $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
   $tagManagerHead = Get-TagManagerHeadHtml
@@ -1298,15 +1363,15 @@ function Build-ArticleHtml {
   $breadcrumbHtml = @"
         <nav class="breadcrumb-nav" aria-label="fil d'ariane">
           <ol class="breadcrumb">
-            <li><a href="../index.html">Accueil</a></li>
-            <li><a href="index.html">Articles</a></li>
+            <li><a href="../../">Accueil</a></li>
+            <li><a href="../">Articles</a></li>
             <li aria-current="page">$(HtmlEscape $article.Title)</li>
           </ol>
         </nav>
 "@
   $relatedCardsHtml = if ($relatedArticles.Count -gt 0) {
     (($relatedArticles | ForEach-Object {
-          Build-ArticleCardHtml -article $_ -hrefPrefix "" -imagePrefix "../images/articles/" -extraClass " related-card"
+          Build-ArticleCardHtml -article $_ -hrefPrefix "../" -imagePrefix "../../images/articles/" -extraClass " related-card"
         }) -join "`n")
   } else { "" }
   $relatedSection = if ($relatedCardsHtml) {
@@ -1356,26 +1421,26 @@ $relatedCardsHtml
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroCaption)">
 $jsonLdScripts
 $tagManagerHead
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
-  <link rel="stylesheet" href="$articleStylesheetHref">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="$articleDetailStylesheetHref">
 </head>
 <body class="article-page">
 $tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="../index.html">
+        <a class="brand" href="../../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="../../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Navigation principale">
-            <a href="../index.html">Accueil</a>
-            <a href="index.html" aria-current="page">Articles</a>
-            <a href="../galerie.html">Galerie</a>
+            <a href="../../">Accueil</a>
+            <a href="../">Articles</a>
+            <a href="../../galerie/">Galerie</a>
           </nav>
           <div class="social-nav" aria-label="R&eacute;seaux sociaux">
             <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1430,8 +1495,8 @@ $sidebarHtml
             <div class="checklist article-links">
               <h3>Continuer</h3>
               <ul class="article-list">
-                <li><a href="index.html">Retour &agrave; la liste des articles</a></li>
-                <li><a href="../index.html">Retour &agrave; l'accueil</a></li>
+                <li><a href="../">Retour &agrave; la liste des articles</a></li>
+                <li><a href="../../">Retour &agrave; l'accueil</a></li>
               </ul>
             </div>
           </aside>
@@ -1440,7 +1505,7 @@ $relatedSection
       </div>
     </main>
 
-$(Get-SiteFooterHtml -pagePrefix "../")
+$(Get-SiteFooterHtml -pagePrefix "../../")
   </div>
 </body>
 </html>
@@ -1457,7 +1522,7 @@ function Build-ArticleCardHtml {
 
   $category = Get-CanonicalArticleCategory -slug $article.Slug -rawCategory $article.Category -title $article.Title -description $article.Description
   $summary = Get-CardExcerpt $article.Description
-  $href = "$hrefPrefix$($article.OutputName)"
+  $href = Get-ArticlePrettyHref -article $article -hrefPrefix $hrefPrefix
   $imageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix $imagePrefix
   $imageDimensions = Get-ArticleImageDimensionAttributes $article.ImageFileName
   $className = "article-card$extraClass"
@@ -1501,7 +1566,7 @@ function Build-HomeHtml {
     "reduction-consommation-eau-balcon",
     "guide-tomates-sur-son-balcon"
   ) -fallbackIndex 1
-  $heroSupportHref = "articles/jardin-sur-balcon-astuces.html"
+  $heroSupportHref = "articles/jardin-sur-balcon-astuces/"
   $homeVisualDimensions = " width=`"1024`" height=`"1536`""
   $homeStats = @(
     [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour planter, arroser, récolter et aménager." },
@@ -1522,21 +1587,21 @@ function Build-HomeHtml {
       Label = "Débuter"
       Title = "Poser les bonnes bases"
       Copy = "Un point de départ simple pour installer un balcon agréable et éviter les erreurs classiques."
-      Href = "articles/jardin-sur-balcon-astuces.html"
+      Href = "articles/jardin-sur-balcon-astuces/"
       LinkLabel = "Voir les bases"
     },
     [PSCustomObject]@{
       Label = "Planter"
       Title = "Choisir des cultures faciles"
       Copy = "Des fiches pratiques pour cultiver sur balcon simplement, sans compliquer les choses."
-      Href = "articles/guide-tomates-sur-son-balcon.html"
+      Href = "articles/guide-tomates-sur-son-balcon/"
       LinkLabel = "Voir les cultures"
     },
     [PSCustomObject]@{
       Label = "Préserver"
       Title = "Entretenir un balcon plus écolo"
       Copy = "Arrosage, paillage, récupération d’eau et gestes utiles pour un balcon facile à vivre au quotidien."
-      Href = "articles/reduction-consommation-eau-balcon.html"
+      Href = "articles/reduction-consommation-eau-balcon/"
       LinkLabel = "Voir les astuces"
     }
   )
@@ -1560,7 +1625,7 @@ function Build-HomeHtml {
     "calendrier-du-jardin-de-balcon",
     "jardin-sur-balcon-astuces"
   ) -fallbackIndex 0
-  $weeklyFeatureHref = if ($weeklyFallbackArticle) { "articles/$($weeklyFallbackArticle.OutputName)" } else { "articles/index.html" }
+  $weeklyFeatureHref = if ($weeklyFallbackArticle) { Get-ArticlePrettyHref -article $weeklyFallbackArticle -hrefPrefix "articles/" } else { "articles/" }
   $weeklyFeatureImageSrc = if ($weeklyFallbackArticle) { Get-ImagePagePath -fileName $weeklyFallbackArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $weeklyFeatureImageDimensions = if ($weeklyFallbackArticle) { Get-ArticleImageDimensionAttributes $weeklyFallbackArticle.ImageFileName } else { "" }
   $weeklyFeatureCategory = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Category } else { "À lire" }
@@ -1575,7 +1640,7 @@ function Build-HomeHtml {
         title = $_.Title
         description = $_.Description
         category = $_.Category
-        href = "articles/$($_.OutputName)"
+        href = Get-ArticlePrettyHref -article $_ -hrefPrefix "articles/"
         imageSrc = Get-ImagePagePath -fileName $_.ImageFileName -pagePrefix "images/articles/"
         imageAlt = $_.ImageAlt
         datePublished = $_.DatePublished
@@ -1590,27 +1655,27 @@ function Build-HomeHtml {
   $themeHtml = @"
           <article class="theme-card" data-reveal style="--reveal-delay: 60ms;">
             <span class="eyebrow">Fiches Techniques</span>
-            <h3><a href="articles/index.html#theme=fiches-techniques">Trouver un guide culture pas &agrave; pas</a></h3>
+            <h3><a href="articles/#theme=fiches-techniques">Trouver un guide culture pas &agrave; pas</a></h3>
             <p>Les fiches les plus concr&egrave;tes pour cultiver tomates, poivrons, laitues, radis, fraises et autres cultures de balcon.</p>
-            <a class="text-link" href="articles/index.html#theme=fiches-techniques">Voir les fiches</a>
+            <a class="text-link" href="articles/#theme=fiches-techniques">Voir les fiches</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 130ms;">
             <span class="eyebrow">Plantes &amp; semis</span>
-            <h3><a href="articles/index.html#theme=plantes-semis">Choisir quoi planter selon son balcon</a></h3>
+            <h3><a href="articles/#theme=plantes-semis">Choisir quoi planter selon son balcon</a></h3>
             <p>Des s&eacute;lections de plantes, de l&eacute;gumes, d’aromatiques et d’id&eacute;es de culture selon l’exposition et les envies.</p>
-            <a class="text-link" href="articles/index.html#theme=plantes-semis">Voir les plantations</a>
+            <a class="text-link" href="articles/#theme=plantes-semis">Voir les plantations</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 200ms;">
             <span class="eyebrow">Entretien &amp; astuces</span>
-            <h3><a href="articles/index.html#theme=entretien-astuces">Mieux entretenir son balcon au quotidien</a></h3>
+            <h3><a href="articles/#theme=entretien-astuces">Mieux entretenir son balcon au quotidien</a></h3>
             <p>Arrosage, paillage, compost, nuisibles, chaleur et gestes simples pour garder un balcon sain et facile &agrave; vivre.</p>
-            <a class="text-link" href="articles/index.html#theme=entretien-astuces">Voir les astuces</a>
+            <a class="text-link" href="articles/#theme=entretien-astuces">Voir les astuces</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 270ms;">
             <span class="eyebrow">Am&eacute;nagement du balcon</span>
-            <h3><a href="articles/index.html#theme=amenagement-du-balcon">Am&eacute;nager un espace plus pratique</a></h3>
+            <h3><a href="articles/#theme=amenagement-du-balcon">Am&eacute;nager un espace plus pratique</a></h3>
             <p>Mat&eacute;riel, pots, compostage, r&eacute;cup&eacute;ration d’eau, plantes grimpantes et astuces pour organiser le balcon.</p>
-            <a class="text-link" href="articles/index.html#theme=amenagement-du-balcon">Voir les am&eacute;nagements</a>
+            <a class="text-link" href="articles/#theme=amenagement-du-balcon">Voir les am&eacute;nagements</a>
           </article>
 "@
   $editorialFeature = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
@@ -1618,7 +1683,7 @@ function Build-HomeHtml {
     "potager-balcon-eau-de-cuisson",
     "jardinage-en-lasagnes-sur-balcon"
   ) -fallbackIndex 0
-  $editorialFeatureHref = if ($editorialFeature) { "articles/$($editorialFeature.OutputName)" } else { "articles/index.html" }
+  $editorialFeatureHref = if ($editorialFeature) { Get-ArticlePrettyHref -article $editorialFeature -hrefPrefix "articles/" } else { "articles/" }
   $editorialFeatureImageSrc = if ($editorialFeature) { Get-ImagePagePath -fileName $editorialFeature.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $editorialFeatureImageDimensions = if ($editorialFeature) { Get-ArticleImageDimensionAttributes $editorialFeature.ImageFileName } else { "" }
   $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
@@ -1628,7 +1693,7 @@ function Build-HomeHtml {
       Select-Object -First 3
   )
   $editorialListHtml = (($editorialList | ForEach-Object {
-      $href = "articles/$($_.OutputName)"
+      $href = Get-ArticlePrettyHref -article $_ -hrefPrefix "articles/"
 @"
             <article class="editorial-item">
               <span class="pill">$(HtmlEscape $_.Category)</span>
@@ -1669,15 +1734,15 @@ function Build-HomeHtml {
   <meta name="description" content="EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="preload" as="image" href="images/balcon-soleil.webp" fetchpriority="high">
-  <link rel="canonical" href="$siteUrl/index.html">
-  <link rel="alternate" hreflang="fr" href="$siteUrl/index.html">
-  <link rel="alternate" hreflang="x-default" href="$siteUrl/index.html">
+  <link rel="canonical" href="$siteUrl/">
+  <link rel="alternate" hreflang="fr" href="$siteUrl/">
+  <link rel="alternate" hreflang="x-default" href="$siteUrl/">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="EcoBalcon">
   <meta property="og:type" content="website">
   <meta property="og:title" content="EcoBalcon | Jardinage urbain sur balcon">
   <meta property="og:description" content="EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain.">
-  <meta property="og:url" content="$siteUrl/index.html">
+  <meta property="og:url" content="$siteUrl/">
   <meta property="og:image" content="$shareImage">
   <meta property="og:image:alt" content="$(HtmlEscape $shareImageAlt)">
   <meta name="twitter:card" content="summary_large_image">
@@ -1697,16 +1762,16 @@ $tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
           <span class="brand-mark">
             <img class="brand-logo" src="images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Navigation principale">
-            <a href="index.html" aria-current="page">Accueil</a>
-            <a href="articles/index.html">Articles</a>
-            <a href="galerie.html">Galerie</a>
+            <a href="./" aria-current="page">Accueil</a>
+            <a href="articles/">Articles</a>
+            <a href="galerie/">Galerie</a>
           </nav>
           <div class="social-nav" aria-label="R&eacute;seaux sociaux">
             <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1738,7 +1803,7 @@ $tagManagerBody
             </div>
             <div class="hero-copy-side">
               <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
-                <a class="button" href="articles/index.html">Explorer les guides</a>
+                <a class="button" href="articles/">Explorer les guides</a>
                 <a class="button-secondary" href="$heroSupportHref">Commencer avec les bases</a>
               </div>
               <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
@@ -1827,7 +1892,7 @@ $themeHtml
                 retrouvez tous les contenus au m&ecirc;me endroit.
               </p>
             </div>
-            <a class="button" href="articles/index.html">Voir tous les articles</a>
+            <a class="button" href="articles/">Voir tous les articles</a>
           </div>
         </div>
       </section>
@@ -2052,15 +2117,15 @@ function Build-ArticlesIndexHtml {
   <title>Conseils et guides jardinage sur balcon | EcoBalcon</title>
   <meta name="description" content="Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="canonical" href="$siteUrl/articles/index.html">
-  <link rel="alternate" hreflang="fr" href="$siteUrl/articles/index.html">
-  <link rel="alternate" hreflang="x-default" href="$siteUrl/articles/index.html">
+  <link rel="canonical" href="$siteUrl/articles/">
+  <link rel="alternate" hreflang="fr" href="$siteUrl/articles/">
+  <link rel="alternate" hreflang="x-default" href="$siteUrl/articles/">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="EcoBalcon">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Conseils et guides jardinage sur balcon | EcoBalcon">
   <meta property="og:description" content="Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo.">
-  <meta property="og:url" content="$siteUrl/articles/index.html">
+  <meta property="og:url" content="$siteUrl/articles/">
   <meta property="og:image" content="$heroImage">
   <meta property="og:image:alt" content="$(HtmlEscape $heroImageAlt)">
   <meta name="twitter:card" content="summary_large_image">
@@ -2080,16 +2145,16 @@ $tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="../index.html">
+        <a class="brand" href="../">
           <span class="brand-mark">
             <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Navigation principale">
-            <a href="../index.html">Accueil</a>
-            <a href="index.html" aria-current="page">Articles</a>
-            <a href="../galerie.html">Galerie</a>
+            <a href="../">Accueil</a>
+            <a href="./" aria-current="page">Articles</a>
+            <a href="../galerie/">Galerie</a>
           </nav>
           <div class="social-nav" aria-label="R&eacute;seaux sociaux">
             <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -2538,11 +2603,11 @@ function Get-PreferredArticle {
   return $allArticles | Select-Object -First 1
 }
 
-function Build-PrivacyHtml {
+function Build-PrivacyPageHtml {
   $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
   $tagManagerHead = Get-TagManagerHeadHtml
   $tagManagerBody = Get-TagManagerBodyHtml
-  $canonicalUrl = "$siteUrl/politique-confidentialite.html"
+  $canonicalUrl = "$siteUrl/politique-confidentialite/"
 
   return @"
 <!doctype html>
@@ -2566,26 +2631,26 @@ function Build-PrivacyHtml {
   <meta name="twitter:title" content="Politique de confidentialit&eacute; | EcoBalcon">
   <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et les donn&eacute;es de navigation utilis&eacute;s sur EcoBalcon.">
 $tagManagerHead
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  <link rel="stylesheet" href="$rootStylesheetHref">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/style.min.css">
 </head>
 <body class="legal-page">
 $tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Navigation principale">
-            <a href="index.html">Accueil</a>
-            <a href="articles/index.html">Articles</a>
-            <a href="galerie.html">Galerie</a>
+            <a href="../">Accueil</a>
+            <a href="../articles/">Articles</a>
+            <a href="../galerie/">Galerie</a>
           </nav>
           <div class="social-nav" aria-label="R&eacute;seaux sociaux">
             <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -2611,7 +2676,7 @@ $tagManagerBody
         <div>
           <nav class="breadcrumb-nav" aria-label="fil d'ariane">
             <ol class="breadcrumb">
-              <li><a href="index.html">Accueil</a></li>
+              <li><a href="../">Accueil</a></li>
               <li aria-current="page">Politique de confidentialit&eacute;</li>
             </ol>
           </nav>
@@ -2675,7 +2740,7 @@ $tagManagerBody
       </div>
     </main>
 
-$(Get-SiteFooterHtml -pagePrefix "")
+$(Get-SiteFooterHtml -pagePrefix "../")
   </div>
 </body>
 </html>
@@ -2718,16 +2783,16 @@ $tagManagerBody
   <div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
           <span class="brand-mark">
             <img class="brand-logo" src="images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
           <nav class="site-nav" aria-label="Navigation principale">
-            <a href="index.html">Accueil</a>
-            <a href="articles/index.html">Articles</a>
-            <a href="galerie.html">Galerie</a>
+            <a href="./">Accueil</a>
+            <a href="articles/">Articles</a>
+            <a href="galerie/">Galerie</a>
           </nav>
           <div class="social-nav" aria-label="R&eacute;seaux sociaux">
             <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -2759,8 +2824,8 @@ $tagManagerBody
               ou repartir depuis les articles pour retrouver le bon contenu.
             </p>
             <div class="hero-actions">
-              <a class="button" href="index.html">Retour &agrave; l'accueil</a>
-              <a class="button-secondary" href="articles/index.html">Voir les articles</a>
+              <a class="button" href="./">Retour &agrave; l'accueil</a>
+              <a class="button-secondary" href="articles/">Voir les articles</a>
             </div>
           </div>
 
@@ -2771,7 +2836,7 @@ $tagManagerBody
               <li>Parcourir les guides et fiches techniques depuis la liste des articles.</li>
               <li>Ouvrir la galerie pour retrouver des inspirations balcon.</li>
             </ul>
-            <a class="text-link" href="galerie.html">Voir la galerie</a>
+            <a class="text-link" href="galerie/">Voir la galerie</a>
           </aside>
         </section>
       </div>
@@ -2828,12 +2893,13 @@ function Build-SitemapXml {
   $entries.Add((New-SitemapUrlNode -loc "$siteUrl/" -priority "1.0" -lastmod $today -imageUrl $homeImageUrl -imageCaption $homeImageCaption))
   $entries.Add((New-SitemapUrlNode -loc "$siteUrl/articles/" -priority "0.9" -lastmod $today -imageUrl $homeImageUrl -imageCaption $homeImageCaption))
   if (Test-Path (Join-Path $root "galerie.html")) {
-    $entries.Add((New-SitemapUrlNode -loc "$siteUrl/galerie.html" -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/canicule-balcon-mxBXq1QqyeTR1PLZ.webp" -imageCaption "Balcon plante en plein soleil"))
+    $galleryLoc = if (Test-Path (Join-Path $root "galerie\index.html")) { "$siteUrl/galerie/" } else { "$siteUrl/galerie.html" }
+    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/canicule-balcon-mxBXq1QqyeTR1PLZ.webp" -imageCaption "Balcon plante en plein soleil"))
   }
 
   foreach ($article in $allArticles) {
     $lastmod = if ($article.DateModified) { $article.DateModified } else { $article.DatePublished }
-    $entries.Add((New-SitemapUrlNode -loc "$siteUrl/articles/$($article.OutputName)" -priority "0.7" -lastmod $lastmod -imageUrl $article.ImageCanonicalUrl -imageCaption $article.ImageAlt))
+    $entries.Add((New-SitemapUrlNode -loc (Get-ArticleCanonicalUrl $article) -priority "0.7" -lastmod $lastmod -imageUrl $article.ImageCanonicalUrl -imageCaption $article.ImageAlt))
   }
 
   $body = ($entries -join "`n")
@@ -2850,17 +2916,25 @@ Sitemap: $siteUrl/sitemap.xml
 }
 
 foreach ($article in $articles) {
-  $outPath = Join-Path $articlesDir $article.OutputName
+  $articleOutDir = Join-Path $articlesDir $article.Slug
+  $outPath = Join-Path $articleOutDir "index.html"
   $html = Build-ArticleHtml -article $article -allArticles $articles
+  $redirectHtml = Get-RedirectHtml -targetUrl (Get-ArticleCanonicalUrl $article) -title "$($article.Title) | EcoBalcon" -description "Cette page a été déplacée vers sa nouvelle adresse."
+  New-Item -ItemType Directory -Path $articleOutDir -Force | Out-Null
   Set-Content -Path $outPath -Value $html -Encoding UTF8
-  Write-Output "Rebuilt $($article.OutputName)"
+  Set-Content -Path (Join-Path $articlesDir $article.OutputName) -Value $redirectHtml -Encoding UTF8
+  Write-Output "Rebuilt articles/$($article.Slug)/index.html and legacy redirect $($article.OutputName)"
 }
 
 Write-MinifiedStylesheet
 
 Set-Content -Path (Join-Path $articlesDir "index.html") -Value (Build-ArticlesIndexHtml $articles) -Encoding UTF8
-Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Build-PrivacyHtml) -Encoding UTF8
 Set-Content -Path (Join-Path $root "404.html") -Value (Build-404Html) -Encoding UTF8
+
+$privacyDir = Join-Path $root "politique-confidentialite"
+New-Item -ItemType Directory -Path $privacyDir -Force | Out-Null
+Set-Content -Path (Join-Path $privacyDir "index.html") -Value (Build-PrivacyPageHtml) -Encoding UTF8
+Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialite | EcoBalcon" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
 
 $homePath = Join-Path $root "index.html"
 $homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"
