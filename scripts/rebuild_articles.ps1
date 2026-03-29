@@ -2918,12 +2918,15 @@ Sitemap: $siteUrl/sitemap.xml
 foreach ($article in $articles) {
   $articleOutDir = Join-Path $articlesDir $article.Slug
   $outPath = Join-Path $articleOutDir "index.html"
+  $legacyRootDir = Join-Path $root $article.Slug
   $html = Build-ArticleHtml -article $article -allArticles $articles
   $redirectHtml = Get-RedirectHtml -targetUrl (Get-ArticleCanonicalUrl $article) -title "$($article.Title) | EcoBalcon" -description "Cette page a été déplacée vers sa nouvelle adresse."
   New-Item -ItemType Directory -Path $articleOutDir -Force | Out-Null
+  New-Item -ItemType Directory -Path $legacyRootDir -Force | Out-Null
   Set-Content -Path $outPath -Value $html -Encoding UTF8
   Set-Content -Path (Join-Path $articlesDir $article.OutputName) -Value $redirectHtml -Encoding UTF8
-  Write-Output "Rebuilt articles/$($article.Slug)/index.html and legacy redirect $($article.OutputName)"
+  Set-Content -Path (Join-Path $legacyRootDir "index.html") -Value $redirectHtml -Encoding UTF8
+  Write-Output "Rebuilt articles/$($article.Slug)/index.html, legacy redirect $($article.OutputName) and root redirect /$($article.Slug)/"
 }
 
 Write-MinifiedStylesheet
