@@ -867,6 +867,7 @@ function Apply-ArticleOverride {
     "SeoTitle",
     "Description",
     "Intro",
+    "ImageFileName",
     "ImageAlt",
     "DatePublished",
     "DateModified",
@@ -891,6 +892,10 @@ function Apply-ArticleOverride {
 
   if (-not $data["Intro"]) {
     $data["Intro"] = $data["Description"]
+  }
+
+  if ($data["ImageFileName"]) {
+    $data["ImageCanonicalUrl"] = Get-ImageCanonicalUrl $data["ImageFileName"]
   }
 
   return [PSCustomObject]$data

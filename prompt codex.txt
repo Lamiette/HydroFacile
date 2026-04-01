@@ -1,0 +1,174 @@
+Tu travailles dans mon projet de site statique “Ecobalcon”, dédié au jardinage sur balcon, au potager urbain, aux plantes, aux fleurs, aux petits espaces extérieurs et aux conseils pratiques pour débutants.
+
+Ta mission :
+analyser tout le site existant, identifier le sujet de nouvel article le plus pertinent à créer, puis produire et intégrer cet article avec une logique SEO complète, en restant cohérent avec le ton, la structure et le niveau de qualité déjà présents sur le site.
+
+OBJECTIF GLOBAL
+Je veux un nouvel article qui ait de vraies chances d’être utile pour le référencement naturel, cohérent avec les contenus déjà publiés, intéressant pour des lecteurs débutants/intermédiaires, et parfaitement intégré au site.
+
+ÉTAPE 1 — AUDIT DU SITE
+Commence par analyser l’ensemble du projet :
+- tous les articles existants
+- les titres H1/H2/H3
+- les mots-clés déjà couverts
+- les catégories ou thématiques principales
+- le style rédactionnel
+- la structure HTML/Markdown utilisée pour les articles
+- les métadonnées SEO déjà présentes
+- les liens internes existants
+- les images déjà utilisées
+- le sitemap, flux RSS, index d’articles, catégories, tags ou pages annexes si présents
+
+Ensuite, identifie :
+- les sujets déjà bien couverts
+- les sujets proches mais incomplets
+- les manques éditoriaux
+- les opportunités de longue traîne SEO
+- les requêtes réellement pertinentes pour un site comme Ecobalcon
+- le sujet de nouvel article le plus intéressant à créer maintenant
+
+IMPORTANT :
+Ne choisis pas un sujet trop large ou trop concurrentiel si une variante plus précise, plus utile et plus accessible SEO est meilleure.
+Privilégie un sujet :
+- utile pour un lecteur français
+- adapté à un site de niche sur le balcon / jardin urbain
+- cohérent avec la saison si possible
+- complémentaire aux articles déjà présents
+- facilement maillable avec les contenus existants
+
+ÉTAPE 2 — CHOIX DU SUJET
+Avant d’écrire, choisis le meilleur sujet et justifie-le brièvement dans un commentaire ou un fichier temporaire de travail :
+- sujet retenu
+- mot-clé principal
+- mots-clés secondaires
+- intention de recherche
+- raison du choix par rapport au contenu existant
+- articles existants vers lesquels créer des liens internes
+
+Puis passe directement à la création de l’article.
+
+ÉTAPE 3 — RÉDACTION DE L’ARTICLE
+Crée un article complet, original, naturel, fluide, crédible et utile.
+Le texte doit être écrit en français naturel, sans ton robotique ni phrases creuses.
+Évite absolument le blabla SEO artificiel.
+
+Contraintes éditoriales :
+- ton clair, pédagogue, concret, rassurant
+- cible : débutants ou jardiniers urbains non experts
+- style humain, accessible, agréable à lire
+- contenu pratique, structuré, précis
+- éviter les répétitions inutiles
+- éviter les formulations trop génériques
+- apporter de vrais conseils exploitables
+- rester cohérent avec le branding Ecobalcon
+
+Structure attendue :
+- un vrai H1 optimisé mais naturel
+- une introduction engageante
+- plusieurs sections H2/H3 pertinentes
+- paragraphes lisibles
+- listes à puces si utiles
+- conseils pratiques
+- erreurs à éviter si pertinent
+- mini FAQ de fin si cela apporte un vrai plus SEO
+- conclusion naturelle avec ouverture éventuelle vers d’autres contenus du site
+
+L’article doit être suffisamment riche pour être utile, sans sur-gonfler artificiellement la longueur.
+Cherche la meilleure longueur selon le sujet et les autres contenus du site.
+
+ÉTAPE 4 — SEO COMPLET
+Fais toute la partie SEO on-page :
+- title SEO unique et bien optimisé
+- meta description persuasive et naturelle
+- slug pertinent
+- balises Hn propres
+- mot-clé principal bien intégré sans sur-optimisation
+- variantes sémantiques intégrées naturellement
+- attribut alt de l’image
+- éventuel balisage schema.org Article si le site l’utilise déjà
+- données Open Graph / Twitter si la structure du projet le prévoit
+- canonical si pertinent dans l’architecture existante
+
+Tu dois aussi optimiser :
+- la lisibilité
+- l’intention de recherche
+- le maillage interne
+- la cohérence avec les autres contenus
+- la probabilité de clic depuis Google
+
+ÉTAPE 5 — MAILLAGE INTERNE
+Ajoute des liens internes intelligents depuis le nouvel article vers les contenus existants les plus pertinents.
+Si pertinent, ajoute aussi depuis 2 à 5 anciens articles un lien vers ce nouvel article, de façon naturelle et contextuelle.
+Ne crée pas de liens forcés.
+
+ÉTAPE 6 — IMAGE LIBRE DE DROIT
+Trouve une image libre de droit cohérente avec le sujet de l’article.
+Conditions :
+- image légalement réutilisable
+- visuellement qualitative
+- crédible pour un site de jardinage/balcon
+- cohérente avec la ligne éditoriale
+- pas d’image kitsch, trop artificielle ou visiblement hors sujet
+
+Gère l’image proprement :
+- récupère l’image si le contexte/outillage du projet le permet
+- sinon prépare au minimum l’intégration propre avec :
+  - nom de fichier optimisé SEO
+  - texte alt
+  - légende si le site en utilise
+  - crédit/source si nécessaire
+- compresse/redimensionne si le workflow du projet le permet
+- place-la dans le bon dossier
+- mets à jour l’article pour l’utiliser correctement
+
+Si plusieurs sources d’images sont possibles, privilégie une solution simple, fiable et cohérente avec le projet.
+Si l’automatisation complète du téléchargement n’est pas possible dans l’environnement actuel, fais tout le reste et laisse une note claire avec la meilleure image/source à utiliser.
+
+ÉTAPE 7 — INTÉGRATION DANS LE SITE
+Crée réellement l’article dans le bon format utilisé par le projet.
+Respecte exactement la structure existante du site.
+
+Mets aussi à jour ce qui doit l’être :
+- listing des articles
+- page archive/blog si nécessaire
+- sitemap
+- flux RSS/Atom si présent
+- fichiers de données JSON/YAML/TS si le site en utilise
+- navigation interne liée au blog
+- éventuelles pages catégories/tags
+- image preview sociale si prévue dans le projet
+
+ÉTAPE 8 — QUALITÉ ET COHÉRENCE
+Avant de finaliser :
+- vérifie qu’il n’y a pas de doublon avec un article existant
+- vérifie qu’il n’y a pas de cannibalisation SEO évidente
+- améliore le texte si certains passages sont trop faibles
+- corrige toute incohérence de ton
+- vérifie l’orthographe et la grammaire
+- vérifie que les liens internes fonctionnent
+- vérifie que les métadonnées sont complètes
+- vérifie que l’article paraît réellement humain et utile
+
+ÉTAPE 9 — LIVRABLES ATTENDUS
+À la fin, je veux :
+1. le nouvel article intégré dans le projet
+2. les éventuels fichiers annexes mis à jour
+3. l’image intégrée ou préparée proprement
+4. un court récapitulatif final avec :
+   - sujet choisi
+   - mot-clé principal
+   - raison du choix
+   - fichiers créés/modifiés
+   - éléments SEO ajoutés
+   - liens internes ajoutés
+   - éventuelles limites ou actions manuelles restantes
+
+RÈGLES IMPORTANTES
+- Ne me demande pas quoi écrire : décide en autonomie après analyse du site
+- Ne choisis pas un sujet déjà traité sauf si tu apportes un angle nettement meilleur
+- Ne rédige pas du texte générique “SEO”
+- N’invente pas de faits précis non vérifiables
+- Ne casse pas la structure du projet
+- Respecte le style existant du site
+- Fais des modifications propres, minimales et cohérentes
+- Si tu hésites entre plusieurs sujets, choisis celui qui a le meilleur compromis entre utilité lecteur, cohérence éditoriale et potentiel SEO

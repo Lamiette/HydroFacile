@@ -162,7 +162,7 @@
             <p>Exposition : soleil doux à mi-ombre lumineuse, 4 à 6 h par jour<br>Type de pot : jardinière ou pot large de 20 à 25 cm minimum<br>Substrat : terreau riche, souple, drainant, légèrement enrichi en compost mûr<br>Plantation : mars à juin ou en début d’automne<br>Arrosage : régulier, sans détremper le terreau<br>Récolte : mai à octobre selon variété<br>Variétés conseillées : Charlotte, Mara des Bois, Cirafine, Gariguette, fraises des bois compactes</p>
             <h2>Pourquoi le fraisier fonctionne bien en pot</h2>
             <p>Le fraisier a un vrai profil balcon : il reste compact, fructifie vite, apporte un aspect gourmand et décoratif, et peut même se cultiver en suspension selon les variétés. C’est une plante généreuse, à condition de ne pas la laisser subir les à-coups de chaleur et de sécheresse.</p>
-            <p>Sur un petit espace, il est souvent plus intéressant que des cultures plus volumineuses. Il s’associe très bien à quelques <a href="guide-laitues-sur-son-balcon.html">laitues</a>, à des <a href="guide-radis-sur-son-balcon.html">radis</a> ou à un peu de <a href="plantes-aromatiques-sur-balcon.html">basilic</a>.</p>
+            <p>Sur un petit espace, il est souvent plus intéressant que des cultures plus volumineuses. Il s’associe très bien à quelques <a href="guide-laitues-sur-son-balcon.html">laitues</a>, à des <a href="guide-radis-sur-son-balcon.html">radis</a> ou à un peu de <a href="guide-basilic-sur-son-balcon.html">basilic</a>.</p>
             <h2>Choisir la bonne variété</h2>
             <p>Les variétés remontantes sont généralement les plus simples sur balcon, car elles produisent par vagues pendant plusieurs mois. Les non-remontantes donnent une récolte plus concentrée, mais parfois très abondante sur une courte période.</p>
             <p>Si tu jardineras surtout pour le plaisir de cueillir souvent, vise une remontante. Si tu veux plutôt une belle récolte printanière et un goût très marqué, certaines variétés classiques restent excellentes.</p>
@@ -221,6 +221,90 @@
           [ordered]@{ Name = "Arroser régulièrement et pailler"; Text = "Garde le terreau frais sans excès d’eau et ajoute un paillage pour éviter le dessèchement et les fruits salis." },
           [ordered]@{ Name = "Entretenir les plants"; Text = "Retire les feuilles abîmées, surveille les stolons et apporte un engrais riche en potasse pendant la production." },
           [ordered]@{ Name = "Récolter puis renouveler"; Text = "Cueille les fraises bien mûres, puis pense à renouveler les vieux plants après deux à trois saisons." }
+        )
+      }
+    }
+    "guide-basilic-sur-son-balcon" = [ordered]@{
+      Title = "Guide complet pour cultiver du basilic sur son balcon"
+      SeoTitle = "Basilic sur balcon : guide complet"
+      Description = "Basilic sur balcon : semis, pot, soleil, arrosage, pincement et récoltes régulières. Le guide simple pour garder un basilic touffu et parfumé en pot."
+      Intro = "Le basilic fait partie des plantes les plus gratifiantes sur un balcon ensoleillé : il pousse vite, parfume les repas et répond très bien quand on comprend ses trois vrais besoins, la chaleur, l’eau régulière et les récoltes fréquentes."
+      TimeRequired = "PT5M"
+      DateModified = "2026-04-01T09:00:00.000Z"
+      ImageFileName = "basilic-sur-balcon-ron-lach.jpg"
+      ImageAlt = "Jeune plant de basilic bien vert dans un pot sur un balcon lumineux"
+      BodyHtml = @'
+            <h2>Ce qu’il faut savoir en un coup d’œil</h2>
+            <p>Exposition : soleil doux à plein soleil, avec chaleur stable<br>Type de pot : 15 à 20 cm de profondeur minimum, percé et assez large<br>Substrat : terreau riche, souple, drainant, légèrement enrichi en compost mûr<br>Semis ou plantation : d’avril à juin, une fois le froid vraiment passé<br>Arrosage : régulier, pour garder le terreau frais sans le détremper<br>Fertilisation : légère, toutes les 2 à 3 semaines si le pot est souvent récolté<br>Récolte : de mai à septembre selon la date de départ et la météo<br>Variétés conseillées : Genovese, Grand Vert, Marseillais, basilic citron, basilic grec compact</p>
+            <h2>Pourquoi le basilic mérite une fiche à lui seul</h2>
+            <p>Sur le papier, le basilic semble très simple. En pratique, c’est souvent la plante que les débutants adorent… puis perdent en quelques semaines parce qu’elle a eu froid, qu’elle a séché trop fort ou qu’elle est montée en fleurs trop vite.</p>
+            <p>La bonne nouvelle, c’est que ses besoins sont assez lisibles dès qu’on les connaît. Si tu cherches une vue d’ensemble sur le sujet, commence aussi par notre guide sur les <a href="plantes-aromatiques-sur-balcon.html">plantes aromatiques à cultiver sur un balcon</a>, puis garde cette fiche pour le cas particulier du basilic.</p>
+            <h2>Semer ou acheter un plant ?</h2>
+            <h3>Partir de semis</h3>
+            <p>Le semis est économique et permet de choisir la variété. Il fonctionne bien si tu peux offrir de la chaleur et un peu de patience au départ. Sème peu profond, garde le substrat humide sans excès et évite de sortir les jeunes plants trop tôt.</p>
+            <h3>Partir d’un plant déjà formé</h3>
+            <p>Pour un premier balcon, un petit plant est souvent plus simple. Il permet de récolter plus vite et d’apprendre d’abord l’arrosage, le pincement et l’exposition. Les pots très serrés du commerce gagnent souvent à être divisés ou rempotés rapidement pour durer plus longtemps.</p>
+            <h2>Le bon pot et le bon terreau</h2>
+            <p>Le basilic aime un substrat vivant, souple et frais, mais pas gorgé d’eau. Choisis un pot percé, assez large pour laisser la touffe s’étoffer, avec un drainage propre au fond sans bloquer l’évacuation.</p>
+            <p>Un terreau potager de bonne qualité, enrichi d’un peu de compost mûr, fonctionne bien. Si tu veux mieux doser cette matière organique, notre article sur <a href="utilisation-compost-sur-balcon.html">l’utilisation du compost sur balcon</a> t’aidera à éviter les apports trop lourds.</p>
+            <h2>Soleil, chaleur et emplacement</h2>
+            <p>Le basilic aime la lumière et surtout la chaleur régulière. C’est une plante qui souffre vite des nuits fraîches, des courants d’air et des gros écarts de température. Attends donc que les nuits soient durablement douces avant de l’installer dehors.</p>
+            <p>Un balcon est, sud-est ou sud avec un peu de protection au vent lui convient très bien. Si ton espace est très lumineux, garde aussi sous la main nos repères pour les <a href="plantes-pour-un-balcon-plein-soleil.html">plantes adaptées à un balcon plein soleil</a> : le basilic aime la lumière, mais ses feuilles tendres apprécient qu’on évite les coups de chaud les plus durs.</p>
+            <h2>Arroser sans excès</h2>
+            <p>Le basilic déteste les à-coups. Un terreau qui sèche complètement, puis reçoit beaucoup d’eau d’un coup, donne vite un plant mou, taché ou stressé. Le bon rythme, c’est un substrat qui reste légèrement frais, jamais détrempé.</p>
+            <ul>
+              <li>Arrose au pied, de préférence le matin.</li>
+              <li>Vérifie les premiers centimètres du terreau avant d’arroser, pas seulement la surface.</li>
+              <li>Vide la soucoupe si l’eau stagne après un gros arrosage.</li>
+              <li>Ajoute un <a href="paillage-sur-balcon-ecolo.html">paillage léger</a> si le pot chauffe vite.</li>
+            </ul>
+            <p>Si tu veux lisser encore mieux les besoins en eau pendant l’été, complète avec nos conseils sur la <a href="reduction-consommation-eau-balcon.html">réduction de la consommation d’eau sur balcon</a>.</p>
+            <h2>Pincer, tailler et éviter la montée en fleurs</h2>
+            <p>C’est le geste qui change tout. Un basilic qu’on laisse pousser droit, sans récolte, s’allonge, se fatigue et fleurit vite. Un basilic que l’on pince régulièrement se ramifie, devient plus dense et reste productif plus longtemps.</p>
+            <ul>
+              <li>Coupe juste au-dessus d’une paire de feuilles pour encourager deux nouvelles pousses.</li>
+              <li>Évite de prélever seulement les plus grandes feuilles une à une pendant des semaines.</li>
+              <li>Retire rapidement les débuts de hampes florales si ton objectif est la production de feuilles.</li>
+            </ul>
+            <p>La floraison n’est pas grave en soi, mais elle change l’énergie de la plante. Si tu veux garder un basilic feuillu pour la cuisine, mieux vaut l’anticiper.</p>
+            <h2>Récolter pour garder un basilic touffu</h2>
+            <p>La récolte n’est pas la récompense finale : elle fait partie de l’entretien. Commence quand le plant a assez de tiges pour supporter quelques coupes, puis prélève souvent sans le déshabiller complètement.</p>
+            <p>Sur un balcon gourmand, le basilic accompagne très bien les <a href="guide-tomates-sur-son-balcon.html">tomates</a>, les <a href="guide-poivrons-sur-son-balcon.html">poivrons</a> et d’autres cultures d’été. C’est aussi une bonne plante pour donner vite du rythme à un petit espace comestible, entre deux cultures plus lentes.</p>
+            <h2>Les problèmes les plus courants</h2>
+            <p>Le basilic jaunit ? Le pot est souvent trop mouillé, le drainage insuffisant ou la plante a subi un coup de froid.</p>
+            <p>Les feuilles noircissent ? Le plus fréquent, c’est une nuit trop fraîche, un arrosage sur le feuillage par temps frais ou un stress thermique important.</p>
+            <p>La plante file et fleurit ? Elle manque de pincements réguliers ou a subi trop de chaleur d’un coup.</p>
+            <p>Des pucerons s’installent sur les jeunes pousses ? Interviens tôt avec les bons gestes de notre guide pour <a href="proteger-son-balcon-des-nuisibles-naturellement.html">protéger son balcon des nuisibles naturellement</a>.</p>
+            <h2>Quand renouveler son basilic</h2>
+            <p>Le basilic n’est pas la plante la plus durable du balcon. Même bien mené, il finit souvent par fatiguer au fil de l’été ou dès que les températures baissent. Le plus simple est d’assumer cette logique : on relance parfois un semis, on remplace un plant fatigué, et on profite de la belle saison.</p>
+            <p>Pour savoir quand lancer un nouveau pot ou éviter de sortir trop tôt les plants, garde aussi un œil sur notre <a href="calendrier-du-jardin-de-balcon.html">calendrier du jardin de balcon</a>.</p>
+            <h2>En résumé</h2>
+            <p>Pour réussir du basilic sur un balcon, retiens quatre leviers : chaleur stable, pot drainant, arrosage régulier et pincements fréquents. Ce n’est pas la plante la plus tolérante au froid, mais c’est l’une des plus gratifiantes dès que les bases sont bien posées.</p>
+'@
+      Faq = @(
+        [ordered]@{
+          Question = "Quand peut-on sortir le basilic sur un balcon ?"
+          Answer = "Attends que les nuits soient durablement douces, en général quand les températures descendent rarement sous 10 à 12 °C. Le basilic supporte mal le froid printanier."
+        },
+        [ordered]@{
+          Question = "Pourquoi mon basilic jaunit-il en pot ?"
+          Answer = "Le jaunissement vient souvent d’un excès d’eau, d’un drainage insuffisant ou d’un coup de froid. Un pot percé, un terreau souple et un arrosage plus régulier aident à le stabiliser."
+        },
+        [ordered]@{
+          Question = "Faut-il couper les fleurs du basilic ?"
+          Answer = "Oui, si tu veux prolonger la récolte de feuilles. Supprimer les débuts de fleurs aide la plante à rester ramifiée, dense et plus productive."
+        }
+      )
+      HowTo = [ordered]@{
+        Name = "Comment cultiver du basilic sur son balcon"
+        Description = "Les étapes essentielles pour installer un basilic en pot, l’arroser correctement et le pincer pour garder un plant dense et parfumé."
+        Steps = @(
+          [ordered]@{ Name = "Choisir un plant ou semer au bon moment"; Text = "Lance les semis au chaud ou pars d’un plant déjà formé, puis installe le basilic dehors seulement quand les nuits sont vraiment douces." },
+          [ordered]@{ Name = "Rempoter dans un contenant drainant"; Text = "Prévois un pot percé, assez large, rempli d’un terreau riche, souple et bien drainé." },
+          [ordered]@{ Name = "Installer au chaud et à la lumière"; Text = "Place le basilic dans un coin lumineux, abrité du vent, avec beaucoup de clarté mais sans stress thermique excessif." },
+          [ordered]@{ Name = "Arroser avec régularité"; Text = "Garde le terreau légèrement frais en arrosant au pied dès qu’il commence à sécher en surface." },
+          [ordered]@{ Name = "Pincer les tiges"; Text = "Coupe au-dessus de deux feuilles pour favoriser la ramification et éviter qu’un seul axe ne s’épuise." },
+          [ordered]@{ Name = "Récolter souvent et supprimer les fleurs"; Text = "Préleve régulièrement les extrémités et retire les débuts de floraison pour garder un basilic dense, feuillu et productif." }
         )
       }
     }
@@ -510,6 +594,7 @@
             <h2>Le trio facile pour démarrer</h2>
             <p>Si tu veux faire simple, démarre avec trois valeurs sûres : basilic, persil et ciboulette. Elles sont utiles au quotidien, visuellement complémentaires et suffisamment indulgentes pour un premier balcon.</p>
             <p>Le basilic demande plus de chaleur et une vraie régularité d’arrosage. Le persil pousse plus lentement mais tient bien dans le temps. La ciboulette, elle, s’installe facilement et repousse bien après coupe.</p>
+            <p>Si c’est surtout le basilic qui t’intéresse, notre <a href="guide-basilic-sur-son-balcon.html">guide complet pour cultiver du basilic sur son balcon</a> détaille le semis, le pincement et les erreurs qui le fatiguent le plus vite.</p>
             <h2>Les aromatiques très parfumées pour les balcons ensoleillés</h2>
             <p>Le thym, le romarin, l’origan ou la sauge aiment les situations lumineuses, les substrats bien drainés et les arrosages mesurés. Elles sont idéales si ton balcon reçoit beaucoup de soleil ou chauffe vite.</p>
             <p>Le bon réflexe : les installer dans des pots séparés ou dans une jardinière dédiée aux plantes méditerranéennes, avec un mélange plus drainant que pour les aromatiques fraîches.</p>
@@ -575,6 +660,7 @@
             <h2>Pourquoi la tomate demande un peu plus d’attention en pot</h2>
             <p>Sur balcon, la tomate ne manque pas d’atouts : elle est belle, généreuse, gourmande et très satisfaisante à récolter. Mais elle vit dans un volume de terre limité, souvent exposé au vent, à la chaleur et aux oublis d’arrosage. C’est ce qui explique pourquoi la culture réussit très bien chez certains et se révèle frustrante chez d’autres.</p>
             <p>La bonne nouvelle, c’est qu’une grande partie des problèmes se joue avant même la plantation : choix de variété, taille du contenant, emplacement et organisation de l’arrosage. Si tu cherches une version encore plus simple à démarrer, la <a href="tomates-cerises-balcon.html">tomate cerise sur balcon</a> reste souvent la meilleure porte d’entrée.</p>
+            <p>Pour compléter ce coin chaud avec une culture plus rapide à récolter, ajoute aussi un pot de <a href="guide-basilic-sur-son-balcon.html">basilic sur balcon</a> : l’association est pratique au quotidien et très adaptée aux petits espaces d’été.</p>
             <h2>Choisir une variété adaptée au balcon</h2>
             <p>Toutes les tomates ne sont pas faites pour la culture en pot. Les variétés déterminées, compactes ou à fruits plus petits demandent moins d’espace et restent plus simples à gérer. Les tomates très vigoureuses peuvent fonctionner, mais elles réclament un grand pot, un tuteur sérieux et un suivi plus attentif.</p>
             <ul>
