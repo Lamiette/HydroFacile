@@ -12,7 +12,22 @@ $minifiedStylesheetPath = Join-Path $root "css\style.min.css"
 $rootStylesheetHref = "css/style.min.css"
 $articleStylesheetHref = "../css/style.min.css"
 $articleDetailStylesheetHref = "../../css/style.min.css"
-$siteUrl = "https://ecobalcon.com"
+$siteName = "HydroFacile"
+$siteUrl = "https://hydrofacile.fr"
+$siteTagline = "Hydroponie debutant en appartement."
+$siteDescription = "HydroFacile aide a debuter en hydroponie en appartement avec des guides simples sur les systemes, la lumiere, les nutriments et les cultures faciles."
+$siteLongDescription = "HydroFacile est un site sur l'hydroponie debutant en appartement : systeme hydroponique simple, cultures faciles, lumiere, nutriments et potager interieur propre."
+$siteLogoPath = "images\logo-site.svg"
+$siteLogoUrl = "$siteUrl/images/logo-site.svg"
+$primaryArticleSlugs = @(
+  "hydroponie-sans-pompe-appartement",
+  "cultures-faciles-hydroponie-appartement",
+  "lumiere-hydroponie-appartement",
+  "nutriments-hydroponie-debutant",
+  "laitue-hydroponique-appartement",
+  "basilic-hydroponie-interieur",
+  "nettoyer-systeme-hydroponique"
+)
 # GA4 is intended to be wired through GTM to avoid duplicate pageview tracking.
 $googleAnalyticsMeasurementId = "G-L952X34SHR"
 $googleTagManagerId = "GTM-MFRVPVFQ"
@@ -30,6 +45,12 @@ if (Test-Path $articleOverridesPath) {
 
 if ($null -eq $articleOverrides) {
   $articleOverrides = @{}
+}
+
+function Test-IsPrimaryArticle {
+  param([string]$slug)
+
+  return $primaryArticleSlugs -contains $slug
 }
 
 function HtmlEscape {
@@ -208,7 +229,7 @@ function Get-ArticleCanonicalUrl {
 function Get-RedirectHtml {
   param(
     [string]$targetUrl,
-    [string]$title = "Redirection | EcoBalcon",
+    [string]$title = "Redirection | $siteName",
     [string]$description = "Cette page a changé d'adresse."
   )
 
@@ -253,14 +274,40 @@ function Get-ImageDimensions {
     return $null
   }
 
-  $image = [System.Drawing.Image]::FromFile($fullPath)
-  try {
-    $dimensions = [PSCustomObject]@{
-      Width = $image.Width
-      Height = $image.Height
+  $extension = [System.IO.Path]::GetExtension($fullPath).ToLowerInvariant()
+
+  if ($extension -eq ".svg") {
+    $svgContent = Get-Content -Raw -Encoding UTF8 $fullPath
+    $viewBoxMatch = [regex]::Match($svgContent, 'viewBox="[^"]*\s(?<width>[\d.]+)\s(?<height>[\d.]+)"')
+    $widthMatch = [regex]::Match($svgContent, 'width="(?<width>[\d.]+)"')
+    $heightMatch = [regex]::Match($svgContent, 'height="(?<height>[\d.]+)"')
+
+    $svgWidth = if ($widthMatch.Success) { [double]$widthMatch.Groups["width"].Value } elseif ($viewBoxMatch.Success) { [double]$viewBoxMatch.Groups["width"].Value } else { 0 }
+    $svgHeight = if ($heightMatch.Success) { [double]$heightMatch.Groups["height"].Value } elseif ($viewBoxMatch.Success) { [double]$viewBoxMatch.Groups["height"].Value } else { 0 }
+
+    if ($svgWidth -gt 0 -and $svgHeight -gt 0) {
+      $dimensions = [PSCustomObject]@{
+        Width = [int][Math]::Round($svgWidth)
+        Height = [int][Math]::Round($svgHeight)
+      }
+
+      $imageDimensionCache[$fullPath] = $dimensions
+      return $dimensions
     }
-  } finally {
-    $image.Dispose()
+  }
+
+  try {
+    $image = [System.Drawing.Image]::FromFile($fullPath)
+    try {
+      $dimensions = [PSCustomObject]@{
+        Width = $image.Width
+        Height = $image.Height
+      }
+    } finally {
+      $image.Dispose()
+    }
+  } catch {
+    return $null
   }
 
   $imageDimensionCache[$fullPath] = $dimensions
@@ -297,34 +344,19 @@ function Get-SiteFooterHtml {
       <div class="footer-inner">
         <div class="footer-main">
           <div class="footer-brand">
-            <strong>EcoBalcon</strong>
-            <p>Astuces pour jardiner en milieu urbain.</p>
-          </div>
-          <div class="footer-social" aria-label="R&eacute;seaux sociaux">
-            <a class="footer-social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="footer-social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
+            <strong>$siteName</strong>
+            <p>Hydroponie debutant en appartement, culture propre et conseils faciles a suivre pour bien commencer.</p>
           </div>
         </div>
         <div class="footer-side">
-          <strong>Sur le site</strong>
+          <strong>Explorer</strong>
           <ul class="footer-list">
-            <li>Potager de balcon et cultures faciles</li>
-            <li>Plantes adapt&eacute;es au soleil comme &agrave; l'ombre</li>
-            <li>Gestes sobres pour l'eau, le compost et la biodiversit&eacute;</li>
+            <li><a href="${pagePrefix}articles/">Guides hydroponie debutant</a></li>
+            <li><a href="${pagePrefix}articles/hydroponie-sans-pompe-appartement/">Premier systeme sans pompe</a></li>
+            <li><a href="${pagePrefix}galerie/">Galerie hydroponie appartement</a></li>
           </ul>
         </div>
-        <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s.</div>
+        <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s. <span class="footer-legal-sep">&bull;</span> <a href="${pagePrefix}politique-confidentialite/">Politique de confidentialite</a></div>
       </div>
     </footer>
 "@
@@ -356,12 +388,25 @@ function Get-CanonicalArticleCategory {
   )
 
   $categoryBySlug = @{
+    "hydroponie-sans-pompe-appartement" = "Matériel & systèmes"
+    "cultures-faciles-hydroponie-appartement" = "Débuter"
+    "lumiere-hydroponie-appartement" = "Matériel & systèmes"
+    "nutriments-hydroponie-debutant" = "Routine & réglages"
+    "laitue-hydroponique-appartement" = "Cultures faciles"
+    "basilic-hydroponie-interieur" = "Cultures faciles"
+    "nettoyer-systeme-hydroponique" = "Routine & réglages"
+    "jardiner-sur-un-balcon" = "Débuter"
+    "legumes-faciles-a-cultiver" = "Débuter"
+    "le-materiel-essentiel-pour-commencer" = "Matériel & systèmes"
+    "calendrier-du-jardin-de-balcon" = "Routine & réglages"
+    "guide-laitues-sur-son-balcon" = "Cultures faciles"
+    "guide-basilic-sur-son-balcon" = "Cultures faciles"
+    "plantes-aromatiques-sur-balcon" = "Cultures faciles"
+    "guide-tomates-sur-son-balcon" = "Cultures faciles"
     "guide-poivrons-sur-son-balcon" = "Fiches Techniques"
-    "guide-tomates-sur-son-balcon" = "Fiches Techniques"
     "guide-epinards-sur-son-balcon" = "Fiches Techniques"
     "guide-fraises-sur-son-balcon" = "Fiches Techniques"
     "guide-radis-sur-son-balcon" = "Fiches Techniques"
-    "guide-laitues-sur-son-balcon" = "Fiches Techniques"
     "tomates-cerises-balcon" = "Fiches Techniques"
     "potager-balcon-eau-de-cuisson" = "Plantes & semis"
     "pommes-de-terre-balcon" = "Plantes & semis"
@@ -369,9 +414,6 @@ function Get-CanonicalArticleCategory {
     "fleurs-comestibles-melliferes-balcon" = "Plantes & semis"
     "plantes-pour-un-balcon-plein-soleil" = "Plantes & semis"
     "balcon-a-lombre-plantes-et-culture" = "Plantes & semis"
-    "legumes-faciles-a-cultiver" = "Plantes & semis"
-    "calendrier-du-jardin-de-balcon" = "Plantes & semis"
-    "plantes-aromatiques-sur-balcon" = "Plantes & semis"
     "balcon-durable-plantes" = "Plantes & semis"
     "balcon-pour-pollinisateurs" = "Plantes & semis"
     "jardinage-en-lasagnes-sur-balcon" = "Entretien & astuces"
@@ -379,7 +421,6 @@ function Get-CanonicalArticleCategory {
     "reduction-consommation-eau-balcon" = "Entretien & astuces"
     "insectes-utiles-sur-un-balcon" = "Entretien & astuces"
     "calendrier-lunaire-balcon" = "Entretien & astuces"
-    "jardiner-sur-un-balcon" = "Entretien & astuces"
     "paillage-sur-balcon-ecolo" = "Entretien & astuces"
     "proteger-son-balcon-des-nuisibles-naturellement" = "Entretien & astuces"
     "utilisation-compost-sur-balcon" = "Entretien & astuces"
@@ -388,7 +429,6 @@ function Get-CanonicalArticleCategory {
     "meilleures-plantes-grimpantes-en-ville" = "Aménagement du balcon"
     "recuperer-eau-de-pluie-balcon" = "Aménagement du balcon"
     "diy-pots-pour-le-balcon" = "Aménagement du balcon"
-    "le-materiel-essentiel-pour-commencer" = "Aménagement du balcon"
     "solutions-compostage-sur-balcon" = "Aménagement du balcon"
   }
 
@@ -398,6 +438,12 @@ function Get-CanonicalArticleCategory {
 
   $normalizedCategory = Normalize-ArticleCategoryToken $rawCategory
   switch ($normalizedCategory) {
+    "debuter" { return "Débuter" }
+    "cultures faciles" { return "Cultures faciles" }
+    "materiel systemes" { return "Matériel & systèmes" }
+    "materiel et systemes" { return "Matériel & systèmes" }
+    "routine reglages" { return "Routine & réglages" }
+    "routine et reglages" { return "Routine & réglages" }
     "fiches techniques" { return "Fiches Techniques" }
     "plantes semis" { return "Plantes & semis" }
     "plantes et semis" { return "Plantes & semis" }
@@ -410,6 +456,22 @@ function Get-CanonicalArticleCategory {
   }
 
   $haystack = Normalize-ArticleCategoryToken "$slug $title $description"
+
+  if ($haystack -match 'hydropon|kratky|dwc|reservoir|nutriment|ph |ph$|laitue|basilic|aromatique|culture facile|tomate cerise') {
+    if ($haystack -match 'materiel|systeme|reservoir|pompe|nutriment|ph metre') {
+      return "Matériel & systèmes"
+    }
+
+    if ($haystack -match 'calendrier|routine|reglage|entretien|stabil') {
+      return "Routine & réglages"
+    }
+
+    if ($haystack -match 'debut|commencer|premier|facile') {
+      return "Débuter"
+    }
+
+    return "Cultures faciles"
+  }
 
   if ($haystack -match 'grimp|intimite|treillis|diy|materiel|compostage|eau pluie|gouttiere|amenag') {
     return "Aménagement du balcon"
@@ -720,7 +782,7 @@ function Ensure-ArticleImages {
         -Uri $remoteUrl `
         -OutFile $outputPath `
         -UseBasicParsing `
-        -Headers @{ "User-Agent" = "Mozilla/5.0 (compatible; EcoBalconStatic/1.0)" }
+        -Headers @{ "User-Agent" = "Mozilla/5.0 (compatible; HydroFacileStatic/1.0)" }
       Write-Output "Downloaded image $fileName"
     } catch {
       throw "Impossible de telecharger l'image distante $remoteUrl"
@@ -774,7 +836,7 @@ function Get-HeroCaption {
 
     $caption = [System.Net.WebUtility]::HtmlDecode($match.Groups["caption"].Value).Trim()
     if (-not $caption) { continue }
-    if ($caption -match '^(Go to |Instagram|Twitter|X$|EcoBalcon$)') { continue }
+    if ($caption -match '^(Go to |Instagram|Twitter|X$|HydroFacile$|EcoBalcon$)') { continue }
     return $caption
   }
 
@@ -824,7 +886,7 @@ function Get-AuthorData {
   if ($null -eq $author) {
     return [PSCustomObject]@{
       Type = "Organization"
-      Name = "Eco Balcon"
+      Name = "HydroFacile"
     }
   }
 
@@ -833,7 +895,7 @@ function Get-AuthorData {
   }
 
   $authorType = if ($author.'@type') { [string]$author.'@type' } else { "Organization" }
-  $authorName = if ($author.name) { [System.Net.WebUtility]::HtmlDecode([string]$author.name) } else { "Eco Balcon" }
+  $authorName = if ($author.name) { [System.Net.WebUtility]::HtmlDecode([string]$author.name) } else { "HydroFacile" }
 
   return [PSCustomObject]@{
     Type = $authorType
@@ -912,11 +974,13 @@ function Get-ArticleSources {
     $schema = Get-SchemaData $content
     if ($schema.'@type' -ne 'Article') { continue }
 
-    if ($schema.url -notmatch '^https://ecobalcon\.com/(?<slug>[^/?#]+)') {
+    if ($schema.url -notmatch '^https://(?:www\.)?(?:ecobalcon\.com|hydrofacile\.fr)/(?:articles/)?(?<slug>[^/?#]+)/?(?:[?#].*)?$') {
       throw "Impossible de determiner le slug pour $($file.Name)."
     }
 
     $slug = $matches["slug"]
+    if (-not (Test-IsPrimaryArticle $slug)) { continue }
+
     $date = if ($schema.datePublished) { [DateTime]::Parse($schema.datePublished) } else { [DateTime]::MinValue }
     $authorData = Get-AuthorData -schema $schema -content $content -slug $slug
     $heroCaption = Get-HeroCaption $content
@@ -971,6 +1035,10 @@ function Get-ArticleSources {
 }
 
 $articles = @(Get-ArticleSources)
+$primaryArticles = @($articles | Where-Object { Test-IsPrimaryArticle $_.Slug })
+if ($primaryArticles.Count -eq 0) {
+  $primaryArticles = $articles
+}
 $slugMap = @{}
 foreach ($article in $articles) {
   $slugMap[$article.Slug] = Get-ArticlePrettyHref -article $article -hrefPrefix "../"
@@ -981,7 +1049,7 @@ Ensure-ArticleImages $articles
 function Resolve-Link {
   param([string]$url)
 
-  if ($url -match '^https://ecobalcon\.com/([^/?#]+)') {
+  if ($url -match '^https://(?:www\.)?(?:ecobalcon\.com|hydrofacile\.fr)/(?:articles/)?([^/?#]+)') {
     $slug = $matches[1]
     if ($slugMap.ContainsKey($slug)) {
       return $slugMap[$slug]
@@ -1357,26 +1425,7 @@ function Get-ArticleBreadcrumbSchema {
 function Get-ArticleFaqSchema {
   param([pscustomobject]$article)
 
-  if ($article.Faq) {
-    return [ordered]@{
-      "@context" = "https://schema.org"
-      "@type" = "FAQPage"
-      mainEntity = @(
-        $article.Faq | ForEach-Object {
-          [ordered]@{
-            "@type" = "Question"
-            name = $_.Question
-            acceptedAnswer = [ordered]@{
-              "@type" = "Answer"
-              text = $_.Answer
-            }
-          }
-        }
-      )
-    }
-  }
-
-  if (-not $faqSchemaMap.ContainsKey($article.Slug)) {
+  if (-not $article.Faq) {
     return $null
   }
 
@@ -1384,7 +1433,7 @@ function Get-ArticleFaqSchema {
     "@context" = "https://schema.org"
     "@type" = "FAQPage"
     mainEntity = @(
-      $faqSchemaMap[$article.Slug] | ForEach-Object {
+      $article.Faq | ForEach-Object {
         [ordered]@{
           "@type" = "Question"
           name = $_.Question
@@ -1401,16 +1450,11 @@ function Get-ArticleFaqSchema {
 function Get-ArticleHowToSchema {
   param([pscustomobject]$article)
 
-  $howTo = $null
-
-  if ($article.HowTo) {
-    $howTo = $article.HowTo
-  } elseif ($howToSchemaMap.ContainsKey($article.Slug)) {
-    $howTo = $howToSchemaMap[$article.Slug]
-  } else {
+  if (-not $article.HowTo) {
     return $null
   }
 
+  $howTo = $article.HowTo
   $steps = @()
   $position = 1
 
@@ -1455,9 +1499,10 @@ function Build-ArticleHtml {
   $timeText = Convert-TimeRequired $article.TimeRequired
   $canonicalUrl = Get-ArticleCanonicalUrl $article
   $seoTitle = if ($article.SeoTitle) { $article.SeoTitle } else { $article.Title }
+  $robotsContent = if (Test-IsPrimaryArticle $article.Slug) { "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" } else { "noindex,follow" }
   $heroImageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix "../../images/articles/"
   $heroImageDimensions = Get-ArticleImageDimensionAttributes $article.ImageFileName
-  $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $tagManagerHead = Get-TagManagerHeadHtml
   $tagManagerBody = Get-TagManagerBodyHtml
   $relatedArticles = @(Get-RelatedArticles -article $article -allArticles $allArticles -count 3)
@@ -1480,10 +1525,10 @@ function Build-ArticleHtml {
     }
     publisher = [ordered]@{
       "@type" = "Organization"
-      name = "EcoBalcon"
+      name = $siteName
       logo = [ordered]@{
         "@type" = "ImageObject"
-        url = "$siteUrl/images/logo-site.png"
+        url = $siteLogoUrl
       }
     }
   }
@@ -1541,18 +1586,18 @@ $relatedCardsHtml
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>$(HtmlEscape $seoTitle) | EcoBalcon</title>
+  <title>$(HtmlEscape $seoTitle) | $siteName</title>
   <meta name="description" content="$(HtmlEscape $article.Description)">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="robots" content="$robotsContent">
   <meta name="author" content="$(HtmlEscape $article.AuthorName)">
   <link rel="preload" as="image" href="$heroImageSrc" fetchpriority="high">
   <link rel="canonical" href="$canonicalUrl">
   <link rel="alternate" hreflang="fr" href="$canonicalUrl">
   <link rel="alternate" hreflang="x-default" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="EcoBalcon">
+  <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="$(HtmlEscape $seoTitle) | EcoBalcon">
+  <meta property="og:title" content="$(HtmlEscape $seoTitle) | $siteName">
   <meta property="og:description" content="$(HtmlEscape $article.Description)">
   <meta property="og:url" content="$canonicalUrl">
   <meta property="og:image" content="$($article.ImageCanonicalUrl)">
@@ -1560,12 +1605,13 @@ $relatedCardsHtml
   <meta property="article:published_time" content="$($article.DatePublished)">
   <meta property="article:modified_time" content="$($article.DateModified)">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="$(HtmlEscape $seoTitle) | EcoBalcon">
+  <meta name="twitter:title" content="$(HtmlEscape $seoTitle) | $siteName">
   <meta name="twitter:description" content="$(HtmlEscape $article.Description)">
   <meta name="twitter:image" content="$($article.ImageCanonicalUrl)">
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroCaption)">
 $jsonLdScripts
 $tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="../../images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
@@ -1578,7 +1624,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="../../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -1587,21 +1633,6 @@ $tagManagerBody
             <a href="../">Articles</a>
             <a href="../../galerie/">Galerie</a>
           </nav>
-          <div class="social-nav" aria-label="R&eacute;seaux sociaux">
-            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </header>
@@ -1642,6 +1673,7 @@ $sidebarHtml
               <ul class="article-list">
                 <li><a href="../">Retour &agrave; la liste des articles</a></li>
                 <li><a href="../../">Retour &agrave; l'accueil</a></li>
+                <li><a href="../../galerie/">Voir la galerie HydroFacile</a></li>
               </ul>
             </div>
           </aside>
@@ -1687,6 +1719,193 @@ function Build-ArticleCardHtml {
 function Build-HomeHtml {
   param([object[]]$allArticles)
 
+  if ($allArticles.Count -eq 0) {
+    $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
+    $tagManagerHead = Get-TagManagerHeadHtml
+    $tagManagerBody = Get-TagManagerBodyHtml
+    $jsonLd = Get-JsonLdScriptTags @([ordered]@{
+        "@context" = "https://schema.org"
+        "@type" = "WebSite"
+        name = $siteName
+        url = "$siteUrl/"
+        inLanguage = "fr"
+        description = "HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple."
+        potentialAction = [ordered]@{
+          "@type" = "SearchAction"
+          target = "$siteUrl/articles/?q={search_term_string}"
+          "query-input" = "required name=search_term_string"
+        }
+        publisher = [ordered]@{
+          "@type" = "Organization"
+          name = $siteName
+          logo = [ordered]@{
+            "@type" = "ImageObject"
+            url = $siteLogoUrl
+          }
+        }
+      })
+
+    return @"
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hydroponie debutant appartement | $siteName</title>
+  <meta name="description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="preload" as="image" href="images/articles/hydro-systeme-debutant.svg" fetchpriority="high">
+  <link rel="canonical" href="$siteUrl/">
+  <link rel="alternate" hreflang="fr" href="$siteUrl/">
+  <link rel="alternate" hreflang="x-default" href="$siteUrl/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="$siteName">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hydroponie debutant appartement | $siteName">
+  <meta property="og:description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <meta property="og:url" content="$siteUrl/">
+  <meta property="og:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
+  <meta property="og:image:alt" content="Petite installation hydroponique propre en interieur">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hydroponie debutant appartement | $siteName">
+  <meta name="twitter:description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <meta name="twitter:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
+  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
+$jsonLd
+$tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="$rootStylesheetHref">
+</head>
+<body class="home-page">
+$tagManagerBody
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./">
+          <span class="brand-mark">
+            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="./" aria-current="page">Accueil</a>
+            <a href="articles/">Articles</a>
+            <a href="galerie/">Galerie</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero hero-home">
+        <div class="section-inner hero-grid">
+          <div class="hero-copy">
+            <div class="hero-copy-main" data-reveal>
+              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie debutant</span>
+              <h1>Comprendre l'hydroponie simplement, chez soi.</h1>
+              <p>HydroFacile aide a debuter en appartement avec des explications claires, une approche propre et des reperes simples pour choisir un petit systeme sans se compliquer.</p>
+            </div>
+            <div class="hero-copy-side">
+              <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
+                <a class="button" href="galerie/">Voir la galerie</a>
+                <a class="button-secondary" href="articles/">Explorer les guides</a>
+              </div>
+              <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
+                <span class="hero-support-chip">En clair</span>
+                <strong>L'hydroponie, c'est faire pousser des plantes avec de l'eau enrichie et un support leger, sans terre classique.</strong>
+                <p>Le but n'est pas d'ajouter du jargon. Ici, on cherche surtout a comprendre la methode, debuter petit et prendre de bons reflexes dans un appartement.</p>
+                <a class="text-link" href="articles/">Voir les prochains guides</a>
+              </div>
+              <div class="hero-stat-grid" data-reveal style="--reveal-delay: 220ms;">
+                <article class="mini-stat">
+                  <span class="mini-stat-label">Peu de place</span>
+                  <strong>1 coin</strong>
+                  <span class="mini-stat-copy">un plan de travail ou une etagere lumineuse peuvent suffire pour debuter.</span>
+                </article>
+                <article class="mini-stat">
+                  <span class="mini-stat-label">Routine claire</span>
+                  <strong>10 min</strong>
+                  <span class="mini-stat-copy">une courte verification reguliere vaut mieux qu'une installation compliquee.</span>
+                </article>
+                <article class="mini-stat">
+                  <span class="mini-stat-label">Approche</span>
+                  <strong>Pas a pas</strong>
+                  <span class="mini-stat-copy">comprendre l'eau, la lumiere et les plantes sans jargon inutile.</span>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Installation hydroponique debutant en appartement" data-reveal style="--reveal-delay: 120ms;">
+            <figure class="home-visual">
+              <div class="home-visual-stage">
+                <img class="home-visual-main" src="images/articles/hydro-systeme-debutant.svg" alt="Petite installation hydroponique propre en interieur" loading="eager" decoding="async" fetchpriority="high" width="1200" height="900">
+              </div>
+              <figcaption class="home-visual-note">
+                <span class="home-visual-chip">Petit setup</span>
+                <p>Une installation compacte, propre et facile a suivre reste souvent la meilleure porte d'entree pour apprendre l'hydroponie chez soi.</p>
+              </figcaption>
+            </figure>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading" data-reveal>
+            <div>
+              <h2>Par ou commencer</h2>
+              <p>Trois points simples pour entrer dans l'hydroponie sans se sentir perdu.</p>
+            </div>
+          </div>
+          <div class="home-path-grid" data-reveal-group>
+            <article class="home-path-card" data-reveal style="--reveal-delay: 60ms;">
+              <span class="eyebrow">Comprendre</span>
+              <h3><a href="articles/">Voir comment la methode fonctionne</a></h3>
+              <p>Eau, nutriments, lumiere et support: l'idee devient simple quand chaque mot est explique clairement.</p>
+              <a class="text-link" href="articles/">Voir les guides</a>
+            </article>
+            <article class="home-path-card" data-reveal style="--reveal-delay: 130ms;">
+              <span class="eyebrow">Choisir</span>
+              <h3><a href="galerie/">Imaginer un systeme compact</a></h3>
+              <p>Un petit reservoir, quelques plantes faciles et une installation propre suffisent souvent pour apprendre les bases.</p>
+              <a class="text-link" href="galerie/">Voir des exemples</a>
+            </article>
+            <article class="home-path-card" data-reveal style="--reveal-delay: 200ms;">
+              <span class="eyebrow">Debuter</span>
+              <h3><a href="galerie/">Reperer les plantes les plus simples</a></h3>
+              <p>Laitues, basilic, jeunes pousses et aromatiques sont souvent les meilleurs choix pour un premier essai en appartement.</p>
+              <a class="text-link" href="galerie/">Voir l'inspiration</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="section-inner">
+          <div class="cta-strip" data-reveal>
+            <div>
+              <h2 class="page-title">Une base simple avant les premiers guides</h2>
+              <p class="page-intro">
+                HydroFacile pose les bases d'un site clair et rassurant pour apprendre l'hydroponie en appartement, avec peu de place et sans blabla.
+              </p>
+            </div>
+            <a class="button" href="galerie/">Explorer la galerie</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+$(Get-SiteFooterHtml -pagePrefix "")
+  </div>
+</body>
+</html>
+"@
+  }
+
   $featured = @($allArticles | Select-Object -First 6)
   $cardsHtml = (($featured | ForEach-Object -Begin { $cardIndex = 0 } -Process {
         $delay = 80 + ($cardIndex * 70)
@@ -1695,28 +1914,28 @@ function Build-HomeHtml {
       }) -join "`n")
   $count = $allArticles.Count
   $featuredArticle = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
-    "jardinage-en-lasagnes-sur-balcon",
-    "jardiner-sur-un-balcon",
-    "jardin-sur-balcon-astuces"
+    "hydroponie-sans-pompe-appartement",
+    "cultures-faciles-hydroponie-appartement",
+    "lumiere-hydroponie-appartement"
   ) -fallbackIndex 0
   $featuredImage = if ($featuredArticle) { $featuredArticle.ImageCanonicalUrl } else { "" }
   $featuredImageSrc = if ($featuredArticle) { Get-ImagePagePath -fileName $featuredArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $featuredImageDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { "" }
-  $featuredTitle = if ($featuredArticle) { $featuredArticle.Title } else { "Jardinage urbain sur balcon" }
-  $featuredImageAlt = if ($featuredArticle) { $featuredArticle.ImageAlt } else { "Balcon potager et jardinage urbain" }
-  $shareImage = "$siteUrl/images/cette-semaine-home.jpg"
-  $shareImageAlt = "Balcon ensoleillé avec plusieurs plantes en pot et jardinières"
+  $featuredTitle = if ($featuredArticle) { $featuredArticle.Title } else { "Hydroponie simple en appartement" }
+  $featuredImageAlt = if ($featuredArticle) { $featuredArticle.ImageAlt } else { "Petite installation hydroponique propre en interieur" }
+  $shareImage = if ($featuredArticle) { $featuredArticle.ImageCanonicalUrl } else { "$siteUrl/images/articles/hydro-systeme-debutant.svg" }
+  $shareImageAlt = $featuredImageAlt
   $heroSecondary = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
-    "plantes-qui-survivent-a-la-canicule",
-    "reduction-consommation-eau-balcon",
-    "guide-tomates-sur-son-balcon"
+    "cultures-faciles-hydroponie-appartement",
+    "lumiere-hydroponie-appartement",
+    "laitue-hydroponique-appartement"
   ) -fallbackIndex 1
-  $heroSupportHref = "articles/jardin-sur-balcon-astuces/"
-  $homeVisualDimensions = " width=`"1024`" height=`"1536`""
+  $heroSupportHref = "articles/hydroponie-sans-pompe-appartement/"
+  $homeVisualDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { " width=`"1200`" height=`"900`"" }
   $homeStats = @(
-    [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour planter, arroser, récolter et aménager." },
-    [PSCustomObject]@{ Label = "Repères clairs"; Value = "4"; Copy = "grands thèmes pour vite trouver le bon conseil." },
-    [PSCustomObject]@{ Label = "Pensé pour"; Value = "100 %"; Copy = "la ville, les pots, les rebords et les balcons." }
+    [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour choisir un systeme simple et lancer tes premieres cultures." },
+    [PSCustomObject]@{ Label = "Repères clairs"; Value = "4"; Copy = "angles pour comprendre la lumiere, l'eau, les nutriments et les varietes." },
+    [PSCustomObject]@{ Label = "Pensé pour"; Value = "100 %"; Copy = "les appartements, les petits plans de travail et les coins lumineux." }
   )
   $statsHtml = (($homeStats | ForEach-Object {
 @"
@@ -1729,25 +1948,25 @@ function Build-HomeHtml {
       }) -join "`n")
   $startBlocks = @(
     [PSCustomObject]@{
-      Label = "Débuter"
-      Title = "Poser les bonnes bases"
-      Copy = "Un point de départ simple pour installer un balcon agréable et éviter les erreurs classiques."
-      Href = "articles/jardin-sur-balcon-astuces/"
-      LinkLabel = "Voir les bases"
+      Label = "Comprendre"
+      Title = "Pourquoi commencer sans pompe"
+      Copy = "Le format le plus simple pour apprendre l'eau, l'air et la lumiere sans ajouter de bruit ni de tuyaux."
+      Href = "articles/hydroponie-sans-pompe-appartement/#pourquoi-sans-pompe"
+      LinkLabel = "Voir le guide"
     },
     [PSCustomObject]@{
-      Label = "Planter"
-      Title = "Choisir des cultures faciles"
-      Copy = "Des fiches pratiques pour cultiver sur balcon simplement, sans compliquer les choses."
-      Href = "articles/guide-tomates-sur-son-balcon/"
+      Label = "Eclairer"
+      Title = "Choisir entre fenetre et lampe"
+      Copy = "Une bonne lumiere change tout en hydroponie appartement. Le but est d'avoir assez de regularite sans surinvestir."
+      Href = "articles/lumiere-hydroponie-appartement/"
+      LinkLabel = "Voir la lumiere"
+    },
+    [PSCustomObject]@{
+      Label = "Cultiver"
+      Title = "Choisir les cultures les plus simples"
+      Copy = "Laitue, basilic, menthe, ciboulette et jeunes pousses donnent vite des reperes fiables dans un appartement."
+      Href = "articles/cultures-faciles-hydroponie-appartement/"
       LinkLabel = "Voir les cultures"
-    },
-    [PSCustomObject]@{
-      Label = "Préserver"
-      Title = "Entretenir un balcon plus écolo"
-      Copy = "Arrosage, paillage, récupération d’eau et gestes utiles pour un balcon facile à vivre au quotidien."
-      Href = "articles/reduction-consommation-eau-balcon/"
-      LinkLabel = "Voir les astuces"
     }
   )
   $startHtml = (($startBlocks | ForEach-Object -Begin { $startIndex = 0 } -Process {
@@ -1764,11 +1983,13 @@ function Build-HomeHtml {
 "@
     }) -join "`n")
   $weeklyFallbackArticle = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
-    "plantes-qui-survivent-a-la-canicule",
-    "guide-poivrons-sur-son-balcon",
-    "guide-laitues-sur-son-balcon",
-    "calendrier-du-jardin-de-balcon",
-    "jardin-sur-balcon-astuces"
+    "lumiere-hydroponie-appartement",
+    "cultures-faciles-hydroponie-appartement",
+    "laitue-hydroponique-appartement",
+    "basilic-hydroponie-interieur",
+    "nutriments-hydroponie-debutant",
+    "nettoyer-systeme-hydroponique",
+    "hydroponie-sans-pompe-appartement"
   ) -fallbackIndex 0
   $weeklyFeatureHref = if ($weeklyFallbackArticle) { Get-ArticlePrettyHref -article $weeklyFallbackArticle -hrefPrefix "articles/" } else { "articles/" }
   $weeklyFeatureImageSrc = if ($weeklyFallbackArticle) { Get-ImagePagePath -fileName $weeklyFallbackArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
@@ -1776,7 +1997,7 @@ function Build-HomeHtml {
   $weeklyFeatureCategory = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Category } else { "À lire" }
   $weeklyFeatureTitle = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Title } else { "À découvrir cette semaine" }
   $weeklyFeatureDescription = if ($weeklyFallbackArticle) { Get-CardExcerpt $weeklyFallbackArticle.Description 178 } else { "Une sélection pratique choisie automatiquement selon la période de l'année." }
-  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Sélection d'article EcoBalcon de la semaine" }
+  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Selection d'article HydroFacile de la semaine" }
   $weeklyArticlesForJs = @(
     $allArticles | ForEach-Object {
       $imageDimensions = Get-ImageDimensions (Join-Path $imagesDir $_.ImageFileName)
@@ -1799,39 +2020,40 @@ function Build-HomeHtml {
   $tagManagerBody = Get-TagManagerBodyHtml
   $themeHtml = @"
           <article class="theme-card" data-reveal style="--reveal-delay: 60ms;">
-            <span class="eyebrow">Fiches Techniques</span>
-            <h3><a href="articles/#theme=fiches-techniques">Trouver un guide culture pas &agrave; pas</a></h3>
-            <p>Les fiches les plus concr&egrave;tes pour cultiver tomates, poivrons, laitues, radis, fraises et autres cultures de balcon.</p>
-            <a class="text-link" href="articles/#theme=fiches-techniques">Voir les fiches</a>
+            <span class="eyebrow">D&eacute;buter</span>
+            <h3><a href="articles/#theme=debuter">Poser les bases sans se compliquer</a></h3>
+            <p>Les guides pour comprendre la m&eacute;thode, choisir un format simple et &eacute;viter les erreurs du d&eacute;part.</p>
+            <a class="text-link" href="articles/#theme=debuter">Voir les bases</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 130ms;">
-            <span class="eyebrow">Plantes &amp; semis</span>
-            <h3><a href="articles/#theme=plantes-semis">Choisir quoi planter selon son balcon</a></h3>
-            <p>Des s&eacute;lections de plantes, de l&eacute;gumes, d’aromatiques et d’id&eacute;es de culture selon l’exposition et les envies.</p>
-            <a class="text-link" href="articles/#theme=plantes-semis">Voir les plantations</a>
+            <span class="eyebrow">Mat&eacute;riel &amp; syst&egrave;mes</span>
+            <h3><a href="articles/#theme=materiel-systemes">Construire un setup simple et propre</a></h3>
+            <p>Reservoir, pots filet, substrat, nutriments et lumi&egrave;re: seulement les briques vraiment utiles pour un syst&egrave;me hydroponique d&eacute;butant.</p>
+            <a class="text-link" href="articles/#theme=materiel-systemes">Voir le setup</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 200ms;">
-            <span class="eyebrow">Entretien &amp; astuces</span>
-            <h3><a href="articles/#theme=entretien-astuces">Mieux entretenir son balcon au quotidien</a></h3>
-            <p>Arrosage, paillage, compost, nuisibles, chaleur et gestes simples pour garder un balcon sain et facile &agrave; vivre.</p>
-            <a class="text-link" href="articles/#theme=entretien-astuces">Voir les astuces</a>
+            <span class="eyebrow">Cultures faciles</span>
+            <h3><a href="articles/#theme=cultures-faciles">Choisir quoi lancer en premier</a></h3>
+            <p>Laitues, basilic, aromatiques et tomates cerises: des cultures hydroponiques faciles pour prendre confiance &agrave; la maison.</p>
+            <a class="text-link" href="articles/#theme=cultures-faciles">Voir les cultures</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 270ms;">
-            <span class="eyebrow">Am&eacute;nagement du balcon</span>
-            <h3><a href="articles/#theme=amenagement-du-balcon">Am&eacute;nager un espace plus pratique</a></h3>
-            <p>Mat&eacute;riel, pots, compostage, r&eacute;cup&eacute;ration d’eau, plantes grimpantes et astuces pour organiser le balcon.</p>
-            <a class="text-link" href="articles/#theme=amenagement-du-balcon">Voir les am&eacute;nagements</a>
+            <span class="eyebrow">Routine &amp; r&eacute;glages</span>
+            <h3><a href="articles/#theme=routine-reglages">Garder une installation stable au quotidien</a></h3>
+            <p>Calendrier, v&eacute;rifications simples et petits gestes pour garder une culture hydroponique facile, propre et rassurante.</p>
+            <a class="text-link" href="articles/#theme=routine-reglages">Voir la routine</a>
           </article>
 "@
   $editorialFeature = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
-    "plantes-qui-survivent-a-la-canicule",
-    "potager-balcon-eau-de-cuisson",
-    "jardinage-en-lasagnes-sur-balcon"
+    "cultures-faciles-hydroponie-appartement",
+    "laitue-hydroponique-appartement",
+    "basilic-hydroponie-interieur",
+    "hydroponie-sans-pompe-appartement"
   ) -fallbackIndex 0
   $editorialFeatureHref = if ($editorialFeature) { Get-ArticlePrettyHref -article $editorialFeature -hrefPrefix "articles/" } else { "articles/" }
   $editorialFeatureImageSrc = if ($editorialFeature) { Get-ImagePagePath -fileName $editorialFeature.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $editorialFeatureImageDimensions = if ($editorialFeature) { Get-ArticleImageDimensionAttributes $editorialFeature.ImageFileName } else { "" }
-  $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $editorialList = @(
     $allArticles |
       Where-Object { $null -eq $editorialFeature -or $_.Slug -ne $editorialFeature.Slug } |
@@ -1850,10 +2072,10 @@ function Build-HomeHtml {
   $jsonLd = Get-JsonLdScriptTags @([ordered]@{
       "@context" = "https://schema.org"
       "@type" = "WebSite"
-      name = "EcoBalcon"
+      name = $siteName
       url = "$siteUrl/"
       inLanguage = "fr"
-      description = "EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain."
+      description = $siteLongDescription
       potentialAction = [ordered]@{
         "@type" = "SearchAction"
         target = "$siteUrl/articles/?q={search_term_string}"
@@ -1861,10 +2083,10 @@ function Build-HomeHtml {
       }
       publisher = [ordered]@{
         "@type" = "Organization"
-        name = "EcoBalcon"
+        name = $siteName
         logo = [ordered]@{
           "@type" = "ImageObject"
-          url = "$siteUrl/images/logo-site.png"
+          url = $siteLogoUrl
         }
       }
     })
@@ -1875,28 +2097,29 @@ function Build-HomeHtml {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EcoBalcon | Jardinage urbain sur balcon</title>
-  <meta name="description" content="EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain.">
+  <title>Hydroponie debutant appartement | $siteName</title>
+  <meta name="description" content="$siteLongDescription">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="preload" as="image" href="images/balcon-soleil.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="$featuredImageSrc" fetchpriority="high">
   <link rel="canonical" href="$siteUrl/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/">
   <link rel="alternate" hreflang="x-default" href="$siteUrl/">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="EcoBalcon">
+  <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="EcoBalcon | Jardinage urbain sur balcon">
-  <meta property="og:description" content="EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain.">
+  <meta property="og:title" content="Hydroponie debutant appartement | $siteName">
+  <meta property="og:description" content="$siteLongDescription">
   <meta property="og:url" content="$siteUrl/">
   <meta property="og:image" content="$shareImage">
   <meta property="og:image:alt" content="$(HtmlEscape $shareImageAlt)">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EcoBalcon | Jardinage urbain sur balcon">
-  <meta name="twitter:description" content="EcoBalcon partage des conseils pratiques pour jardiner sur balcon, économiser l'eau, choisir les bonnes plantes et réussir un petit potager urbain.">
+  <meta name="twitter:title" content="Hydroponie debutant appartement | $siteName">
+  <meta name="twitter:description" content="$siteLongDescription">
   <meta name="twitter:image" content="$shareImage">
   <meta name="twitter:image:alt" content="$(HtmlEscape $shareImageAlt)">
 $jsonLd
 $tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -1909,7 +2132,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="./">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -1918,21 +2141,6 @@ $tagManagerBody
             <a href="articles/">Articles</a>
             <a href="galerie/">Galerie</a>
           </nav>
-          <div class="social-nav" aria-label="R&eacute;seaux sociaux">
-            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </header>
@@ -1942,20 +2150,20 @@ $tagManagerBody
         <div class="section-inner hero-grid">
           <div class="hero-copy">
             <div class="hero-copy-main" data-reveal>
-              <span class="eyebrow hero-eyebrow">EcoBalcon &middot; Jardinage sur balcon</span>
-              <h1>Le balcon devient un jardin &agrave; vivre.</h1>
-              <p>Des conseils simples pour jardiner sur un balcon, lancer un potager urbain et faire vivre les petits espaces.</p>
+              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie int&eacute;rieure</span>
+              <h1>Hydroponie debutant en appartement, sans se compliquer.</h1>
+              <p>Des guides clairs pour d&eacute;marrer un syst&egrave;me hydroponique simple, choisir les bonnes cultures et faire pousser en appartement sans jardin.</p>
             </div>
             <div class="hero-copy-side">
               <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
                 <a class="button" href="articles/">Explorer les guides</a>
-                <a class="button-secondary" href="$heroSupportHref">Commencer avec les bases</a>
+                <a class="button-secondary" href="$heroSupportHref">D&eacute;marrer simplement</a>
               </div>
               <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
-                <span class="hero-support-chip">Le bon d&eacute;part</span>
-                <strong>Mieux vaut commencer simple, puis laisser le balcon prendre sa place.</strong>
-                <p>Deux ou trois cultures bien suivies suffisent souvent pour trouver le bon rythme, observer la lumi&egrave;re et prendre plaisir &agrave; jardiner.</p>
-                <a class="text-link" href="$heroSupportHref">Voir les bases</a>
+                <span class="hero-support-chip">Le bon r&eacute;flexe</span>
+                <strong>Un petit r&eacute;servoir bien suivi vaut mieux qu'une installation compliqu&eacute;e.</strong>
+                <p>Quelques plantes faciles, une routine stable et un setup propre suffisent souvent pour prendre confiance et comprendre vite ce qui fonctionne chez toi.</p>
+                <a class="text-link" href="$heroSupportHref">Voir le guide d&eacute;butant</a>
               </div>
               <div class="hero-stat-grid" data-reveal style="--reveal-delay: 220ms;">
 $statsHtml
@@ -1963,14 +2171,14 @@ $statsHtml
             </div>
           </div>
 
-          <aside class="hero-panel" aria-label="Balcon v&eacute;g&eacute;tal en ville" data-reveal style="--reveal-delay: 120ms;">
+          <aside class="hero-panel" aria-label="Installation hydroponique d&eacute;butant en appartement" data-reveal style="--reveal-delay: 120ms;">
             <figure class="home-visual">
               <div class="home-visual-stage">
-                <img class="home-visual-main" src="images/balcon-soleil.webp" alt="Balcon ensoleill&eacute; avec jardini&egrave;res, fleurs, l&eacute;gumes et arrosoir en pleine lumi&egrave;re" title="Balcon ensoleill&eacute; avec jardini&egrave;res, fleurs, l&eacute;gumes et arrosoir en pleine lumi&egrave;re" loading="eager" decoding="async" fetchpriority="high"$homeVisualDimensions>
+                <img class="home-visual-main" src="$featuredImageSrc" alt="$(HtmlEscape $featuredImageAlt)" title="$(HtmlEscape $featuredTitle)" loading="eager" decoding="async" fetchpriority="high"$homeVisualDimensions>
               </div>
               <figcaption class="home-visual-note">
-                <span class="home-visual-chip">Balcon vivant</span>
-                <p>Un coin lumineux, vivant et simple &agrave; cultiver au rythme des saisons.</p>
+                <span class="home-visual-chip">Setup d&eacute;butant</span>
+                <p>Un coin lumineux, compact et propre pour lancer laitues, basilic et autres cultures faciles en hydroponie appartement.</p>
               </figcaption>
             </figure>
           </aside>
@@ -1981,8 +2189,8 @@ $statsHtml
         <div class="section-inner">
           <div class="section-heading" data-reveal>
             <div>
-              <h2>Commencer ici</h2>
-              <p>Trois mani&egrave;res simples de commencer selon tes envies.</p>
+              <h2>Commencer l'hydroponie en appartement</h2>
+              <p>Trois portes d'entr&eacute;e simples pour avancer sans jargon ni sur&eacute;quipement.</p>
             </div>
           </div>
           <div class="home-path-grid" data-reveal-group>
@@ -1995,8 +2203,8 @@ $startHtml
         <div class="section-inner">
           <div class="section-heading" data-reveal>
             <div>
-              <h2>Explorer par th&egrave;me</h2>
-              <p>Des rep&egrave;res visuels pour trouver rapidement le sujet qui t'aide vraiment.</p>
+              <h2>Explorer les grands th&egrave;mes HydroFacile</h2>
+              <p>Une structure claire pour retrouver vite la bonne info selon ton niveau et ton installation.</p>
             </div>
           </div>
           <div class="theme-grid">
@@ -2009,8 +2217,8 @@ $themeHtml
         <div class="section-inner">
           <div class="section-heading" data-reveal>
             <div>
-              <h2>&Agrave; lire cette semaine</h2>
-              <p>Retrouvez ici une s&eacute;lection d'articles pratiques &agrave; lire en ce moment.</p>
+              <h2>Guide recommand&eacute; maintenant</h2>
+              <p>Le meilleur point d'entr&eacute;e pour construire une base hydroponie simple et coh&eacute;rente.</p>
             </div>
           </div>
           <div class="editorial-grid">
@@ -2031,10 +2239,10 @@ $themeHtml
         <div class="section-inner">
           <div class="cta-strip" data-reveal>
             <div>
-              <h2 class="page-title">Explorer les articles</h2>
+              <h2 class="page-title">Construire une base solide</h2>
               <p class="page-intro">
-                Potager, chaleur, &eacute;conomies d’eau, biodiversit&eacute;, fleurs utiles et fiches pratiques :
-                retrouvez tous les contenus au m&ecirc;me endroit.
+                Mat&eacute;riel, cultures faciles, calendrier et rep&egrave;res d&eacute;butant :
+                retrouve les contenus essentiels pour lancer un potager int&eacute;rieur hydroponique simple &agrave; vivre.
               </p>
             </div>
             <a class="button" href="articles/">Voir tous les articles</a>
@@ -2200,7 +2408,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
           score += Math.max(0, 6 - Math.floor(ageInDays / 120));
         }
 
-        if (/guide|calendrier|astuces|balcon/i.test(haystack)) {
+        if (/guide|calendrier|hydro|culture|debut/i.test(haystack)) {
           score += 1;
         }
 
@@ -2228,58 +2436,52 @@ $(Get-SiteFooterHtml -pagePrefix "")
 function Build-ArticlesIndexHtml {
   param([object[]]$allArticles)
 
-  $cardsHtml = (($allArticles | ForEach-Object -Begin { $cardIndex = 0 } -Process {
-        $delay = [Math]::Min(70 + ($cardIndex * 45), 520)
-        $cardIndex++
-        (Build-ArticleCardHtml -article $_ -hrefPrefix "" -imagePrefix "../images/articles/") -replace '<article class="article-card">', "<article class=`"article-card`" data-reveal style=`"--reveal-delay: ${delay}ms;`">"
-      }) -join "`n")
-  $count = $allArticles.Count
-  $heroImage = if ($allArticles.Count -gt 0) { $allArticles[0].ImageCanonicalUrl } else { "" }
-  $heroImageAlt = if ($allArticles.Count -gt 0) { $allArticles[0].ImageAlt } else { "Articles EcoBalcon autour du jardinage sur balcon" }
-  $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
-  $tagManagerHead = Get-TagManagerHeadHtml
-  $tagManagerBody = Get-TagManagerBodyHtml
-  $jsonLd = Get-JsonLdScriptTags @([ordered]@{
-      "@context" = "https://schema.org"
-      "@type" = "CollectionPage"
-      name = "Conseils et guides jardinage sur balcon | EcoBalcon"
-      url = "$siteUrl/articles/"
-      inLanguage = "fr"
-      description = "Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo."
-      isPartOf = [ordered]@{
-        "@type" = "WebSite"
-        name = "EcoBalcon"
-        url = "$siteUrl/"
-      }
-    })
+  if ($allArticles.Count -eq 0) {
+    $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
+    $tagManagerHead = Get-TagManagerHeadHtml
+    $tagManagerBody = Get-TagManagerBodyHtml
+    $jsonLd = Get-JsonLdScriptTags @([ordered]@{
+        "@context" = "https://schema.org"
+        "@type" = "CollectionPage"
+      name = "Guides hydroponie appartement | $siteName"
+        url = "$siteUrl/articles/"
+        inLanguage = "fr"
+        description = "HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur."
+        isPartOf = [ordered]@{
+          "@type" = "WebSite"
+          name = $siteName
+          url = "$siteUrl/"
+        }
+      })
 
-  return @"
+    return @"
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conseils et guides jardinage sur balcon | EcoBalcon</title>
-  <meta name="description" content="Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo.">
+  <title>Guides hydroponie appartement | $siteName</title>
+  <meta name="description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="$siteUrl/articles/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/articles/">
   <link rel="alternate" hreflang="x-default" href="$siteUrl/articles/">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="EcoBalcon">
+  <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Conseils et guides jardinage sur balcon | EcoBalcon">
-  <meta property="og:description" content="Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo.">
+  <meta property="og:title" content="Guides hydroponie appartement | $siteName">
+  <meta property="og:description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
   <meta property="og:url" content="$siteUrl/articles/">
-  <meta property="og:image" content="$heroImage">
-  <meta property="og:image:alt" content="$(HtmlEscape $heroImageAlt)">
+  <meta property="og:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
+  <meta property="og:image:alt" content="Petite installation hydroponique propre en interieur">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Conseils et guides jardinage sur balcon | EcoBalcon">
-  <meta name="twitter:description" content="Retrouve les articles EcoBalcon autour du jardinage sur balcon, du potager urbain, des plantes utiles et des gestes écolo.">
-  <meta name="twitter:image" content="$heroImage">
-  <meta name="twitter:image:alt" content="$(HtmlEscape $heroImageAlt)">
+  <meta name="twitter:title" content="Guides hydroponie appartement | $siteName">
+  <meta name="twitter:description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
+  <meta name="twitter:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
+  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
 $jsonLd
 $tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
@@ -2292,7 +2494,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2301,21 +2503,6 @@ $tagManagerBody
             <a href="./" aria-current="page">Articles</a>
             <a href="../galerie/">Galerie</a>
           </nav>
-          <div class="social-nav" aria-label="R&eacute;seaux sociaux">
-            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </header>
@@ -2324,9 +2511,116 @@ $tagManagerBody
       <div class="section-inner">
         <div class="page-hero" data-reveal>
           <div class="page-hero-copy">
-            <h1 class="page-title">Tout pour jardiner facilement sur un balcon</h1>
+            <h1 class="page-title">Guides hydroponie pour debuter en appartement</h1>
             <p class="page-intro">
-              Des conseils simples et concrets pour am&eacute;nager son balcon, choisir les bonnes plantes et cr&eacute;er un petit coin de verdure facile &agrave; entretenir.
+              Cette section rassemblera des contenus simples pour comprendre la culture sans terre, choisir un petit systeme et debuter avec des plantes faciles, meme dans peu d'espace.
+            </p>
+          </div>
+        </div>
+
+        <section class="search-panel" data-reveal style="--reveal-delay: 60ms;">
+          <strong class="search-label">Bientot ici</strong>
+          <p class="page-intro">Des guides pratiques sur le fonctionnement de l'hydroponie, le materiel vraiment utile, la lumiere, les nutriments expliques simplement et les cultures les plus faciles pour commencer.</p>
+          <div class="hero-actions">
+            <a class="button" href="../galerie/">Voir la galerie</a>
+            <a class="button-secondary" href="../">Retour a l'accueil</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+$(Get-SiteFooterHtml -pagePrefix "../")
+  </div>
+</body>
+</html>
+"@
+  }
+
+  $cardsHtml = (($allArticles | ForEach-Object -Begin { $cardIndex = 0 } -Process {
+        $delay = [Math]::Min(70 + ($cardIndex * 45), 520)
+        $cardIndex++
+        (Build-ArticleCardHtml -article $_ -hrefPrefix "" -imagePrefix "../images/articles/") -replace '<article class="article-card">', "<article class=`"article-card`" data-reveal style=`"--reveal-delay: ${delay}ms;`">"
+      }) -join "`n")
+  $count = $allArticles.Count
+  $heroImage = if ($allArticles.Count -gt 0) { $allArticles[0].ImageCanonicalUrl } else { "" }
+  $heroImageAlt = if ($allArticles.Count -gt 0) { $allArticles[0].ImageAlt } else { "Guides HydroFacile pour debuter en hydroponie en appartement" }
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
+  $jsonLd = Get-JsonLdScriptTags @([ordered]@{
+      "@context" = "https://schema.org"
+      "@type" = "CollectionPage"
+      name = "Guides hydroponie appartement | $siteName"
+      url = "$siteUrl/articles/"
+      inLanguage = "fr"
+      description = "Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique."
+      isPartOf = [ordered]@{
+        "@type" = "WebSite"
+        name = $siteName
+        url = "$siteUrl/"
+      }
+    })
+
+  return @"
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guides hydroponie appartement | $siteName</title>
+  <meta name="description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="$siteUrl/articles/">
+  <link rel="alternate" hreflang="fr" href="$siteUrl/articles/">
+  <link rel="alternate" hreflang="x-default" href="$siteUrl/articles/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="$siteName">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Guides hydroponie appartement | $siteName">
+  <meta property="og:description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta property="og:url" content="$siteUrl/articles/">
+  <meta property="og:image" content="$heroImage">
+  <meta property="og:image:alt" content="$(HtmlEscape $heroImageAlt)">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guides hydroponie appartement | $siteName">
+  <meta name="twitter:description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta name="twitter:image" content="$heroImage">
+  <meta name="twitter:image:alt" content="$(HtmlEscape $heroImageAlt)">
+$jsonLd
+$tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="$articleStylesheetHref">
+</head>
+<body class="articles-page">
+$tagManagerBody
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark">
+            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="../">Accueil</a>
+            <a href="./" aria-current="page">Articles</a>
+            <a href="../galerie/">Galerie</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="section-inner">
+        <div class="page-hero" data-reveal>
+          <div class="page-hero-copy">
+            <h1 class="page-title">Guides hydroponie pour d&eacute;buter en appartement</h1>
+            <p class="page-intro">
+              Une base claire pour comprendre la culture hydroponique facile, choisir un syst&egrave;me hydroponique d&eacute;butant et r&eacute;ussir un potager int&eacute;rieur hydroponique simple &agrave; maintenir.
             </p>
           </div>
 
@@ -2337,16 +2631,30 @@ $tagManagerBody
               id="article-search"
               type="search"
               name="q"
-              placeholder="Rechercher un article"
+              placeholder="Rechercher un guide hydroponie"
               autocomplete="off">
           </section>
         </div>
 
-        <section class="theme-filter-panel" aria-label="Filtrer les articles par thème" data-reveal style="--reveal-delay: 90ms;">
+        <div class="section-heading section-heading-compact" data-reveal style="--reveal-delay: 90ms;">
+          <div>
+            <h2>Explorer par th&egrave;me</h2>
+            <p>D&eacute;buter, choisir le bon syst&egrave;me et lancer des cultures faciles avec un maillage clair entre les sujets.</p>
+          </div>
+        </div>
+
+        <section class="theme-filter-panel" aria-label="Filtrer les articles par thème" data-reveal style="--reveal-delay: 110ms;">
           <div class="theme-filter-list" id="article-theme-filters"></div>
         </section>
 
         <p class="search-empty" id="search-empty" hidden>Aucun article ne correspond &agrave; cette recherche.</p>
+
+        <div class="section-heading section-heading-compact" data-reveal style="--reveal-delay: 140ms;">
+          <div>
+            <h2>Guides disponibles</h2>
+            <p>Les contenus publi&eacute;s servent de base pour comprendre l'hydroponie d&eacute;butant en appartement et avancer pas &agrave; pas.</p>
+          </div>
+        </div>
 
         <div class="cards" id="article-list">
 $cardsHtml
@@ -2447,11 +2755,7 @@ $(Get-SiteFooterHtml -pagePrefix "../")
       };
 
       const articleThemeOptions = [
-        { slug: "all", label: "Tous" },
-        { slug: "fiches-techniques", label: "Fiches Techniques" },
-        { slug: "plantes-semis", label: "Plantes & semis" },
-        { slug: "entretien-astuces", label: "Entretien & astuces" },
-        { slug: "amenagement-du-balcon", label: "Aménagement du balcon" }
+        { slug: "all", label: "Tous" }
       ];
 
       articleCards.forEach((card) => {
@@ -2464,6 +2768,13 @@ $(Get-SiteFooterHtml -pagePrefix "../")
         }
 
         card.dataset.theme = themeSlug;
+
+        if (!articleThemeOptions.some((option) => option.slug === themeSlug)) {
+          articleThemeOptions.push({
+            slug: themeSlug,
+            label: themeLabel
+          });
+        }
 
         if (themePill) {
           themePill.dataset.themeFilter = themeSlug;
@@ -2749,7 +3060,7 @@ function Get-PreferredArticle {
 }
 
 function Build-PrivacyPageHtml {
-  $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $tagManagerHead = Get-TagManagerHeadHtml
   $tagManagerBody = Get-TagManagerBodyHtml
   $canonicalUrl = "$siteUrl/politique-confidentialite/"
@@ -2760,22 +3071,23 @@ function Build-PrivacyPageHtml {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Politique de confidentialit&eacute; | EcoBalcon</title>
-  <meta name="description" content="Informations sur la mesure d'audience, les cookies et les donn&eacute;es de navigation utilis&eacute;s sur EcoBalcon.">
+  <title>Politique de confidentialit&eacute; | $siteName</title>
+  <meta name="description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="$canonicalUrl">
   <link rel="alternate" hreflang="fr" href="$canonicalUrl">
   <link rel="alternate" hreflang="x-default" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="EcoBalcon">
+  <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Politique de confidentialit&eacute; | EcoBalcon">
-  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et les donn&eacute;es de navigation utilis&eacute;s sur EcoBalcon.">
+  <meta property="og:title" content="Politique de confidentialit&eacute; | $siteName">
+  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Politique de confidentialit&eacute; | EcoBalcon">
-  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et les donn&eacute;es de navigation utilis&eacute;s sur EcoBalcon.">
+  <meta name="twitter:title" content="Politique de confidentialit&eacute; | $siteName">
+  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
 $tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
@@ -2788,7 +3100,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2797,21 +3109,6 @@ $tagManagerBody
             <a href="../articles/">Articles</a>
             <a href="../galerie/">Galerie</a>
           </nav>
-          <div class="social-nav" aria-label="R&eacute;seaux sociaux">
-            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </header>
@@ -2833,17 +3130,17 @@ $tagManagerBody
             <h1 class="page-title">Politique de confidentialit&eacute;</h1>
             <p class="page-intro">
               Cette page r&eacute;sume les informations utiles sur la mesure d'audience, les cookies et les donn&eacute;es techniques
-              susceptibles d'&ecirc;tre trait&eacute;es lorsque tu consultes EcoBalcon.
+              susceptibles d'&ecirc;tre trait&eacute;es lorsque tu consultes $siteName.
             </p>
           </div>
 
           <aside class="checklist utility-panel">
             <h2>En bref</h2>
             <ul class="article-list">
-              <li>EcoBalcon est un site &eacute;ditorial autour du jardinage sur balcon.</li>
+              <li>$siteName est un site &eacute;ditorial autour de l'hydroponie pour d&eacute;butants en appartement.</li>
               <li>Le site utilise Google Tag Manager et peut activer Google Analytics 4 pour la mesure d'audience.</li>
               <li>Il n'y a pas d'espace membre ni de compte utilisateur &agrave; cr&eacute;er sur le site.</li>
-              <li>Les liens vers des services tiers comme Instagram ou X suivent leurs propres r&egrave;gles.</li>
+              <li>Les liens sortants &eacute;ventuels vers des services tiers suivent leurs propres r&egrave;gles.</li>
             </ul>
           </aside>
         </section>
@@ -2851,14 +3148,14 @@ $tagManagerBody
         <article class="article-prose">
           <h2>Donn&eacute;es de navigation</h2>
           <p>
-            Lorsque tu visites EcoBalcon, des informations techniques usuelles peuvent &ecirc;tre trait&eacute;es&nbsp;:
+            Lorsque tu visites $siteName, des informations techniques usuelles peuvent &ecirc;tre trait&eacute;es&nbsp;:
             pages consult&eacute;es, date et heure de visite, appareil, navigateur, langue, provenance de la visite ou
             donn&eacute;es de performance. Elles servent surtout &agrave; comprendre l'usage du site et &agrave; l'am&eacute;liorer.
           </p>
 
           <h2>Mesure d'audience</h2>
           <p>
-            EcoBalcon utilise Google Tag Manager (<code>GTM-MFRVPVFQ</code>) pour piloter ses balises. Selon la configuration
+            $siteName utilise Google Tag Manager (<code>GTM-MFRVPVFQ</code>) pour piloter ses balises. Selon la configuration
             active du conteneur, Google Analytics 4 (<code>G-L952X34SHR</code>) peut &ecirc;tre utilis&eacute; pour mesurer l'audience,
             observer les pages vues et mieux comprendre les parcours de navigation.
           </p>
@@ -2872,7 +3169,7 @@ $tagManagerBody
 
           <h2>Liens et services tiers</h2>
           <p>
-            Le site propose des liens vers des plateformes externes, notamment Instagram et X. Lorsque tu quittes EcoBalcon
+            Le site peut proposer des liens vers des plateformes ou services externes. Lorsque tu quittes $siteName
             pour consulter ces services, leurs propres politiques de confidentialit&eacute; s'appliquent.
           </p>
 
@@ -2893,7 +3190,7 @@ $(Get-SiteFooterHtml -pagePrefix "../")
 }
 
 function Build-404Html {
-  $logoDimensions = Get-RootImageDimensionAttributes "images\logo-site.png"
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $tagManagerHead = Get-TagManagerHeadHtml
   $tagManagerBody = Get-TagManagerBodyHtml
   $canonicalUrl = "$siteUrl/404.html"
@@ -2904,20 +3201,21 @@ function Build-404Html {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page introuvable | EcoBalcon</title>
-  <meta name="description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil EcoBalcon ou explore les articles et la galerie.">
+  <title>Page introuvable | $siteName</title>
+  <meta name="description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="EcoBalcon">
+  <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Page introuvable | EcoBalcon">
-  <meta property="og:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil EcoBalcon ou explore les articles et la galerie.">
+  <meta property="og:title" content="Page introuvable | $siteName">
+  <meta property="og:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Page introuvable | EcoBalcon">
-  <meta name="twitter:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil EcoBalcon ou explore les articles et la galerie.">
+  <meta name="twitter:title" content="Page introuvable | $siteName">
+  <meta name="twitter:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
 $tagManagerHead
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -2930,7 +3228,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="./">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.png" alt="Logo EcoBalcon"$logoDimensions>
+            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2939,21 +3237,6 @@ $tagManagerBody
             <a href="articles/">Articles</a>
             <a href="galerie/">Galerie</a>
           </nav>
-          <div class="social-nav" aria-label="R&eacute;seaux sociaux">
-            <a class="social-link" href="https://www.instagram.com/eco_balcon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4.2"></circle>
-                <circle cx="17.4" cy="6.6" r="1"></circle>
-              </svg>
-            </a>
-            <a class="social-link" href="https://x.com/Eco_Balcon" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16"></path>
-                <path d="M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </header>
@@ -2965,21 +3248,21 @@ $tagManagerBody
             <span class="eyebrow">404</span>
             <h1 class="page-title">Page introuvable</h1>
             <p class="page-intro">
-              L'adresse demand&eacute;e ne correspond &agrave; aucune page active du site. Tu peux revenir &agrave; l'accueil
-              ou repartir depuis les articles pour retrouver le bon contenu.
+              Cette adresse ne m&egrave;ne &agrave; aucune page disponible. Tu peux revenir &agrave; l'accueil, ouvrir la galerie
+              ou passer par la section guides pour repartir simplement.
             </p>
             <div class="hero-actions">
               <a class="button" href="./">Retour &agrave; l'accueil</a>
-              <a class="button-secondary" href="articles/">Voir les articles</a>
+              <a class="button-secondary" href="articles/">Voir les guides</a>
             </div>
           </div>
 
           <aside class="checklist utility-panel">
             <h2>Tu peux essayer</h2>
             <ul class="article-list">
-              <li>Revenir &agrave; l'accueil pour repartir des contenus principaux.</li>
-              <li>Parcourir les guides et fiches techniques depuis la liste des articles.</li>
-              <li>Ouvrir la galerie pour retrouver des inspirations balcon.</li>
+              <li>Revenir &agrave; l'accueil pour retrouver les bases de l'hydroponie en appartement.</li>
+              <li>Ouvrir la galerie pour voir des installations simples, propres et compactes.</li>
+              <li>Passer par la section guides pour suivre l'arriv&eacute;e des prochains contenus.</li>
             </ul>
             <a class="text-link" href="galerie/">Voir la galerie</a>
           </aside>
@@ -3039,7 +3322,7 @@ function Build-SitemapXml {
   $entries.Add((New-SitemapUrlNode -loc "$siteUrl/articles/" -priority "0.9" -lastmod $today -imageUrl $homeImageUrl -imageCaption $homeImageCaption))
   if (Test-Path (Join-Path $root "galerie.html")) {
     $galleryLoc = if (Test-Path (Join-Path $root "galerie\index.html")) { "$siteUrl/galerie/" } else { "$siteUrl/galerie.html" }
-    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/canicule-balcon-mxBXq1QqyeTR1PLZ.webp" -imageCaption "Balcon plante en plein soleil"))
+    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/hydro-systeme-debutant.svg" -imageCaption "Installation hydroponique debutant en appartement"))
   }
 
   foreach ($article in $allArticles) {
@@ -3055,6 +3338,16 @@ function Build-RobotsTxt {
   return @"
 User-agent: *
 Allow: /
+Disallow: /backups/
+Disallow: /raw-singlefile/
+Disallow: /scripts/
+Disallow: /.edge-profile/
+Disallow: /.edge-profile-gallery/
+Disallow: /articles/article-template.html
+Disallow: /SEO-AUDIT.md
+Disallow: /readme.md
+Disallow: /publish.bat
+Disallow: /prompt%20codex.txt
 
 Sitemap: $siteUrl/sitemap.xml
 "@
@@ -3064,8 +3357,9 @@ foreach ($article in $articles) {
   $articleOutDir = Join-Path $articlesDir $article.Slug
   $outPath = Join-Path $articleOutDir "index.html"
   $legacyRootDir = Join-Path $root $article.Slug
-  $html = Build-ArticleHtml -article $article -allArticles $articles
-  $redirectHtml = Get-RedirectHtml -targetUrl (Get-ArticleCanonicalUrl $article) -title "$($article.Title) | EcoBalcon" -description "Cette page a été déplacée vers sa nouvelle adresse."
+  $relatedPool = if (Test-IsPrimaryArticle $article.Slug) { $primaryArticles } else { $articles }
+  $html = Build-ArticleHtml -article $article -allArticles $relatedPool
+  $redirectHtml = Get-RedirectHtml -targetUrl (Get-ArticleCanonicalUrl $article) -title "$($article.Title) | $siteName" -description "Cette page a été déplacée vers sa nouvelle adresse."
   New-Item -ItemType Directory -Path $articleOutDir -Force | Out-Null
   New-Item -ItemType Directory -Path $legacyRootDir -Force | Out-Null
   Set-Content -Path $outPath -Value $html -Encoding UTF8
@@ -3076,13 +3370,13 @@ foreach ($article in $articles) {
 
 Write-MinifiedStylesheet
 
-Set-Content -Path (Join-Path $articlesDir "index.html") -Value (Build-ArticlesIndexHtml $articles) -Encoding UTF8
+Set-Content -Path (Join-Path $articlesDir "index.html") -Value (Build-ArticlesIndexHtml $primaryArticles) -Encoding UTF8
 Set-Content -Path (Join-Path $root "404.html") -Value (Build-404Html) -Encoding UTF8
 
 $privacyDir = Join-Path $root "politique-confidentialite"
 New-Item -ItemType Directory -Path $privacyDir -Force | Out-Null
 Set-Content -Path (Join-Path $privacyDir "index.html") -Value (Build-PrivacyPageHtml) -Encoding UTF8
-Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialite | EcoBalcon" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
+Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialite | $siteName" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
 
 $homePath = Join-Path $root "index.html"
 $homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"
@@ -3098,11 +3392,11 @@ if ($RebuildHome -or -not (Test-Path $homePath)) {
     $homeBackupStatus = "Homepage backup created: $homeBackupPath"
   }
 
-  Set-Content -Path $homePath -Value (Build-HomeHtml $articles) -Encoding UTF8
+  Set-Content -Path $homePath -Value (Build-HomeHtml $primaryArticles) -Encoding UTF8
   $homeStatus = if ($RebuildHome) { "Homepage regenerated from the script" } else { "Homepage created from the script" }
 }
 
-Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $articles) -Encoding UTF8
+Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $primaryArticles) -Encoding UTF8
 Set-Content -Path (Join-Path $root "robots.txt") -Value (Build-RobotsTxt) -Encoding UTF8
 
 Write-Output "Updated style.min.css, articles index, 404.html, politique-confidentialite.html, sitemap.xml and robots.txt"

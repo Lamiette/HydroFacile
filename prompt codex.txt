@@ -1,115 +1,87 @@
-Tu travailles dans mon projet de site statique “Ecobalcon”, dédié au jardinage sur balcon, au potager urbain, aux plantes, aux fleurs, aux petits espaces extérieurs et aux conseils pratiques pour débutants.
+Analyse tout le projet HydroFacile et crée le meilleur nouvel article SEO possible pour le site, en respectant strictement la structure existante.
 
-Ta mission :
-analyser tout le site existant, identifier le sujet de nouvel article le plus pertinent à créer, puis produire et intégrer cet article avec une logique SEO complète, en restant cohérent avec le ton, la structure et le niveau de qualité déjà présents sur le site.
+Ta mission complète :
+1. auditer les contenus existants
+2. identifier le meilleur sujet d’article à créer maintenant
+3. rédiger l’article
+4. l’intégrer au bon endroit dans le projet
+5. mettre à jour les fichiers liés (index, sitemap, flux, données, liens internes, etc.)
+6. préparer ou intégrer une image libre de droit cohérente
+7. faire un récapitulatif final clair
 
-OBJECTIF GLOBAL
-Je veux un nouvel article qui ait de vraies chances d’être utile pour le référencement naturel, cohérent avec les contenus déjà publiés, intéressant pour des lecteurs débutants/intermédiaires, et parfaitement intégré au site.
+Contraintes importantes :
+- site statique
+- ne pas casser la structure actuelle
+- réutiliser les conventions déjà en place
+- rester cohérent avec le ton HydroFacile : simple, pédagogue, rassurant, concret
+- cible : débutants en hydroponie en appartement
+- éviter les sujets trop larges ou trop concurrentiels
+- privilégier les sujets utiles, précis, maillables et à potentiel SEO réaliste
+- français naturel uniquement, sans style robotique
+- ne pas inventer de données précises non vérifiables
 
-ÉTAPE 1 — AUDIT DU SITE
-Commence par analyser l’ensemble du projet :
-- tous les articles existants
-- les titres H1/H2/H3
-- les mots-clés déjà couverts
-- les catégories ou thématiques principales
-- le style rédactionnel
-- la structure HTML/Markdown utilisée pour les articles
-- les métadonnées SEO déjà présentes
-- les liens internes existants
-- les images déjà utilisées
-- le sitemap, flux RSS, index d’articles, catégories, tags ou pages annexes si présents
+Audit à réaliser :
+- articles existants
+- structure H1/H2/H3
+- sujets déjà couverts
+- manques éditoriaux
+- opportunités longue traîne
+- maillage interne existant
+- métadonnées SEO
+- structure des templates/articles
+- sitemap, RSS, pages d’index, catégories/tags si présents
 
-Ensuite, identifie :
-- les sujets déjà bien couverts
-- les sujets proches mais incomplets
-- les manques éditoriaux
-- les opportunités de longue traîne SEO
-- les requêtes réellement pertinentes pour un site comme Ecobalcon
-- le sujet de nouvel article le plus intéressant à créer maintenant
+Choix du sujet :
+- sélectionne le meilleur sujet de nouvel article
+- justifie brièvement le choix dans un commentaire ou un fichier de travail
+- définis :
+  - mot-clé principal
+  - mots-clés secondaires
+  - intention de recherche
+  - articles à lier
 
-IMPORTANT :
-Ne choisis pas un sujet trop large ou trop concurrentiel si une variante plus précise, plus utile et plus accessible SEO est meilleure.
-Privilégie un sujet :
-- utile pour un lecteur français
-- adapté à un site de niche sur le balcon / jardin urbain
-- cohérent avec la saison si possible
-- complémentaire aux articles déjà présents
-- facilement maillable avec les contenus existants
-
-ÉTAPE 2 — CHOIX DU SUJET
-Avant d’écrire, choisis le meilleur sujet et justifie-le brièvement dans un commentaire ou un fichier temporaire de travail :
-- sujet retenu
-- mot-clé principal
-- mots-clés secondaires
-- intention de recherche
-- raison du choix par rapport au contenu existant
-- articles existants vers lesquels créer des liens internes
-
-Puis passe directement à la création de l’article.
-
-ÉTAPE 3 — RÉDACTION DE L’ARTICLE
-Crée un article complet, original, naturel, fluide, crédible et utile.
-Le texte doit être écrit en français naturel, sans ton robotique ni phrases creuses.
-Évite absolument le blabla SEO artificiel.
-
-Contraintes éditoriales :
-- ton clair, pédagogue, concret, rassurant
-- cible : débutants ou jardiniers urbains non experts
-- style humain, accessible, agréable à lire
-- contenu pratique, structuré, précis
-- éviter les répétitions inutiles
-- éviter les formulations trop génériques
-- apporter de vrais conseils exploitables
-- rester cohérent avec le branding Ecobalcon
-
-Structure attendue :
-- un vrai H1 optimisé mais naturel
-- une introduction engageante
-- plusieurs sections H2/H3 pertinentes
-- paragraphes lisibles
-- listes à puces si utiles
+Rédaction :
+- crée un article complet, utile, crédible et agréable à lire
+- H1 naturel et optimisé
+- introduction engageante
+- H2/H3 clairs
 - conseils pratiques
 - erreurs à éviter si pertinent
-- mini FAQ de fin si cela apporte un vrai plus SEO
-- conclusion naturelle avec ouverture éventuelle vers d’autres contenus du site
+- FAQ de fin seulement si elle apporte un vrai plus
+- conclusion naturelle
 
-L’article doit être suffisamment riche pour être utile, sans sur-gonfler artificiellement la longueur.
-Cherche la meilleure longueur selon le sujet et les autres contenus du site.
+SEO :
+- title
+- meta description
+- slug
+- Hn propres
+- intégration naturelle du mot-clé principal
+- champ sémantique cohérent
+- alt image
+- Open Graph / Twitter / schema / canonical si le projet les gère déjà
 
-ÉTAPE 4 — SEO COMPLET
-Fais toute la partie SEO on-page :
-- title SEO unique et bien optimisé
-- meta description persuasive et naturelle
-- slug pertinent
-- balises Hn propres
-- mot-clé principal bien intégré sans sur-optimisation
-- variantes sémantiques intégrées naturellement
-- attribut alt de l’image
-- éventuel balisage schema.org Article si le site l’utilise déjà
-- données Open Graph / Twitter si la structure du projet le prévoit
-- canonical si pertinent dans l’architecture existante
+Maillage interne :
+- ajouter des liens depuis le nouvel article vers les contenus existants pertinents
+- si pertinent, ajouter aussi des liens retour depuis quelques anciens contenus
 
-Tu dois aussi optimiser :
-- la lisibilité
-- l’intention de recherche
-- le maillage interne
-- la cohérence avec les autres contenus
-- la probabilité de clic depuis Google
+Image :
+- trouver une image libre de droit cohérente avec le sujet
+- si téléchargement/intégration possible, le faire proprement
+- sinon préparer tout ce qu’il faut : nom de fichier SEO, alt, source, crédit, emplacement recommandé
 
-ÉTAPE 5 — MAILLAGE INTERNE
-Ajoute des liens internes intelligents depuis le nouvel article vers les contenus existants les plus pertinents.
-Si pertinent, ajoute aussi depuis 2 à 5 anciens articles un lien vers ce nouvel article, de façon naturelle et contextuelle.
-Ne crée pas de liens forcés.
+Intégration :
+- créer réellement l’article
+- mettre à jour les fichiers nécessaires
+- respecter exactement l’architecture du projet
 
-ÉTAPE 6 — IMAGE LIBRE DE DROIT
-Trouve une image libre de droit cohérente avec le sujet de l’article.
-Conditions :
-- image légalement réutilisable
-- visuellement qualitative
-- crédible pour un site de jardinage/balcon
-- cohérente avec la ligne éditoriale
-- pas d’image kitsch, trop artificielle ou visiblement hors sujet
+Qualité :
+- vérifier doublons et cannibalisation
+- corriger le style, l’orthographe, la lisibilité
+- vérifier les liens
+- vérifier les métadonnées
+- livrer un résultat propre et cohérent
 
+<<<<<<< HEAD
 Gère l’image proprement :
 - récupère l’image si le contexte/outillage du projet le permet
 - sinon prépare au minimum l’intégration propre avec :
@@ -177,3 +149,14 @@ REGLE AUTEURS
 - Ne pas attribuer systematiquement les nouveaux articles a Clara Fontaine.
 - Repartir les signatures entre Clara Fontaine, Louis Fargot et Mathias Lancet.
 - Si aucun critere editorial fort ne s'impose, privilegier l'auteur le moins utilise recemment sur le site.
+=======
+À la fin :
+fais un récapitulatif court avec
+- sujet choisi
+- mot-clé principal
+- raison du choix
+- fichiers modifiés/créés
+- SEO ajouté
+- liens internes ajoutés
+- éventuelles actions manuelles restantes
+>>>>>>> 3668c26 (publication du site)

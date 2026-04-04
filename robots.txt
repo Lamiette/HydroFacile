@@ -1,4 +1,14 @@
 ﻿User-agent: *
 Allow: /
+Disallow: /backups/
+Disallow: /raw-singlefile/
+Disallow: /scripts/
+Disallow: /.edge-profile/
+Disallow: /.edge-profile-gallery/
+Disallow: /articles/article-template.html
+Disallow: /SEO-AUDIT.md
+Disallow: /readme.md
+Disallow: /publish.bat
+Disallow: /prompt%20codex.txt
 
-Sitemap: https://ecobalcon.com/sitemap.xml
+Sitemap: https://hydrofacile.fr/sitemap.xml

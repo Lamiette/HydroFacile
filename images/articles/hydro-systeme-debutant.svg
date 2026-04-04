@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Systeme hydroponique debutant en appartement</title>
+  <desc id="desc">Illustration d'une installation hydroponique compacte en interieur avec salades, basilic, reservoir d'eau et fenetre lumineuse.</desc>
+  <defs>
+    <linearGradient id="bgTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#effffd"/>
+      <stop offset="100%" stop-color="#dff7f8"/>
+    </linearGradient>
+    <linearGradient id="bgBottom" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbffff"/>
+      <stop offset="100%" stop-color="#eef6f8"/>
+    </linearGradient>
+    <linearGradient id="pipeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dcf3f0"/>
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7fe0ea"/>
+      <stop offset="100%" stop-color="#2ba7b6"/>
+    </linearGradient>
+    <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38c58d"/>
+      <stop offset="100%" stop-color="#157b5a"/>
+    </linearGradient>
+    <linearGradient id="leafLightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#92e8b9"/>
+      <stop offset="100%" stop-color="#38b883"/>
+    </linearGradient>
+    <filter id="panelShadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0d5d66" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bgBottom)"/>
+  <circle cx="188" cy="150" r="170" fill="#e0fbf6"/>
+  <circle cx="1036" cy="122" r="146" fill="#e6fbff"/>
+  <rect x="0" y="612" width="1200" height="288" fill="#f8fbfc"/>
+
+  <g opacity="0.6">
+    <rect x="822" y="88" width="246" height="178" rx="24" fill="#fbffff" stroke="#caedf0" stroke-width="5"/>
+    <line x1="945" y1="88" x2="945" y2="266" stroke="#d5eff2" stroke-width="4"/>
+    <line x1="822" y1="177" x2="1068" y2="177" stroke="#d5eff2" stroke-width="4"/>
+  </g>
+
+  <g filter="url(#panelShadow)">
+    <rect x="160" y="204" width="760" height="474" rx="38" fill="url(#bgTop)"/>
+    <rect x="160" y="204" width="760" height="474" rx="38" fill="none" stroke="#c5ece7" stroke-width="4"/>
+  </g>
+
+  <rect x="228" y="572" width="620" height="54" rx="18" fill="#d8e7ea"/>
+  <rect x="278" y="626" width="26" height="116" rx="13" fill="#b9cfd5"/>
+  <rect x="770" y="626" width="26" height="116" rx="13" fill="#b9cfd5"/>
+  <rect x="190" y="742" width="694" height="28" rx="14" fill="#c6d8dd"/>
+
+  <g>
+    <rect x="268" y="324" width="520" height="82" rx="36" fill="url(#pipeGradient)" stroke="#cae8e4" stroke-width="4"/>
+    <rect x="268" y="440" width="520" height="82" rx="36" fill="url(#pipeGradient)" stroke="#cae8e4" stroke-width="4"/>
+
+    <g fill="#fefefe" stroke="#c9e7e3" stroke-width="4">
+      <circle cx="352" cy="365" r="25"/>
+      <circle cx="454" cy="365" r="25"/>
+      <circle cx="556" cy="365" r="25"/>
+      <circle cx="658" cy="365" r="25"/>
+      <circle cx="404" cy="481" r="25"/>
+      <circle cx="506" cy="481" r="25"/>
+      <circle cx="608" cy="481" r="25"/>
+      <circle cx="710" cy="481" r="25"/>
+    </g>
+  </g>
+
+  <g fill="url(#leafGradient)">
+    <path d="M340 329c-32-44-12-88 20-112 10 46 12 78-20 112z"/>
+    <path d="M364 330c-4-54 26-88 64-94-6 47-19 80-64 94z" fill="url(#leafLightGradient)"/>
+
+    <path d="M442 325c-28-34-19-76 7-103 14 39 17 71-7 103z"/>
+    <path d="M467 329c-2-46 26-77 57-80-4 39-18 68-57 80z" fill="url(#leafLightGradient)"/>
+
+    <path d="M546 323c-30-38-18-83 15-110 13 43 13 78-15 110z"/>
+    <path d="M572 326c0-46 28-78 61-84-4 40-18 71-61 84z" fill="url(#leafLightGradient)"/>
+
+    <path d="M648 324c-28-34-18-74 12-100 12 40 14 72-12 100z"/>
+    <path d="M674 327c0-42 24-70 54-74-4 34-17 60-54 74z" fill="url(#leafLightGradient)"/>
+  </g>
+
+  <g fill="url(#leafGradient)">
+    <path d="M394 444c-28-37-16-77 15-104 12 40 13 72-15 104z"/>
+    <path d="M419 447c0-43 26-73 56-77-4 36-18 63-56 77z" fill="url(#leafLightGradient)"/>
+
+    <path d="M494 444c-24-30-16-66 12-90 11 35 11 62-12 90z"/>
+    <path d="M516 447c0-38 22-64 49-68-3 31-15 54-49 68z" fill="url(#leafLightGradient)"/>
+
+    <path d="M596 443c-30-39-18-83 14-108 13 43 14 77-14 108z"/>
+    <path d="M622 447c0-45 28-77 60-82-3 39-18 68-60 82z" fill="url(#leafLightGradient)"/>
+
+    <path d="M698 444c-26-32-15-71 14-96 11 38 12 67-14 96z"/>
+    <path d="M722 447c0-40 24-67 51-72-3 33-16 57-51 72z" fill="url(#leafLightGradient)"/>
+  </g>
+
+  <g stroke="#d6d2c8" stroke-width="3" fill="none" opacity="0.9">
+    <path d="M351 387c0 58 7 85 22 124"/>
+    <path d="M454 387c0 64 4 90-10 126"/>
+    <path d="M557 387c0 64-4 88-20 126"/>
+    <path d="M658 387c0 64-7 91-27 128"/>
+    <path d="M404 503c0 42 7 74 22 104"/>
+    <path d="M507 503c0 42-1 74-15 108"/>
+    <path d="M608 503c0 42-4 72-20 106"/>
+    <path d="M711 503c0 44-9 74-26 108"/>
+  </g>
+
+  <g filter="url(#panelShadow)">
+    <rect x="872" y="360" width="178" height="220" rx="26" fill="#13353c"/>
+    <rect x="894" y="392" width="134" height="128" rx="18" fill="url(#waterGradient)"/>
+    <rect x="894" y="392" width="134" height="128" rx="18" fill="none" stroke="#7fe0ea" stroke-width="4"/>
+    <circle cx="960" cy="447" r="24" fill="#dffbfd" opacity="0.25"/>
+    <path d="M958 316c28 34 42 60 42 82 0 24-17 40-40 40s-40-16-40-40c0-20 12-45 34-73l4-9z" fill="url(#waterGradient)"/>
+  </g>
+
+  <g>
+    <rect x="932" y="606" width="62" height="14" rx="7" fill="#2bb7c8"/>
+    <rect x="984" y="606" width="16" height="40" rx="8" fill="#8eb9c1"/>
+    <circle cx="993" cy="652" r="12" fill="#2bb7c8"/>
+    <path d="M1008 642c14 0 24 10 24 24" fill="none" stroke="#2bb7c8" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#12343a">
+    <text x="250" y="736" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-1.8">Hydroponie simple a la maison</text>
+    <text x="252" y="782" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="26" font-weight="600" fill="#3a7b84">petit systeme propre, feuillages frais, suivi rassurant</text>
+  </g>
+</svg>
