@@ -17,8 +17,8 @@ $siteUrl = "https://hydrofacile.fr"
 $siteTagline = "Hydroponie debutant en appartement."
 $siteDescription = "HydroFacile aide a debuter en hydroponie en appartement avec des guides simples sur les systemes, la lumiere, les nutriments et les cultures faciles."
 $siteLongDescription = "HydroFacile est un site sur l'hydroponie debutant en appartement : systeme hydroponique simple, cultures faciles, lumiere, nutriments et potager interieur propre."
-$siteLogoPath = "images\logo-site.svg"
-$siteLogoUrl = "$siteUrl/images/logo-site.svg"
+$siteLogoPath = "images\logo-site.png"
+$siteLogoUrl = "$siteUrl/images/logo-site.png"
 $primaryArticleSlugs = @(
   "hydroponie-sans-pompe-appartement",
   "cultures-faciles-hydroponie-appartement",
@@ -1611,10 +1611,12 @@ $relatedCardsHtml
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroCaption)">
 $jsonLdScripts
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="../../images/favicon.svg">
+  <link rel="icon" href="../../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
   <link rel="stylesheet" href="$articleDetailStylesheetHref">
 </head>
 <body class="article-page">
@@ -1624,7 +1626,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="../../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -1773,10 +1775,12 @@ function Build-HomeHtml {
   <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
 $jsonLd
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="$rootStylesheetHref">
 </head>
 <body class="home-page">
@@ -1786,7 +1790,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="./">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2119,10 +2123,12 @@ $(Get-SiteFooterHtml -pagePrefix "")
   <meta name="twitter:image:alt" content="$(HtmlEscape $shareImageAlt)">
 $jsonLd
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="$rootStylesheetHref">
 </head>
 <body class="home-page">
@@ -2132,7 +2138,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="./">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2481,10 +2487,12 @@ function Build-ArticlesIndexHtml {
   <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
 $jsonLd
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
   <link rel="stylesheet" href="$articleStylesheetHref">
 </head>
 <body class="articles-page">
@@ -2494,7 +2502,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -2588,10 +2596,12 @@ $(Get-SiteFooterHtml -pagePrefix "../")
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroImageAlt)">
 $jsonLd
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
   <link rel="stylesheet" href="$articleStylesheetHref">
 </head>
 <body class="articles-page">
@@ -2601,7 +2611,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -3087,10 +3097,12 @@ function Build-PrivacyPageHtml {
   <meta name="twitter:title" content="Politique de confidentialit&eacute; | $siteName">
   <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
   <link rel="stylesheet" href="../css/style.min.css">
 </head>
 <body class="legal-page">
@@ -3100,7 +3112,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="../">
           <span class="brand-mark">
-            <img class="brand-logo" src="../images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
@@ -3215,10 +3227,12 @@ function Build-404Html {
   <meta name="twitter:title" content="Page introuvable | $siteName">
   <meta name="twitter:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
 $tagManagerHead
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="$rootStylesheetHref">
 </head>
 <body class="not-found-page">
@@ -3228,7 +3242,7 @@ $tagManagerBody
       <div class="header-inner">
         <a class="brand" href="./">
           <span class="brand-mark">
-            <img class="brand-logo" src="images/logo-site.svg" alt="Logo $siteName"$logoDimensions>
+            <img class="brand-logo" src="images/logo-site.png" alt="Logo $siteName"$logoDimensions>
           </span>
         </a>
         <div class="header-actions">
