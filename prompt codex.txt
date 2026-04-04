@@ -172,3 +172,8 @@ RÈGLES IMPORTANTES
 - Respecte le style existant du site
 - Fais des modifications propres, minimales et cohérentes
 - Si tu hésites entre plusieurs sujets, choisis celui qui a le meilleur compromis entre utilité lecteur, cohérence éditoriale et potentiel SEO
+
+REGLE AUTEURS
+- Ne pas attribuer systematiquement les nouveaux articles a Clara Fontaine.
+- Repartir les signatures entre Clara Fontaine, Louis Fargot et Mathias Lancet.
+- Si aucun critere editorial fort ne s'impose, privilegier l'auteur le moins utilise recemment sur le site.

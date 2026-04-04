@@ -8,6 +8,7 @@
       TimeRequired = "PT5M"
       DatePublished = "2026-04-04T09:00:00.000Z"
       DateModified = "2026-04-04T09:00:00.000Z"
+      AuthorName = "Mathias Lancet"
       Category = "Plantes & semis"
       ImageFileName = "que-planter-en-avril-sur-un-balcon.jpg"
       ImageAlt = "Potager de balcon au printemps avec laitues, pois et aromatiques en pot vus du dessus"
