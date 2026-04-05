@@ -521,11 +521,12 @@ a {
 }
 
 .mini-stat-label {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #5a7981;
+  white-space: nowrap;
 }
 
 .mini-stat-copy {

@@ -1,7 +1,9 @@
 ﻿$ErrorActionPreference = "Stop"
 
-# Safe by default: keep the current homepage unless the script is launched with -RebuildHome.
+# Safe by default: keep the current homepage unless the script is launched with
+# both -RebuildHome and -ForceRebuildHome.
 $RebuildHome = @($args | Where-Object { $_ -ieq "-RebuildHome" }).Count -gt 0
+$ForceRebuildHome = @($args | Where-Object { $_ -ieq "-ForceRebuildHome" }).Count -gt 0
 
 $root = Split-Path -Parent $PSScriptRoot
 $rawDir = Join-Path $root "raw-singlefile"
@@ -3603,11 +3605,14 @@ Set-Content -Path (Join-Path $contactDir "merci\index.html") -Value (Build-Conta
 Set-Content -Path (Join-Path $root "contact.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/contact/" -title "Contact | $siteName" -description "Cette page a été déplacée vers sa nouvelle adresse.") -Encoding UTF8
 
 $homePath = Join-Path $root "index.html"
-$homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"
+$homeStatus = "Homepage preserved as-is (manual file kept)"
 $homeBackupStatus = ""
 
-if ($RebuildHome -or -not (Test-Path $homePath)) {
-  if ($RebuildHome -and (Test-Path $homePath)) {
+if (-not (Test-Path $homePath)) {
+  Set-Content -Path $homePath -Value (Build-HomeHtml $primaryArticles) -Encoding UTF8
+  $homeStatus = "Homepage created from the script"
+} elseif ($RebuildHome -and $ForceRebuildHome) {
+  if (Test-Path $homePath) {
     $homeBackupDir = Join-Path $root "backups\homepage"
     $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
     $homeBackupPath = Join-Path $homeBackupDir "index-$timestamp.html"
@@ -3617,7 +3622,9 @@ if ($RebuildHome -or -not (Test-Path $homePath)) {
   }
 
   Set-Content -Path $homePath -Value (Build-HomeHtml $primaryArticles) -Encoding UTF8
-  $homeStatus = if ($RebuildHome) { "Homepage regenerated from the script" } else { "Homepage created from the script" }
+  $homeStatus = "Homepage regenerated from the script (manual override confirmed)"
+} elseif ($RebuildHome) {
+  $homeStatus = "Homepage rebuild skipped to preserve manual edits (add -ForceRebuildHome to override)"
 }
 
 Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $primaryArticles) -Encoding UTF8
