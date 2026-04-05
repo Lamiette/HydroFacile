@@ -14,9 +14,9 @@ $articleStylesheetHref = "../css/style.min.css"
 $articleDetailStylesheetHref = "../../css/style.min.css"
 $siteName = "HydroFacile"
 $siteUrl = "https://hydrofacile.fr"
-$siteTagline = "Hydroponie debutant en appartement."
-$siteDescription = "HydroFacile aide a debuter en hydroponie en appartement avec des guides simples sur les systemes, la lumiere, les nutriments et les cultures faciles."
-$siteLongDescription = "HydroFacile est un site sur l'hydroponie debutant en appartement : systeme hydroponique simple, cultures faciles, lumiere, nutriments et potager interieur propre."
+$siteTagline = "Hydroponie débutant en appartement."
+$siteDescription = "HydroFacile aide à débuter en hydroponie en appartement avec des guides simples sur les systèmes, la lumière, les nutriments et les cultures faciles."
+$siteLongDescription = "HydroFacile est un site sur l'hydroponie débutant en appartement : système hydroponique simple, cultures faciles, lumière, nutriments et potager intérieur propre."
 $siteContactEmail = "ecobalcon21@gmail.com"
 $siteContactFormAction = "https://formsubmit.co/$siteContactEmail"
 $siteLogoPath = "images\logo-site.png"
@@ -30,9 +30,6 @@ $primaryArticleSlugs = @(
   "basilic-hydroponie-interieur",
   "nettoyer-systeme-hydroponique"
 )
-# GA4 is intended to be wired through GTM to avoid duplicate pageview tracking.
-$googleAnalyticsMeasurementId = "G-L952X34SHR"
-$googleTagManagerId = "GTM-MFRVPVFQ"
 $articleOverrides = @{}
 $articleOverridesPath = Join-Path $PSScriptRoot "article-overrides.ps1"
 
@@ -84,28 +81,11 @@ function Write-MinifiedStylesheet {
 }
 
 function Get-TagManagerHeadHtml {
-  $snippets = @()
-
-  if (-not [string]::IsNullOrWhiteSpace($googleTagManagerId)) {
-    $snippets += (@"
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','$googleTagManagerId');</script>
-  <!-- End Google Tag Manager -->
-"@).TrimEnd()
-  }
-
-  if ($snippets.Count -eq 0) { return "" }
-  return $snippets -join "`r`n"
+  return ""
 }
 
 function Get-TagManagerBodyHtml {
-  if ([string]::IsNullOrWhiteSpace($googleTagManagerId)) { return "" }
-
-  return @"
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=$googleTagManagerId" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-"@
+  return ""
 }
 
 function Escape-Xml {
@@ -121,8 +101,8 @@ function Convert-IsoDateToFrench {
   if ([string]::IsNullOrWhiteSpace($iso)) { return "" }
 
   $months = @(
-    "", "janvier", "fevrier", "mars", "avril", "mai", "juin",
-    "juillet", "aout", "septembre", "octobre", "novembre", "decembre"
+    "", "janvier", "février", "mars", "avril", "mai", "juin",
+    "juillet", "août", "septembre", "octobre", "novembre", "décembre"
   )
 
   $dt = [DateTime]::Parse($iso).ToLocalTime()
@@ -326,18 +306,18 @@ function Get-SiteFooterHtml {
         <div class="footer-main">
           <div class="footer-brand">
             <strong>$siteName</strong>
-            <p>Hydroponie debutant en appartement, culture propre et conseils faciles a suivre pour bien commencer.</p>
+            <p>Hydroponie débutant en appartement, culture propre et conseils faciles à suivre pour bien commencer.</p>
           </div>
         </div>
         <div class="footer-side">
           <strong>Explorer</strong>
           <ul class="footer-list">
-            <li><a href="${pagePrefix}articles/">Guides hydroponie debutant</a></li>
-            <li><a href="${pagePrefix}articles/hydroponie-sans-pompe-appartement/">Premier systeme sans pompe</a></li>
+            <li><a href="${pagePrefix}articles/">Guides hydroponie débutant</a></li>
+            <li><a href="${pagePrefix}articles/hydroponie-sans-pompe-appartement/">Premier système sans pompe</a></li>
             <li><a href="${pagePrefix}contact/">Contacter HydroFacile</a></li>
           </ul>
         </div>
-        <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s. <span class="footer-legal-sep">&bull;</span> <a href="${pagePrefix}politique-confidentialite/">Politique de confidentialite</a></div>
+        <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s. <span class="footer-legal-sep">&bull;</span> <a href="${pagePrefix}politique-confidentialite/">Politique de confidentialité</a></div>
       </div>
     </footer>
 "@
@@ -1712,7 +1692,7 @@ function Build-HomeHtml {
         name = $siteName
         url = "$siteUrl/"
         inLanguage = "fr"
-        description = "HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple."
+        description = "HydroFacile prépare des guides clairs pour débuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit système simple."
         potentialAction = [ordered]@{
           "@type" = "SearchAction"
           target = "$siteUrl/articles/?q={search_term_string}"
@@ -1734,8 +1714,8 @@ function Build-HomeHtml {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hydroponie debutant appartement | $siteName</title>
-  <meta name="description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <title>Hydroponie débutant appartement | $siteName</title>
+  <meta name="description" content="HydroFacile prépare des guides clairs pour débuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit système simple.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="preload" as="image" href="images/articles/hydro-systeme-debutant.svg" fetchpriority="high">
   <link rel="canonical" href="$siteUrl/">
@@ -1744,16 +1724,16 @@ function Build-HomeHtml {
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Hydroponie debutant appartement | $siteName">
-  <meta property="og:description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <meta property="og:title" content="Hydroponie débutant appartement | $siteName">
+  <meta property="og:description" content="HydroFacile prépare des guides clairs pour débuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit système simple.">
   <meta property="og:url" content="$siteUrl/">
   <meta property="og:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
-  <meta property="og:image:alt" content="Petite installation hydroponique propre en interieur">
+  <meta property="og:image:alt" content="Petite installation hydroponique propre en intérieur">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hydroponie debutant appartement | $siteName">
-  <meta name="twitter:description" content="HydroFacile prepare des guides clairs pour debuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit systeme simple.">
+  <meta name="twitter:title" content="Hydroponie débutant appartement | $siteName">
+  <meta name="twitter:description" content="HydroFacile prépare des guides clairs pour débuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit système simple.">
   <meta name="twitter:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
-  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
+  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en intérieur">
 $jsonLd
 $tagManagerHead
   <link rel="icon" href="images/favicon.ico" sizes="any">
@@ -1789,9 +1769,9 @@ $tagManagerBody
         <div class="section-inner hero-grid">
           <div class="hero-copy">
             <div class="hero-copy-main" data-reveal>
-              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie debutant</span>
+              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie débutant</span>
               <h1>Comprendre l'hydroponie simplement, chez soi.</h1>
-              <p>HydroFacile aide a debuter en appartement avec des explications claires, une approche propre et des reperes simples pour choisir un petit systeme sans se compliquer.</p>
+              <p>HydroFacile aide à débuter en appartement avec des explications claires, une approche propre et des repères simples pour choisir un petit système sans se compliquer.</p>
             </div>
             <div class="hero-copy-side">
               <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
@@ -1800,38 +1780,38 @@ $tagManagerBody
               </div>
               <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
                 <span class="hero-support-chip">En clair</span>
-                <strong>L'hydroponie, c'est faire pousser des plantes avec de l'eau enrichie et un support leger, sans terre classique.</strong>
-                <p>Le but n'est pas d'ajouter du jargon. Ici, on cherche surtout a comprendre la methode, debuter petit et prendre de bons reflexes dans un appartement.</p>
+                <strong>L'hydroponie, c'est faire pousser des plantes avec de l'eau enrichie et un support léger, sans terre classique.</strong>
+                <p>Le but n'est pas d'ajouter du jargon. Ici, on cherche surtout à comprendre la méthode, débuter petit et prendre de bons réflexes dans un appartement.</p>
                 <a class="text-link" href="articles/">Voir les prochains guides</a>
               </div>
               <div class="hero-stat-grid" data-reveal style="--reveal-delay: 220ms;">
                 <article class="mini-stat">
                   <span class="mini-stat-label">Peu de place</span>
                   <strong>1 coin</strong>
-                  <span class="mini-stat-copy">un plan de travail ou une etagere lumineuse peuvent suffire pour debuter.</span>
+                  <span class="mini-stat-copy">un plan de travail ou une étagère lumineuse peuvent suffire pour débuter.</span>
                 </article>
                 <article class="mini-stat">
                   <span class="mini-stat-label">Routine claire</span>
                   <strong>10 min</strong>
-                  <span class="mini-stat-copy">une courte verification reguliere vaut mieux qu'une installation compliquee.</span>
+                  <span class="mini-stat-copy">une courte vérification régulière vaut mieux qu'une installation compliquée.</span>
                 </article>
                 <article class="mini-stat">
                   <span class="mini-stat-label">Approche</span>
                   <strong>Pas a pas</strong>
-                  <span class="mini-stat-copy">comprendre l'eau, la lumiere et les plantes sans jargon inutile.</span>
+                  <span class="mini-stat-copy">comprendre l'eau, la lumière et les plantes sans jargon inutile.</span>
                 </article>
               </div>
             </div>
           </div>
 
-          <aside class="hero-panel" aria-label="Installation hydroponique debutant en appartement" data-reveal style="--reveal-delay: 120ms;">
+          <aside class="hero-panel" aria-label="Installation hydroponique débutant en appartement" data-reveal style="--reveal-delay: 120ms;">
             <figure class="home-visual">
               <div class="home-visual-stage">
-                <img class="home-visual-main" src="images/articles/hydro-systeme-debutant.svg" alt="Petite installation hydroponique propre en interieur" loading="eager" decoding="async" fetchpriority="high" width="1200" height="900">
+                <img class="home-visual-main" src="images/articles/hydro-systeme-debutant.svg" alt="Petite installation hydroponique propre en intérieur" loading="eager" decoding="async" fetchpriority="high" width="1200" height="900">
               </div>
               <figcaption class="home-visual-note">
                 <span class="home-visual-chip">Petit setup</span>
-                <p>Une installation compacte, propre et facile a suivre reste souvent la meilleure porte d'entree pour apprendre l'hydroponie chez soi.</p>
+                <p>Une installation compacte, propre et facile à suivre reste souvent la meilleure porte d'entrée pour apprendre l'hydroponie chez soi.</p>
               </figcaption>
             </figure>
           </aside>
@@ -1842,7 +1822,7 @@ $tagManagerBody
         <div class="section-inner">
           <div class="section-heading" data-reveal>
             <div>
-              <h2>Par ou commencer</h2>
+              <h2>Par où commencer</h2>
               <p>Trois points simples pour entrer dans l'hydroponie sans se sentir perdu.</p>
             </div>
           </div>
@@ -1850,19 +1830,19 @@ $tagManagerBody
             <article class="home-path-card" data-reveal style="--reveal-delay: 60ms;">
               <span class="eyebrow">Comprendre</span>
               <h3><a href="articles/">Voir comment la methode fonctionne</a></h3>
-              <p>Eau, nutriments, lumiere et support: l'idee devient simple quand chaque mot est explique clairement.</p>
+              <p>Eau, nutriments, lumière et support : l'idée devient simple quand chaque mot est expliqué clairement.</p>
               <a class="text-link" href="articles/">Voir les guides</a>
             </article>
             <article class="home-path-card" data-reveal style="--reveal-delay: 130ms;">
               <span class="eyebrow">Choisir</span>
               <h3><a href="contact/">Poser une question sur son futur setup</a></h3>
-              <p>Un doute sur le reservoir, la lumiere ou le format a choisir pour debuter en appartement ? La page contact sert de point d'entree.</p>
+              <p>Un doute sur le réservoir, la lumière ou le format à choisir pour débuter en appartement ? La page contact sert de point d'entrée.</p>
               <a class="text-link" href="contact/">Aller au contact</a>
             </article>
             <article class="home-path-card" data-reveal style="--reveal-delay: 200ms;">
               <span class="eyebrow">Debuter</span>
               <h3><a href="contact/">Sugg&eacute;rer un sujet utile</a></h3>
-              <p>Si un besoin revient souvent dans ton installation, la page contact permet de signaler les themes a couvrir en priorite.</p>
+              <p>Si un besoin revient souvent dans ton installation, la page contact permet de signaler les thèmes à couvrir en priorité.</p>
               <a class="text-link" href="contact/">Partager un besoin</a>
             </article>
           </div>
@@ -1907,7 +1887,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
   $featuredImageSrc = if ($featuredArticle) { Get-ImagePagePath -fileName $featuredArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $featuredImageDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { "" }
   $featuredTitle = if ($featuredArticle) { $featuredArticle.Title } else { "Hydroponie simple en appartement" }
-  $featuredImageAlt = if ($featuredArticle) { $featuredArticle.ImageAlt } else { "Petite installation hydroponique propre en interieur" }
+  $featuredImageAlt = if ($featuredArticle) { $featuredArticle.ImageAlt } else { "Petite installation hydroponique propre en intérieur" }
   $shareImage = if ($featuredArticle) { $featuredArticle.ImageCanonicalUrl } else { "$siteUrl/images/articles/hydro-systeme-debutant.svg" }
   $shareImageAlt = $featuredImageAlt
   $heroSecondary = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
@@ -1918,8 +1898,8 @@ $(Get-SiteFooterHtml -pagePrefix "")
   $heroSupportHref = "articles/hydroponie-sans-pompe-appartement/"
   $homeVisualDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { " width=`"1200`" height=`"900`"" }
   $homeStats = @(
-    [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour choisir un systeme simple et lancer tes premieres cultures." },
-    [PSCustomObject]@{ Label = "Repères clairs"; Value = "4"; Copy = "angles pour comprendre la lumiere, l'eau, les nutriments et les varietes." },
+    [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour choisir un système simple et lancer tes premières cultures." },
+    [PSCustomObject]@{ Label = "Repères clairs"; Value = "4"; Copy = "angles pour comprendre la lumière, l'eau, les nutriments et les variétés." },
     [PSCustomObject]@{ Label = "Pensé pour"; Value = "100 %"; Copy = "les appartements, les petits plans de travail et les coins lumineux." }
   )
   $statsHtml = (($homeStats | ForEach-Object {
@@ -1935,21 +1915,21 @@ $(Get-SiteFooterHtml -pagePrefix "")
     [PSCustomObject]@{
       Label = "Comprendre"
       Title = "Pourquoi commencer sans pompe"
-      Copy = "Le format le plus simple pour apprendre l'eau, l'air et la lumiere sans ajouter de bruit ni de tuyaux."
+      Copy = "Le format le plus simple pour apprendre l'eau, l'air et la lumière sans ajouter de bruit ni de tuyaux."
       Href = "articles/hydroponie-sans-pompe-appartement/#pourquoi-sans-pompe"
       LinkLabel = "Voir le guide"
     },
     [PSCustomObject]@{
       Label = "Eclairer"
-      Title = "Choisir entre fenetre et lampe"
-      Copy = "Une bonne lumiere change tout en hydroponie appartement. Le but est d'avoir assez de regularite sans surinvestir."
+      Title = "Choisir entre fenêtre et lampe"
+      Copy = "Une bonne lumière change tout en hydroponie appartement. Le but est d'avoir assez de régularité sans surinvestir."
       Href = "articles/lumiere-hydroponie-appartement/"
-      LinkLabel = "Voir la lumiere"
+      LinkLabel = "Voir la lumière"
     },
     [PSCustomObject]@{
       Label = "Cultiver"
       Title = "Choisir les cultures les plus simples"
-      Copy = "Laitue, basilic, menthe, ciboulette et jeunes pousses donnent vite des reperes fiables dans un appartement."
+      Copy = "Laitue, basilic, menthe, ciboulette et jeunes pousses donnent vite des repères fiables dans un appartement."
       Href = "articles/cultures-faciles-hydroponie-appartement/"
       LinkLabel = "Voir les cultures"
     }
@@ -1982,7 +1962,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
   $weeklyFeatureCategory = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Category } else { "À lire" }
   $weeklyFeatureTitle = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Title } else { "À découvrir cette semaine" }
   $weeklyFeatureDescription = if ($weeklyFallbackArticle) { Get-CardExcerpt $weeklyFallbackArticle.Description 178 } else { "Une sélection pratique choisie automatiquement selon la période de l'année." }
-  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Selection d'article HydroFacile de la semaine" }
+  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Sélection d'article HydroFacile de la semaine" }
   $weeklyArticlesForJs = @(
     $allArticles | ForEach-Object {
       $imageDimensions = Get-ImageDimensions (Join-Path $imagesDir $_.ImageFileName)
@@ -2013,7 +1993,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
           <article class="theme-card" data-reveal style="--reveal-delay: 130ms;">
             <span class="eyebrow">Mat&eacute;riel &amp; syst&egrave;mes</span>
             <h3><a href="articles/#theme=materiel-systemes">Construire un setup simple et propre</a></h3>
-            <p>Reservoir, pots filet, substrat, nutriments et lumi&egrave;re: seulement les briques vraiment utiles pour un syst&egrave;me hydroponique d&eacute;butant.</p>
+            <p>R&eacute;servoir, pots filet, substrat, nutriments et lumi&egrave;re : seulement les briques vraiment utiles pour un syst&egrave;me hydroponique d&eacute;butant.</p>
             <a class="text-link" href="articles/#theme=materiel-systemes">Voir le setup</a>
           </article>
           <article class="theme-card" data-reveal style="--reveal-delay: 200ms;">
@@ -2082,7 +2062,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hydroponie debutant appartement | $siteName</title>
+  <title>Hydroponie débutant appartement | $siteName</title>
   <meta name="description" content="$siteLongDescription">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="preload" as="image" href="$featuredImageSrc" fetchpriority="high">
@@ -2092,13 +2072,13 @@ $(Get-SiteFooterHtml -pagePrefix "")
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Hydroponie debutant appartement | $siteName">
+  <meta property="og:title" content="Hydroponie débutant appartement | $siteName">
   <meta property="og:description" content="$siteLongDescription">
   <meta property="og:url" content="$siteUrl/">
   <meta property="og:image" content="$shareImage">
   <meta property="og:image:alt" content="$(HtmlEscape $shareImageAlt)">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hydroponie debutant appartement | $siteName">
+  <meta name="twitter:title" content="Hydroponie débutant appartement | $siteName">
   <meta name="twitter:description" content="$siteLongDescription">
   <meta name="twitter:image" content="$shareImage">
   <meta name="twitter:image:alt" content="$(HtmlEscape $shareImageAlt)">
@@ -2138,7 +2118,7 @@ $tagManagerBody
           <div class="hero-copy">
             <div class="hero-copy-main" data-reveal>
               <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie int&eacute;rieure</span>
-              <h1>Hydroponie debutant en appartement, sans se compliquer.</h1>
+              <h1>Hydroponie débutant en appartement, sans se compliquer.</h1>
               <p>Des guides clairs pour d&eacute;marrer un syst&egrave;me hydroponique simple, choisir les bonnes cultures et faire pousser en appartement sans jardin.</p>
             </div>
             <div class="hero-copy-side">
@@ -2433,7 +2413,7 @@ function Build-ArticlesIndexHtml {
       name = "Guides hydroponie appartement | $siteName"
         url = "$siteUrl/articles/"
         inLanguage = "fr"
-        description = "HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur."
+        description = "HydroFacile prépare une base de guides pour débuter en hydroponie en appartement, choisir un système simple et lancer des cultures faciles en intérieur."
         isPartOf = [ordered]@{
           "@type" = "WebSite"
           name = $siteName
@@ -2448,7 +2428,7 @@ function Build-ArticlesIndexHtml {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Guides hydroponie appartement | $siteName</title>
-  <meta name="description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
+  <meta name="description" content="HydroFacile prépare une base de guides pour débuter en hydroponie en appartement, choisir un système simple et lancer des cultures faciles en intérieur.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="$siteUrl/articles/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/articles/">
@@ -2457,15 +2437,15 @@ function Build-ArticlesIndexHtml {
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Guides hydroponie appartement | $siteName">
-  <meta property="og:description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
+  <meta property="og:description" content="HydroFacile prépare une base de guides pour débuter en hydroponie en appartement, choisir un système simple et lancer des cultures faciles en intérieur.">
   <meta property="og:url" content="$siteUrl/articles/">
   <meta property="og:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
-  <meta property="og:image:alt" content="Petite installation hydroponique propre en interieur">
+  <meta property="og:image:alt" content="Petite installation hydroponique propre en intérieur">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guides hydroponie appartement | $siteName">
-  <meta name="twitter:description" content="HydroFacile prepare une base de guides pour debuter en hydroponie en appartement, choisir un systeme simple et lancer des cultures faciles en interieur.">
+  <meta name="twitter:description" content="HydroFacile prépare une base de guides pour débuter en hydroponie en appartement, choisir un système simple et lancer des cultures faciles en intérieur.">
   <meta name="twitter:image" content="$siteUrl/images/articles/hydro-systeme-debutant.svg">
-  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en interieur">
+  <meta name="twitter:image:alt" content="Petite installation hydroponique propre en intérieur">
 $jsonLd
 $tagManagerHead
   <link rel="icon" href="../images/favicon.ico" sizes="any">
@@ -2500,16 +2480,16 @@ $tagManagerBody
       <div class="section-inner">
         <div class="page-hero" data-reveal>
           <div class="page-hero-copy">
-            <h1 class="page-title">Guides hydroponie pour debuter en appartement</h1>
+            <h1 class="page-title">Guides hydroponie pour débuter en appartement</h1>
             <p class="page-intro">
-              Cette section rassemblera des contenus simples pour comprendre la culture sans terre, choisir un petit systeme et debuter avec des plantes faciles, meme dans peu d'espace.
+              Cette section rassemblera des contenus simples pour comprendre la culture sans terre, choisir un petit système et débuter avec des plantes faciles, même dans peu d'espace.
             </p>
           </div>
         </div>
 
         <section class="search-panel" data-reveal style="--reveal-delay: 60ms;">
-          <strong class="search-label">Bientot ici</strong>
-          <p class="page-intro">Des guides pratiques sur le fonctionnement de l'hydroponie, le materiel vraiment utile, la lumiere, les nutriments expliques simplement et les cultures les plus faciles pour commencer.</p>
+          <strong class="search-label">Bientôt ici</strong>
+          <p class="page-intro">Des guides pratiques sur le fonctionnement de l'hydroponie, le matériel vraiment utile, la lumière, les nutriments expliqués simplement et les cultures les plus faciles pour commencer.</p>
           <div class="hero-actions">
             <a class="button" href="../contact/">Contacter HydroFacile</a>
             <a class="button-secondary" href="../">Retour a l'accueil</a>
@@ -2532,7 +2512,7 @@ $(Get-SiteFooterHtml -pagePrefix "../")
       }) -join "`n")
   $count = $allArticles.Count
   $heroImage = if ($allArticles.Count -gt 0) { $allArticles[0].ImageCanonicalUrl } else { "" }
-  $heroImageAlt = if ($allArticles.Count -gt 0) { $allArticles[0].ImageAlt } else { "Guides HydroFacile pour debuter en hydroponie en appartement" }
+  $heroImageAlt = if ($allArticles.Count -gt 0) { $allArticles[0].ImageAlt } else { "Guides HydroFacile pour débuter en hydroponie en appartement" }
   $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $tagManagerHead = Get-TagManagerHeadHtml
   $tagManagerBody = Get-TagManagerBodyHtml
@@ -2542,7 +2522,7 @@ $(Get-SiteFooterHtml -pagePrefix "../")
       name = "Guides hydroponie appartement | $siteName"
       url = "$siteUrl/articles/"
       inLanguage = "fr"
-      description = "Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique."
+      description = "Retrouve les guides HydroFacile pour débuter en hydroponie en appartement : système simple, cultures faciles, lumière, nutriments et potager intérieur hydroponique."
       isPartOf = [ordered]@{
         "@type" = "WebSite"
         name = $siteName
@@ -2557,7 +2537,7 @@ $(Get-SiteFooterHtml -pagePrefix "../")
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Guides hydroponie appartement | $siteName</title>
-  <meta name="description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta name="description" content="Retrouve les guides HydroFacile pour débuter en hydroponie en appartement : système simple, cultures faciles, lumière, nutriments et potager intérieur hydroponique.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="$siteUrl/articles/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/articles/">
@@ -2566,13 +2546,13 @@ $(Get-SiteFooterHtml -pagePrefix "../")
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Guides hydroponie appartement | $siteName">
-  <meta property="og:description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta property="og:description" content="Retrouve les guides HydroFacile pour débuter en hydroponie en appartement : système simple, cultures faciles, lumière, nutriments et potager intérieur hydroponique.">
   <meta property="og:url" content="$siteUrl/articles/">
   <meta property="og:image" content="$heroImage">
   <meta property="og:image:alt" content="$(HtmlEscape $heroImageAlt)">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guides hydroponie appartement | $siteName">
-  <meta name="twitter:description" content="Retrouve les guides HydroFacile pour debuter en hydroponie en appartement : systeme simple, cultures faciles, lumiere, nutriments et potager interieur hydroponique.">
+  <meta name="twitter:description" content="Retrouve les guides HydroFacile pour débuter en hydroponie en appartement : système simple, cultures faciles, lumière, nutriments et potager intérieur hydroponique.">
   <meta name="twitter:image" content="$heroImage">
   <meta name="twitter:image:alt" content="$(HtmlEscape $heroImageAlt)">
 $jsonLd
@@ -2627,25 +2607,11 @@ $tagManagerBody
           </section>
         </div>
 
-        <div class="section-heading section-heading-compact" data-reveal style="--reveal-delay: 90ms;">
-          <div>
-            <h2>Explorer par th&egrave;me</h2>
-            <p>D&eacute;buter, choisir le bon syst&egrave;me et lancer des cultures faciles avec un maillage clair entre les sujets.</p>
-          </div>
-        </div>
-
         <section class="theme-filter-panel" aria-label="Filtrer les articles par thème" data-reveal style="--reveal-delay: 110ms;">
           <div class="theme-filter-list" id="article-theme-filters"></div>
         </section>
 
         <p class="search-empty" id="search-empty" hidden>Aucun article ne correspond &agrave; cette recherche.</p>
-
-        <div class="section-heading section-heading-compact" data-reveal style="--reveal-delay: 140ms;">
-          <div>
-            <h2>Guides disponibles</h2>
-            <p>Les contenus publi&eacute;s servent de base pour comprendre l'hydroponie d&eacute;butant en appartement et avancer pas &agrave; pas.</p>
-          </div>
-        </div>
 
         <div class="cards" id="article-list">
 $cardsHtml
@@ -3063,7 +3029,7 @@ function Build-PrivacyPageHtml {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialit&eacute; | $siteName</title>
-  <meta name="description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
+  <meta name="description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilisés sur $siteName.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="$canonicalUrl">
   <link rel="alternate" hreflang="fr" href="$canonicalUrl">
@@ -3072,11 +3038,11 @@ function Build-PrivacyPageHtml {
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Politique de confidentialit&eacute; | $siteName">
-  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
+  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilisés sur $siteName.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Politique de confidentialit&eacute; | $siteName">
-  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
+  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilisés sur $siteName.">
 $tagManagerHead
   <link rel="icon" href="../images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
@@ -3122,8 +3088,8 @@ $tagManagerBody
             <span class="eyebrow">Confidentialit&eacute;</span>
             <h1 class="page-title">Politique de confidentialit&eacute;</h1>
             <p class="page-intro">
-              Cette page r&eacute;sume les informations utiles sur la mesure d'audience, les cookies et les donn&eacute;es techniques
-              susceptibles d'&ecirc;tre trait&eacute;es lorsque tu consultes $siteName.
+              Cette page r&eacute;sume les informations utiles sur le formulaire de contact, les donn&eacute;es techniques
+              et les services tiers susceptibles d'&ecirc;tre impliqu&eacute;s lorsque tu consultes $siteName.
             </p>
           </div>
 
@@ -3131,7 +3097,7 @@ $tagManagerBody
             <h2>En bref</h2>
             <ul class="article-list">
               <li>$siteName est un site &eacute;ditorial autour de l'hydroponie pour d&eacute;butants en appartement.</li>
-              <li>Le site utilise Google Tag Manager et peut activer Google Analytics 4 pour la mesure d'audience.</li>
+              <li>Le site ne charge pas actuellement d'outil de mesure d'audience ni de suivi publicitaire.</li>
               <li>Le formulaire de contact transmet les messages via FormSubmit vers l'adresse de contact du site.</li>
               <li>Les liens sortants et services tiers &eacute;ventuels suivent leurs propres r&egrave;gles.</li>
             </ul>
@@ -3148,16 +3114,14 @@ $tagManagerBody
 
           <h2>Mesure d'audience</h2>
           <p>
-            $siteName utilise Google Tag Manager (<code>GTM-MFRVPVFQ</code>) pour piloter ses balises. Selon la configuration
-            active du conteneur, Google Analytics 4 (<code>G-L952X34SHR</code>) peut &ecirc;tre utilis&eacute; pour mesurer l'audience,
-            observer les pages vues et mieux comprendre les parcours de navigation.
+            Aucun outil de mesure d'audience ou de suivi marketing n'est actuellement charg&eacute; sur $siteName.
+            Si cela change plus tard, cette page sera mise &agrave; jour pour d&eacute;crire les services concern&eacute;s.
           </p>
 
           <h2>Cookies et technologies proches</h2>
           <p>
-            Certaines balises ou outils de mesure peuvent d&eacute;poser des cookies ou utiliser des technologies similaires.
-            Leur fonctionnement d&eacute;pend des outils activ&eacute;s, des r&eacute;glages du navigateur et, le cas &eacute;ch&eacute;ant,
-            des param&egrave;tres de consentement mis en place sur le site.
+            Le site peut utiliser des cookies strictement n&eacute;cessaires &agrave; son fonctionnement ou &agrave; certains services tiers.
+            Leur pr&eacute;sence d&eacute;pend notamment de ton navigateur, de l'h&eacute;bergement et des services effectivement utilis&eacute;s.
           </p>
 
           <h2>Formulaire de contact</h2>
@@ -3203,7 +3167,7 @@ function Build-ContactPageHtml {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | $siteName</title>
-  <meta name="description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+  <meta name="description" content="Pose une question à $siteName via un formulaire simple directement depuis le site.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="$canonicalUrl">
   <link rel="alternate" hreflang="fr" href="$canonicalUrl">
@@ -3212,11 +3176,11 @@ function Build-ContactPageHtml {
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact | $siteName">
-  <meta property="og:description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+  <meta property="og:description" content="Pose une question à $siteName via un formulaire simple directement depuis le site.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Contact | $siteName">
-  <meta name="twitter:description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+  <meta name="twitter:description" content="Pose une question à $siteName via un formulaire simple directement depuis le site.">
 $tagManagerHead
   <link rel="icon" href="../images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
@@ -3259,20 +3223,19 @@ $tagManagerBody
 
         <section class="page-hero">
           <div class="page-hero-copy">
-            <span class="eyebrow">Contact</span>
             <h1 class="page-title">Poser une question simplement</h1>
             <p class="page-intro">
               Une question sur un guide, un doute sur ton installation ou une suggestion de sujet ? Le formulaire ci-dessous permet d'envoyer un message directement depuis le site.
             </p>
-            <p class="page-intro">Les messages sont transmis a l'adresse de contact du site via FormSubmit.</p>
+            <p class="page-intro">Les messages sont transmis à l'adresse de contact du site via FormSubmit.</p>
           </div>
 
           <aside class="checklist utility-panel">
             <h2>Dans ton message</h2>
             <ul class="article-list">
-              <li>Ajoute le lien du guide concerne si ta question porte sur un article precis.</li>
-              <li>Indique ton espace, ta lumiere et le type de systeme si tu bloques sur un setup.</li>
-              <li>Precise si c'est une question, une suggestion ou une correction.</li>
+              <li>Ajoute le lien du guide concerné si ta question porte sur un article précis.</li>
+              <li>Indique ton espace, ta lumière et le type de système si tu bloques sur un setup.</li>
+              <li>Précise si c'est une question, une suggestion ou une correction.</li>
             </ul>
           </aside>
         </section>
@@ -3301,20 +3264,19 @@ $tagManagerBody
 
                 <div class="form-field form-field-full">
                   <label for="contact-topic">Objet</label>
-                  <input id="contact-topic" type="text" name="topic" autocomplete="off" placeholder="Exemple : question sur un systeme debutant">
+                  <input id="contact-topic" type="text" name="topic" autocomplete="off" placeholder="Exemple : question sur un système débutant">
                 </div>
 
                 <div class="form-field form-field-full">
                   <label for="contact-message">Message</label>
-                  <textarea id="contact-message" name="message" placeholder="Decris ta question ou ton besoin en quelques lignes." required></textarea>
+                  <textarea id="contact-message" name="message" placeholder="Décris ta question ou ton besoin en quelques lignes." required></textarea>
                 </div>
               </div>
 
               <div class="hero-actions">
                 <button class="button" type="submit">Envoyer le message</button>
-                <a class="button-secondary" href="../articles/">Voir les guides</a>
               </div>
-              <p class="form-helper">Apres envoi, tu seras redirige vers une page de confirmation sur le site.</p>
+              <p class="form-helper">Après envoi, tu seras redirigé vers une page de confirmation sur le site.</p>
             </form>
           </div>
         </section>
@@ -3421,10 +3383,10 @@ $tagManagerBody
           </div>
 
           <aside class="checklist utility-panel">
-            <h2>Bon a savoir</h2>
+            <h2>Bon à savoir</h2>
             <ul class="article-list">
               <li>Si tu n'as pas tout dit, tu peux renvoyer un message depuis la page contact.</li>
-              <li>Les guides HydroFacile restent disponibles pendant l'attente d'une reponse.</li>
+              <li>Les guides HydroFacile restent disponibles pendant l'attente d'une réponse.</li>
             </ul>
           </aside>
         </section>
@@ -3577,7 +3539,7 @@ function Build-SitemapXml {
   }
   if (Test-Path (Join-Path $root "galerie.html")) {
     $galleryLoc = if (Test-Path (Join-Path $root "galerie\index.html")) { "$siteUrl/galerie/" } else { "$siteUrl/galerie.html" }
-    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/hydro-systeme-debutant.svg" -imageCaption "Installation hydroponique debutant en appartement"))
+    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/hydro-systeme-debutant.svg" -imageCaption "Installation hydroponique débutant en appartement"))
   }
 
   foreach ($article in $allArticles) {
@@ -3631,14 +3593,14 @@ Set-Content -Path (Join-Path $root "404.html") -Value (Build-404Html) -Encoding 
 $privacyDir = Join-Path $root "politique-confidentialite"
 New-Item -ItemType Directory -Path $privacyDir -Force | Out-Null
 Set-Content -Path (Join-Path $privacyDir "index.html") -Value (Build-PrivacyPageHtml) -Encoding UTF8
-Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialite | $siteName" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
+Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialité | $siteName" -description "Cette page a été déplacée vers sa nouvelle adresse.") -Encoding UTF8
 
 $contactDir = Join-Path $root "contact"
 New-Item -ItemType Directory -Path $contactDir -Force | Out-Null
 Set-Content -Path (Join-Path $contactDir "index.html") -Value (Build-ContactPageHtml) -Encoding UTF8
 New-Item -ItemType Directory -Path (Join-Path $contactDir "merci") -Force | Out-Null
 Set-Content -Path (Join-Path $contactDir "merci\index.html") -Value (Build-ContactThanksPageHtml) -Encoding UTF8
-Set-Content -Path (Join-Path $root "contact.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/contact/" -title "Contact | $siteName" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
+Set-Content -Path (Join-Path $root "contact.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/contact/" -title "Contact | $siteName" -description "Cette page a été déplacée vers sa nouvelle adresse.") -Encoding UTF8
 
 $homePath = Join-Path $root "index.html"
 $homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"

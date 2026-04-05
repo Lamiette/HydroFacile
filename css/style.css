@@ -53,14 +53,25 @@ a {
   min-height: 100vh;
 }
 
+.contact-page .site-shell {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-page .article-layout {
+  flex: 1 0 auto;
+}
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(246, 249, 244, 0.94);
-  border-bottom: 1px solid rgba(23, 52, 58, 0.07);
+  background: rgba(252, 254, 252, 0.96);
+  border-bottom: 1px solid rgba(23, 52, 58, 0.09);
   backdrop-filter: blur(14px);
-  box-shadow: 0 10px 26px rgba(17, 64, 72, 0.06);
+  box-shadow:
+    0 8px 22px rgba(17, 64, 72, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .header-inner,
@@ -1774,14 +1785,20 @@ a {
     border-radius: 24px;
   }
 
+  .home-page .hero-eyebrow {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.72rem;
+  }
+
   .home-page .hero h1 {
-    max-width: 12ch;
-    font-size: clamp(1.95rem, 8.4vw, 2.82rem);
-    line-height: 1.02;
+    max-width: 10ch;
+    font-size: clamp(1.72rem, 7.6vw, 2.42rem);
+    line-height: 1.05;
   }
 
   .home-page .hero-copy p {
-    font-size: 0.98rem;
+    font-size: 0.93rem;
+    line-height: 1.74;
   }
 
   .home-page .hero-support-note {

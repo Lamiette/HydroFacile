@@ -1,33 +1,33 @@
 # HydroFacile
 
-> Reperes simples pour debuter en hydroponie en appartement, avec peu de place et sans jargon.
+> Repères simples pour débuter en hydroponie en appartement, avec peu de place et sans jargon.
 
-HydroFacile est un site francophone centre sur l'hydroponie pour debutants en interieur. Il explique la culture sans terre avec des mots simples, des exemples concrets et une approche facile a suivre.
+HydroFacile est un site francophone centré sur l'hydroponie pour débutants en intérieur. Il explique la culture sans terre avec des mots simples, des exemples concrets et une approche facile à suivre.
 
-Le site s'adresse aux personnes qui veulent faire pousser chez elles sans jardin, avec un petit espace, une lumiere correcte et l'envie de comprendre la methode sans blabla.
+Le site s'adresse aux personnes qui veulent faire pousser chez elles sans jardin, avec un petit espace, une lumière correcte et l'envie de comprendre la méthode sans blabla.
 
 ## Navigation principale
 
 - [Accueil](https://hydrofacile.fr/)
 - [Articles](https://hydrofacile.fr/articles/)
 - [Contact](https://hydrofacile.fr/contact/)
-- [Politique de confidentialite](https://hydrofacile.fr/politique-confidentialite/)
+- [Politique de confidentialité](https://hydrofacile.fr/politique-confidentialite/)
 
 ## Autre page utile
 
 - [Galerie](https://hydrofacile.fr/galerie/)
 
-## Axes editoriaux
+## Axes éditoriaux
 
 - comprendre la culture sans terre
-- choisir un systeme simple et propre
-- debuter avec des plantes faciles
+- choisir un système simple et propre
+- débuter avec des plantes faciles
 - garder une routine courte et rassurante
 
-## Mots-cles principaux
+## Mots-clés principaux
 
-- hydroponie debutant
+- hydroponie débutant
 - hydroponie appartement
 - culture hydroponique facile
-- potager interieur hydroponique
-- systeme hydroponique debutant
+- potager intérieur hydroponique
+- système hydroponique débutant
