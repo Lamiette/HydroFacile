@@ -31,7 +31,6 @@ $primaryArticleSlugs = @(
 # GA4 is intended to be wired through GTM to avoid duplicate pageview tracking.
 $googleAnalyticsMeasurementId = "G-L952X34SHR"
 $googleTagManagerId = "GTM-MFRVPVFQ"
-$microsoftClarityProjectId = "w4a97sk52t"
 $articleOverrides = @{}
 $articleOverridesPath = Join-Path $PSScriptRoot "article-overrides.ps1"
 
@@ -93,28 +92,8 @@ function Get-TagManagerHeadHtml {
 "@).TrimEnd()
   }
 
-  $clarityHead = Get-ClarityHeadHtml
-  if (-not [string]::IsNullOrWhiteSpace($clarityHead)) {
-    $snippets += $clarityHead.TrimEnd()
-  }
-
   if ($snippets.Count -eq 0) { return "" }
   return $snippets -join "`r`n"
-}
-
-function Get-ClarityHeadHtml {
-  if ([string]::IsNullOrWhiteSpace($microsoftClarityProjectId)) { return "" }
-
-  return @"
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "$microsoftClarityProjectId");
-  </script>
-"@
 }
 
 function Get-TagManagerBodyHtml {
