@@ -815,7 +815,7 @@ function Get-HeroCaption {
 
     $caption = [System.Net.WebUtility]::HtmlDecode($match.Groups["caption"].Value).Trim()
     if (-not $caption) { continue }
-    if ($caption -match '^(Go to |Instagram|Twitter|X$|HydroFacile$|EcoBalcon$)') { continue }
+    if ($caption -match '^(Go to |Instagram|Twitter|X$|HydroFacile$)') { continue }
     return $caption
   }
 
@@ -953,7 +953,7 @@ function Get-ArticleSources {
     $schema = Get-SchemaData $content
     if ($schema.'@type' -ne 'Article') { continue }
 
-    if ($schema.url -notmatch '^https://(?:www\.)?(?:ecobalcon\.com|hydrofacile\.fr)/(?:articles/)?(?<slug>[^/?#]+)/?(?:[?#].*)?$') {
+    if ($schema.url -notmatch '^https://(?:www\.)?hydrofacile\.fr/(?:articles/)?(?<slug>[^/?#]+)/?(?:[?#].*)?$') {
       throw "Impossible de determiner le slug pour $($file.Name)."
     }
 
@@ -1028,7 +1028,7 @@ Ensure-ArticleImages $articles
 function Resolve-Link {
   param([string]$url)
 
-  if ($url -match '^https://(?:www\.)?(?:ecobalcon\.com|hydrofacile\.fr)/(?:articles/)?([^/?#]+)') {
+  if ($url -match '^https://(?:www\.)?hydrofacile\.fr/(?:articles/)?([^/?#]+)') {
     $slug = $matches[1]
     if ($slugMap.ContainsKey($slug)) {
       return $slugMap[$slug]
