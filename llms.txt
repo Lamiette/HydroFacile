@@ -10,8 +10,12 @@ Le site s'adresse aux personnes qui veulent faire pousser chez elles sans jardin
 
 - [Accueil](https://hydrofacile.fr/)
 - [Articles](https://hydrofacile.fr/articles/)
-- [Galerie](https://hydrofacile.fr/galerie/)
+- [Contact](https://hydrofacile.fr/contact/)
 - [Politique de confidentialite](https://hydrofacile.fr/politique-confidentialite/)
+
+## Autre page utile
+
+- [Galerie](https://hydrofacile.fr/galerie/)
 
 ## Axes editoriaux
 

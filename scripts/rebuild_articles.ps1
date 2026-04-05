@@ -17,6 +17,8 @@ $siteUrl = "https://hydrofacile.fr"
 $siteTagline = "Hydroponie debutant en appartement."
 $siteDescription = "HydroFacile aide a debuter en hydroponie en appartement avec des guides simples sur les systemes, la lumiere, les nutriments et les cultures faciles."
 $siteLongDescription = "HydroFacile est un site sur l'hydroponie debutant en appartement : systeme hydroponique simple, cultures faciles, lumiere, nutriments et potager interieur propre."
+$siteContactEmail = "ecobalcon21@gmail.com"
+$siteContactFormAction = "https://formsubmit.co/$siteContactEmail"
 $siteLogoPath = "images\logo-site.png"
 $siteLogoUrl = "$siteUrl/images/logo-site.png"
 $primaryArticleSlugs = @(
@@ -332,7 +334,7 @@ function Get-SiteFooterHtml {
           <ul class="footer-list">
             <li><a href="${pagePrefix}articles/">Guides hydroponie debutant</a></li>
             <li><a href="${pagePrefix}articles/hydroponie-sans-pompe-appartement/">Premier systeme sans pompe</a></li>
-            <li><a href="${pagePrefix}galerie/">Galerie hydroponie appartement</a></li>
+            <li><a href="${pagePrefix}contact/">Contacter HydroFacile</a></li>
           </ul>
         </div>
         <div class="footer-legal">&copy; 2026. Tous droits r&eacute;serv&eacute;s. <span class="footer-legal-sep">&bull;</span> <a href="${pagePrefix}politique-confidentialite/">Politique de confidentialite</a></div>
@@ -1612,7 +1614,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="../../">Accueil</a>
             <a href="../">Articles</a>
-            <a href="../../galerie/">Galerie</a>
+            <a href="../../contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -1654,7 +1656,7 @@ $sidebarHtml
               <ul class="article-list">
                 <li><a href="../">Retour &agrave; la liste des articles</a></li>
                 <li><a href="../../">Retour &agrave; l'accueil</a></li>
-                <li><a href="../../galerie/">Voir la galerie HydroFacile</a></li>
+                <li><a href="../../contact/">Contacter HydroFacile</a></li>
               </ul>
             </div>
           </aside>
@@ -1776,7 +1778,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="./" aria-current="page">Accueil</a>
             <a href="articles/">Articles</a>
-            <a href="galerie/">Galerie</a>
+            <a href="contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -1793,7 +1795,7 @@ $tagManagerBody
             </div>
             <div class="hero-copy-side">
               <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
-                <a class="button" href="galerie/">Voir la galerie</a>
+                <a class="button" href="contact/">Ouvrir le contact</a>
                 <a class="button-secondary" href="articles/">Explorer les guides</a>
               </div>
               <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
@@ -1853,15 +1855,15 @@ $tagManagerBody
             </article>
             <article class="home-path-card" data-reveal style="--reveal-delay: 130ms;">
               <span class="eyebrow">Choisir</span>
-              <h3><a href="galerie/">Imaginer un systeme compact</a></h3>
-              <p>Un petit reservoir, quelques plantes faciles et une installation propre suffisent souvent pour apprendre les bases.</p>
-              <a class="text-link" href="galerie/">Voir des exemples</a>
+              <h3><a href="contact/">Poser une question sur son futur setup</a></h3>
+              <p>Un doute sur le reservoir, la lumiere ou le format a choisir pour debuter en appartement ? La page contact sert de point d'entree.</p>
+              <a class="text-link" href="contact/">Aller au contact</a>
             </article>
             <article class="home-path-card" data-reveal style="--reveal-delay: 200ms;">
               <span class="eyebrow">Debuter</span>
-              <h3><a href="galerie/">Reperer les plantes les plus simples</a></h3>
-              <p>Laitues, basilic, jeunes pousses et aromatiques sont souvent les meilleurs choix pour un premier essai en appartement.</p>
-              <a class="text-link" href="galerie/">Voir l'inspiration</a>
+              <h3><a href="contact/">Sugg&eacute;rer un sujet utile</a></h3>
+              <p>Si un besoin revient souvent dans ton installation, la page contact permet de signaler les themes a couvrir en priorite.</p>
+              <a class="text-link" href="contact/">Partager un besoin</a>
             </article>
           </div>
         </div>
@@ -1876,7 +1878,7 @@ $tagManagerBody
                 HydroFacile pose les bases d'un site clair et rassurant pour apprendre l'hydroponie en appartement, avec peu de place et sans blabla.
               </p>
             </div>
-            <a class="button" href="galerie/">Explorer la galerie</a>
+            <a class="button" href="contact/">Ouvrir la page contact</a>
           </div>
         </div>
       </section>
@@ -2124,7 +2126,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="./" aria-current="page">Accueil</a>
             <a href="articles/">Articles</a>
-            <a href="galerie/">Galerie</a>
+            <a href="contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -2488,7 +2490,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="../">Accueil</a>
             <a href="./" aria-current="page">Articles</a>
-            <a href="../galerie/">Galerie</a>
+            <a href="../contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -2509,7 +2511,7 @@ $tagManagerBody
           <strong class="search-label">Bientot ici</strong>
           <p class="page-intro">Des guides pratiques sur le fonctionnement de l'hydroponie, le materiel vraiment utile, la lumiere, les nutriments expliques simplement et les cultures les plus faciles pour commencer.</p>
           <div class="hero-actions">
-            <a class="button" href="../galerie/">Voir la galerie</a>
+            <a class="button" href="../contact/">Contacter HydroFacile</a>
             <a class="button-secondary" href="../">Retour a l'accueil</a>
           </div>
         </section>
@@ -2597,7 +2599,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="../">Accueil</a>
             <a href="./" aria-current="page">Articles</a>
-            <a href="../galerie/">Galerie</a>
+            <a href="../contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -3061,7 +3063,7 @@ function Build-PrivacyPageHtml {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialit&eacute; | $siteName</title>
-  <meta name="description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
+  <meta name="description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="$canonicalUrl">
   <link rel="alternate" hreflang="fr" href="$canonicalUrl">
@@ -3070,11 +3072,11 @@ function Build-PrivacyPageHtml {
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Politique de confidentialit&eacute; | $siteName">
-  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
+  <meta property="og:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Politique de confidentialit&eacute; | $siteName">
-  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et les donnees de navigation utilises sur $siteName.">
+  <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilises sur $siteName.">
 $tagManagerHead
   <link rel="icon" href="../images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
@@ -3098,7 +3100,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="../">Accueil</a>
             <a href="../articles/">Articles</a>
-            <a href="../galerie/">Galerie</a>
+            <a href="../contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -3130,8 +3132,8 @@ $tagManagerBody
             <ul class="article-list">
               <li>$siteName est un site &eacute;ditorial autour de l'hydroponie pour d&eacute;butants en appartement.</li>
               <li>Le site utilise Google Tag Manager et peut activer Google Analytics 4 pour la mesure d'audience.</li>
-              <li>Il n'y a pas d'espace membre ni de compte utilisateur &agrave; cr&eacute;er sur le site.</li>
-              <li>Les liens sortants &eacute;ventuels vers des services tiers suivent leurs propres r&egrave;gles.</li>
+              <li>Le formulaire de contact transmet les messages via FormSubmit vers l'adresse de contact du site.</li>
+              <li>Les liens sortants et services tiers &eacute;ventuels suivent leurs propres r&egrave;gles.</li>
             </ul>
           </aside>
         </section>
@@ -3158,10 +3160,17 @@ $tagManagerBody
             des param&egrave;tres de consentement mis en place sur le site.
           </p>
 
+          <h2>Formulaire de contact</h2>
+          <p>
+            Lorsque tu utilises la page contact, les donn&eacute;es saisies dans le formulaire comme le nom, l'adresse email,
+            l'objet et le message sont transmises &agrave; FormSubmit, le service utilis&eacute; pour acheminer les demandes vers
+            l'adresse de contact de $siteName.
+          </p>
+
           <h2>Liens et services tiers</h2>
           <p>
             Le site peut proposer des liens vers des plateformes ou services externes. Lorsque tu quittes $siteName
-            pour consulter ces services, leurs propres politiques de confidentialit&eacute; s'appliquent.
+            ou que tu utilises un service tiers comme FormSubmit, leurs propres politiques de confidentialit&eacute; peuvent aussi s'appliquer.
           </p>
 
           <h2>&Eacute;volution de cette page</h2>
@@ -3174,6 +3183,255 @@ $tagManagerBody
     </main>
 
 $(Get-SiteFooterHtml -pagePrefix "../")
+  </div>
+</body>
+</html>
+"@
+}
+
+function Build-ContactPageHtml {
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
+  $canonicalUrl = "$siteUrl/contact/"
+  $contactThanksUrl = "$siteUrl/contact/merci/"
+
+  return @"
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | $siteName</title>
+  <meta name="description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="$canonicalUrl">
+  <link rel="alternate" hreflang="fr" href="$canonicalUrl">
+  <link rel="alternate" hreflang="x-default" href="$canonicalUrl">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="$siteName">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact | $siteName">
+  <meta property="og:description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+  <meta property="og:url" content="$canonicalUrl">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contact | $siteName">
+  <meta name="twitter:description" content="Pose une question a $siteName via un formulaire simple directement depuis le site.">
+$tagManagerHead
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../css/style.min.css">
+</head>
+<body class="contact-page">
+$tagManagerBody
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark">
+            <img class="brand-logo" src="../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="../">Accueil</a>
+            <a href="../articles/">Articles</a>
+            <a href="./" aria-current="page">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="article-shell">
+        <div>
+          <nav class="breadcrumb-nav" aria-label="fil d'ariane">
+            <ol class="breadcrumb">
+              <li><a href="../">Accueil</a></li>
+              <li aria-current="page">Contact</li>
+            </ol>
+          </nav>
+        </div>
+
+        <section class="page-hero">
+          <div class="page-hero-copy">
+            <span class="eyebrow">Contact</span>
+            <h1 class="page-title">Poser une question simplement</h1>
+            <p class="page-intro">
+              Une question sur un guide, un doute sur ton installation ou une suggestion de sujet ? Le formulaire ci-dessous permet d'envoyer un message directement depuis le site.
+            </p>
+            <p class="page-intro">Les messages sont transmis a l'adresse de contact du site via FormSubmit.</p>
+          </div>
+
+          <aside class="checklist utility-panel">
+            <h2>Dans ton message</h2>
+            <ul class="article-list">
+              <li>Ajoute le lien du guide concerne si ta question porte sur un article precis.</li>
+              <li>Indique ton espace, ta lumiere et le type de systeme si tu bloques sur un setup.</li>
+              <li>Precise si c'est une question, une suggestion ou une correction.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="card contact-card">
+          <div class="card-body">
+            <form class="contact-form" action="$siteContactFormAction" method="POST" accept-charset="UTF-8">
+              <input type="hidden" id="contact-next" name="_next" value="$contactThanksUrl">
+              <input type="hidden" name="_subject" value="Nouveau message depuis HydroFacile">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" id="contact-url" name="_url" value="$canonicalUrl">
+
+              <label class="form-honeypot" for="contact-company">Ne pas remplir ce champ</label>
+              <input class="form-honeypot" id="contact-company" type="text" name="_honey" tabindex="-1" autocomplete="off">
+
+              <div class="contact-form-grid">
+                <div class="form-field">
+                  <label for="contact-name">Nom</label>
+                  <input id="contact-name" type="text" name="name" autocomplete="name" required>
+                </div>
+
+                <div class="form-field">
+                  <label for="contact-email">Email</label>
+                  <input id="contact-email" type="email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="contact-topic">Objet</label>
+                  <input id="contact-topic" type="text" name="topic" autocomplete="off" placeholder="Exemple : question sur un systeme debutant">
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" name="message" placeholder="Decris ta question ou ton besoin en quelques lignes." required></textarea>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <button class="button" type="submit">Envoyer le message</button>
+                <a class="button-secondary" href="../articles/">Voir les guides</a>
+              </div>
+              <p class="form-helper">Apres envoi, tu seras redirige vers une page de confirmation sur le site.</p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+$(Get-SiteFooterHtml -pagePrefix "../")
+  </div>
+  <script>
+    (() => {
+      const nextInput = document.getElementById("contact-next");
+      const urlInput = document.getElementById("contact-url");
+
+      if (!nextInput || !urlInput) {
+        return;
+      }
+
+      if (!/^https?:$/i.test(window.location.protocol)) {
+        return;
+      }
+
+      const currentUrl = new URL(window.location.href);
+      currentUrl.search = "";
+      currentUrl.hash = "";
+
+      const thanksUrl = new URL("./merci/", currentUrl.href);
+
+      nextInput.value = thanksUrl.href;
+      urlInput.value = currentUrl.href;
+    })();
+  </script>
+</body>
+</html>
+"@
+}
+
+function Build-ContactThanksPageHtml {
+  $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
+  $tagManagerHead = Get-TagManagerHeadHtml
+  $tagManagerBody = Get-TagManagerBodyHtml
+  $canonicalUrl = "$siteUrl/contact/merci/"
+
+  return @"
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Message envoy&eacute; | $siteName</title>
+  <meta name="description" content="Confirmation d'envoi du formulaire de contact $siteName.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="$canonicalUrl">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="$siteName">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Message envoy&eacute; | $siteName">
+  <meta property="og:description" content="Confirmation d'envoi du formulaire de contact $siteName.">
+  <meta property="og:url" content="$canonicalUrl">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Message envoy&eacute; | $siteName">
+  <meta name="twitter:description" content="Confirmation d'envoi du formulaire de contact $siteName.">
+$tagManagerHead
+  <link rel="icon" href="../../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="stylesheet" href="../../css/style.min.css">
+</head>
+<body class="contact-page">
+$tagManagerBody
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../../">
+          <span class="brand-mark">
+            <img class="brand-logo" src="../../images/logo-site.png" alt="Logo $siteName"$logoDimensions>
+          </span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="../../">Accueil</a>
+            <a href="../../articles/">Articles</a>
+            <a href="../../contact/">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="article-shell">
+        <section class="page-hero">
+          <div class="page-hero-copy">
+            <span class="eyebrow">Message envoy&eacute;</span>
+            <h1 class="page-title">Merci, ton message a bien &eacute;t&eacute; transmis.</h1>
+            <p class="page-intro">
+              Nous avons bien re&ccedil;u ta demande via le formulaire de contact. Tu peux revenir aux guides ou envoyer un autre message si besoin.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="../../contact/">Retour au contact</a>
+              <a class="button-secondary" href="../../articles/">Voir les guides</a>
+            </div>
+          </div>
+
+          <aside class="checklist utility-panel">
+            <h2>Bon a savoir</h2>
+            <ul class="article-list">
+              <li>Si tu n'as pas tout dit, tu peux renvoyer un message depuis la page contact.</li>
+              <li>Les guides HydroFacile restent disponibles pendant l'attente d'une reponse.</li>
+            </ul>
+          </aside>
+        </section>
+      </div>
+    </main>
+
+$(Get-SiteFooterHtml -pagePrefix "../../")
   </div>
 </body>
 </html>
@@ -3193,18 +3451,18 @@ function Build-404Html {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page introuvable | $siteName</title>
-  <meta name="description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
+  <meta name="description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la page contact ou la section guides.">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Page introuvable | $siteName">
-  <meta property="og:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
+  <meta property="og:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la page contact ou la section guides.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Page introuvable | $siteName">
-  <meta name="twitter:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la galerie ou la section guides en pr&eacute;paration.">
+  <meta name="twitter:description" content="La page demand&eacute;e n'est pas disponible. Repars depuis l'accueil $siteName, la page contact ou la section guides.">
 $tagManagerHead
   <link rel="icon" href="images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
@@ -3228,7 +3486,7 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="./">Accueil</a>
             <a href="articles/">Articles</a>
-            <a href="galerie/">Galerie</a>
+            <a href="contact/">Contact</a>
           </nav>
         </div>
       </div>
@@ -3241,7 +3499,7 @@ $tagManagerBody
             <span class="eyebrow">404</span>
             <h1 class="page-title">Page introuvable</h1>
             <p class="page-intro">
-              Cette adresse ne m&egrave;ne &agrave; aucune page disponible. Tu peux revenir &agrave; l'accueil, ouvrir la galerie
+              Cette adresse ne m&egrave;ne &agrave; aucune page disponible. Tu peux revenir &agrave; l'accueil, ouvrir la page contact
               ou passer par la section guides pour repartir simplement.
             </p>
             <div class="hero-actions">
@@ -3254,10 +3512,10 @@ $tagManagerBody
             <h2>Tu peux essayer</h2>
             <ul class="article-list">
               <li>Revenir &agrave; l'accueil pour retrouver les bases de l'hydroponie en appartement.</li>
-              <li>Ouvrir la galerie pour voir des installations simples, propres et compactes.</li>
+              <li>Ouvrir la page contact pour signaler un besoin, une suggestion ou une erreur sur le site.</li>
               <li>Passer par la section guides pour suivre l'arriv&eacute;e des prochains contenus.</li>
             </ul>
-            <a class="text-link" href="galerie/">Voir la galerie</a>
+            <a class="text-link" href="contact/">Ouvrir le contact</a>
           </aside>
         </section>
       </div>
@@ -3313,6 +3571,10 @@ function Build-SitemapXml {
   $homeImageCaption = if ($homeFeatured) { $homeFeatured.ImageAlt } else { "" }
   $entries.Add((New-SitemapUrlNode -loc "$siteUrl/" -priority "1.0" -lastmod $today -imageUrl $homeImageUrl -imageCaption $homeImageCaption))
   $entries.Add((New-SitemapUrlNode -loc "$siteUrl/articles/" -priority "0.9" -lastmod $today -imageUrl $homeImageUrl -imageCaption $homeImageCaption))
+  if (Test-Path (Join-Path $root "contact.html")) {
+    $contactLoc = if (Test-Path (Join-Path $root "contact\index.html")) { "$siteUrl/contact/" } else { "$siteUrl/contact.html" }
+    $entries.Add((New-SitemapUrlNode -loc $contactLoc -priority "0.5" -lastmod $today))
+  }
   if (Test-Path (Join-Path $root "galerie.html")) {
     $galleryLoc = if (Test-Path (Join-Path $root "galerie\index.html")) { "$siteUrl/galerie/" } else { "$siteUrl/galerie.html" }
     $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/hydro-systeme-debutant.svg" -imageCaption "Installation hydroponique debutant en appartement"))
@@ -3371,6 +3633,13 @@ New-Item -ItemType Directory -Path $privacyDir -Force | Out-Null
 Set-Content -Path (Join-Path $privacyDir "index.html") -Value (Build-PrivacyPageHtml) -Encoding UTF8
 Set-Content -Path (Join-Path $root "politique-confidentialite.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/politique-confidentialite/" -title "Politique de confidentialite | $siteName" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
 
+$contactDir = Join-Path $root "contact"
+New-Item -ItemType Directory -Path $contactDir -Force | Out-Null
+Set-Content -Path (Join-Path $contactDir "index.html") -Value (Build-ContactPageHtml) -Encoding UTF8
+New-Item -ItemType Directory -Path (Join-Path $contactDir "merci") -Force | Out-Null
+Set-Content -Path (Join-Path $contactDir "merci\index.html") -Value (Build-ContactThanksPageHtml) -Encoding UTF8
+Set-Content -Path (Join-Path $root "contact.html") -Value (Get-RedirectHtml -targetUrl "$siteUrl/contact/" -title "Contact | $siteName" -description "Cette page a ete deplacee vers sa nouvelle adresse.") -Encoding UTF8
+
 $homePath = Join-Path $root "index.html"
 $homeStatus = "Homepage preserved as-is (use -RebuildHome to regenerate it)"
 $homeBackupStatus = ""
@@ -3392,7 +3661,7 @@ if ($RebuildHome -or -not (Test-Path $homePath)) {
 Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $primaryArticles) -Encoding UTF8
 Set-Content -Path (Join-Path $root "robots.txt") -Value (Build-RobotsTxt) -Encoding UTF8
 
-Write-Output "Updated style.min.css, articles index, 404.html, politique-confidentialite.html, sitemap.xml and robots.txt"
+Write-Output "Updated style.min.css, articles index, 404.html, contact, politique-confidentialite.html, sitemap.xml and robots.txt"
 if ($homeBackupStatus) {
   Write-Output $homeBackupStatus
 }

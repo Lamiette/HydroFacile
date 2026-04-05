@@ -237,8 +237,11 @@ a {
   justify-content: center;
   min-height: 2.9rem;
   padding: 0.8rem 1.1rem;
+  border: 0;
   border-radius: 999px;
+  cursor: pointer;
   text-decoration: none;
+  font: inherit;
   font-weight: 700;
 }
 
@@ -1536,6 +1539,71 @@ a {
   color: var(--muted);
 }
 
+.contact-card {
+  padding: 1.35rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.form-field label {
+  font-weight: 700;
+  color: var(--brand-dark);
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.88rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  font: inherit;
+}
+
+.form-field textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid rgba(47, 184, 199, 0.18);
+  border-color: rgba(15, 98, 86, 0.45);
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-helper {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .muted-link {
   color: var(--brand-dark);
 }
@@ -1595,6 +1663,10 @@ a {
   .home-page .hero-panel {
     width: 100%;
     max-width: none;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
   }
 }
 
