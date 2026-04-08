@@ -1719,7 +1719,6 @@ function Build-HomeHtml {
   <title>Hydroponie débutant appartement | $siteName</title>
   <meta name="description" content="HydroFacile prépare des guides clairs pour débuter en hydroponie en appartement, comprendre la culture sans terre et choisir un petit système simple.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="preload" as="image" href="images/articles/hydro-systeme-debutant.svg" fetchpriority="high">
   <link rel="canonical" href="$siteUrl/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/">
   <link rel="alternate" hreflang="x-default" href="$siteUrl/">
@@ -1768,55 +1767,16 @@ $tagManagerBody
 
     <main>
       <section class="hero hero-home">
-        <div class="section-inner hero-grid">
+        <div class="section-inner">
           <div class="hero-copy">
-            <div class="hero-copy-main" data-reveal>
-              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie débutant</span>
-              <h1>Comprendre l'hydroponie simplement, chez soi.</h1>
-              <p>HydroFacile aide à débuter en appartement avec des explications claires, une approche propre et des repères simples pour choisir un petit système sans se compliquer.</p>
-            </div>
-            <div class="hero-copy-side">
-              <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
+            <span class="eyebrow hero-eyebrow" data-reveal>$siteName &middot; Hydroponie débutant</span>
+            <h1 data-reveal style="--reveal-delay: 70ms;">Comprendre l'hydroponie simplement, chez soi.</h1>
+            <p data-reveal style="--reveal-delay: 140ms;">HydroFacile aide à débuter en appartement avec des explications claires, une approche propre et des repères simples pour choisir un petit système sans se compliquer.</p>
+            <div class="hero-actions" data-reveal style="--reveal-delay: 210ms;">
                 <a class="button" href="contact/">Ouvrir le contact</a>
                 <a class="button-secondary" href="articles/">Explorer les guides</a>
-              </div>
-              <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
-                <span class="hero-support-chip">En clair</span>
-                <strong>L'hydroponie, c'est faire pousser des plantes avec de l'eau enrichie et un support léger, sans terre classique.</strong>
-                <p>Le but n'est pas d'ajouter du jargon. Ici, on cherche surtout à comprendre la méthode, débuter petit et prendre de bons réflexes dans un appartement.</p>
-                <a class="text-link" href="articles/">Voir les prochains guides</a>
-              </div>
-              <div class="hero-stat-grid" data-reveal style="--reveal-delay: 220ms;">
-                <article class="mini-stat">
-                  <span class="mini-stat-label">Peu de place</span>
-                  <strong>1 coin</strong>
-                  <span class="mini-stat-copy">un plan de travail ou une étagère lumineuse peuvent suffire pour débuter.</span>
-                </article>
-                <article class="mini-stat">
-                  <span class="mini-stat-label">Routine claire</span>
-                  <strong>10 min</strong>
-                  <span class="mini-stat-copy">une courte vérification régulière vaut mieux qu'une installation compliquée.</span>
-                </article>
-                <article class="mini-stat">
-                  <span class="mini-stat-label">Approche</span>
-                  <strong>Pas a pas</strong>
-                  <span class="mini-stat-copy">comprendre l'eau, la lumière et les plantes sans jargon inutile.</span>
-                </article>
-              </div>
             </div>
           </div>
-
-          <aside class="hero-panel" aria-label="Installation hydroponique débutant en appartement" data-reveal style="--reveal-delay: 120ms;">
-            <figure class="home-visual">
-              <div class="home-visual-stage">
-                <img class="home-visual-main" src="images/articles/hydro-systeme-debutant.svg" alt="Petite installation hydroponique propre en intérieur" loading="eager" decoding="async" fetchpriority="high" width="1200" height="900">
-              </div>
-              <figcaption class="home-visual-note">
-                <span class="home-visual-chip">Petit setup</span>
-                <p>Une installation compacte, propre et facile à suivre reste souvent la meilleure porte d'entrée pour apprendre l'hydroponie chez soi.</p>
-              </figcaption>
-            </figure>
-          </aside>
         </div>
       </section>
 
@@ -1879,40 +1839,15 @@ $(Get-SiteFooterHtml -pagePrefix "")
         $cardIndex++
         (Build-ArticleCardHtml -article $_ -hrefPrefix "articles/" -imagePrefix "images/articles/") -replace '<article class="article-card">', "<article class=`"article-card`" data-reveal style=`"--reveal-delay: ${delay}ms;`">"
       }) -join "`n")
-  $count = $allArticles.Count
   $featuredArticle = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
     "hydroponie-sans-pompe-appartement",
     "cultures-faciles-hydroponie-appartement",
     "lumiere-hydroponie-appartement"
   ) -fallbackIndex 0
-  $featuredImage = if ($featuredArticle) { $featuredArticle.ImageCanonicalUrl } else { "" }
-  $featuredImageSrc = if ($featuredArticle) { Get-ImagePagePath -fileName $featuredArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
-  $featuredImageDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { "" }
-  $featuredTitle = if ($featuredArticle) { $featuredArticle.Title } else { "Hydroponie simple en appartement" }
   $featuredImageAlt = if ($featuredArticle) { $featuredArticle.ImageAlt } else { "Petite installation hydroponique propre en intérieur" }
   $shareImage = if ($featuredArticle) { $featuredArticle.ImageCanonicalUrl } else { "$siteUrl/images/articles/hydro-systeme-debutant.svg" }
   $shareImageAlt = $featuredImageAlt
-  $heroSecondary = Get-PreferredArticle -allArticles $allArticles -preferredSlugs @(
-    "cultures-faciles-hydroponie-appartement",
-    "lumiere-hydroponie-appartement",
-    "laitue-hydroponique-appartement"
-  ) -fallbackIndex 1
   $heroSupportHref = "articles/hydroponie-sans-pompe-appartement/"
-  $homeVisualDimensions = if ($featuredArticle) { Get-ArticleImageDimensionAttributes $featuredArticle.ImageFileName } else { " width=`"1200`" height=`"900`"" }
-  $homeStats = @(
-    [PSCustomObject]@{ Label = "Guides utiles"; Value = "$count"; Copy = "pour choisir un système simple et lancer tes premières cultures." },
-    [PSCustomObject]@{ Label = "Repères clairs"; Value = "4"; Copy = "angles pour comprendre la lumière, l'eau, les nutriments et les variétés." },
-    [PSCustomObject]@{ Label = "Pensé pour"; Value = "100 %"; Copy = "les appartements, les petits plans de travail et les coins lumineux." }
-  )
-  $statsHtml = (($homeStats | ForEach-Object {
-@"
-            <article class="mini-stat">
-              <span class="mini-stat-label">$($_.Label)</span>
-              <strong>$($_.Value)</strong>
-              <span class="mini-stat-copy">$($_.Copy)</span>
-            </article>
-"@
-      }) -join "`n")
   $startBlocks = @(
     [PSCustomObject]@{
       Label = "Comprendre"
@@ -2067,7 +2002,6 @@ $(Get-SiteFooterHtml -pagePrefix "")
   <title>Hydroponie débutant appartement | $siteName</title>
   <meta name="description" content="$siteLongDescription">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="preload" as="image" href="$featuredImageSrc" fetchpriority="high">
   <link rel="canonical" href="$siteUrl/">
   <link rel="alternate" hreflang="fr" href="$siteUrl/">
   <link rel="alternate" hreflang="x-default" href="$siteUrl/">
@@ -2116,41 +2050,16 @@ $tagManagerBody
 
     <main>
       <section class="hero hero-home">
-        <div class="section-inner hero-grid">
+        <div class="section-inner">
           <div class="hero-copy">
-            <div class="hero-copy-main" data-reveal>
-              <span class="eyebrow hero-eyebrow">$siteName &middot; Hydroponie int&eacute;rieure</span>
-              <h1>Hydroponie débutant en appartement, sans se compliquer.</h1>
-              <p>Des guides clairs pour d&eacute;marrer un syst&egrave;me hydroponique simple, choisir les bonnes cultures et faire pousser en appartement sans jardin.</p>
-            </div>
-            <div class="hero-copy-side">
-              <div class="hero-actions" data-reveal style="--reveal-delay: 90ms;">
+            <span class="eyebrow hero-eyebrow" data-reveal>$siteName &middot; Hydroponie int&eacute;rieure</span>
+            <h1 data-reveal style="--reveal-delay: 70ms;">Hydroponie débutant en appartement, sans se compliquer.</h1>
+            <p data-reveal style="--reveal-delay: 140ms;">Des guides clairs pour d&eacute;marrer un syst&egrave;me hydroponique simple, choisir les bonnes cultures et faire pousser en appartement sans jardin.</p>
+            <div class="hero-actions" data-reveal style="--reveal-delay: 210ms;">
                 <a class="button" href="articles/">Explorer les guides</a>
                 <a class="button-secondary" href="$heroSupportHref">D&eacute;marrer simplement</a>
-              </div>
-              <div class="hero-support-note" data-reveal style="--reveal-delay: 160ms;">
-                <span class="hero-support-chip">Le bon r&eacute;flexe</span>
-                <strong>Un petit r&eacute;servoir bien suivi vaut mieux qu'une installation compliqu&eacute;e.</strong>
-                <p>Quelques plantes faciles, une routine stable et un setup propre suffisent souvent pour prendre confiance et comprendre vite ce qui fonctionne chez toi.</p>
-                <a class="text-link" href="$heroSupportHref">Voir le guide d&eacute;butant</a>
-              </div>
-              <div class="hero-stat-grid" data-reveal style="--reveal-delay: 220ms;">
-$statsHtml
-              </div>
             </div>
           </div>
-
-          <aside class="hero-panel" aria-label="Installation hydroponique d&eacute;butant en appartement" data-reveal style="--reveal-delay: 120ms;">
-            <figure class="home-visual">
-              <div class="home-visual-stage">
-                <img class="home-visual-main" src="$featuredImageSrc" alt="$(HtmlEscape $featuredImageAlt)" title="$(HtmlEscape $featuredTitle)" loading="eager" decoding="async" fetchpriority="high"$homeVisualDimensions>
-              </div>
-              <figcaption class="home-visual-note">
-                <span class="home-visual-chip">Setup d&eacute;butant</span>
-                <p>Un coin lumineux, compact et propre pour lancer laitues, basilic et autres cultures faciles en hydroponie appartement.</p>
-              </figcaption>
-            </figure>
-          </aside>
         </div>
       </section>
 
@@ -3539,11 +3448,6 @@ function Build-SitemapXml {
     $contactLoc = if (Test-Path (Join-Path $root "contact\index.html")) { "$siteUrl/contact/" } else { "$siteUrl/contact.html" }
     $entries.Add((New-SitemapUrlNode -loc $contactLoc -priority "0.5" -lastmod $today))
   }
-  if (Test-Path (Join-Path $root "galerie.html")) {
-    $galleryLoc = if (Test-Path (Join-Path $root "galerie\index.html")) { "$siteUrl/galerie/" } else { "$siteUrl/galerie.html" }
-    $entries.Add((New-SitemapUrlNode -loc $galleryLoc -priority "0.5" -lastmod $today -imageUrl "$siteUrl/images/articles/hydro-systeme-debutant.svg" -imageCaption "Installation hydroponique débutant en appartement"))
-  }
-
   foreach ($article in $allArticles) {
     $lastmod = if ($article.DateModified) { $article.DateModified } else { $article.DatePublished }
     $entries.Add((New-SitemapUrlNode -loc (Get-ArticleCanonicalUrl $article) -priority "0.7" -lastmod $lastmod -imageUrl $article.ImageCanonicalUrl -imageCaption $article.ImageAlt))

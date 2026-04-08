@@ -13,10 +13,6 @@ Le site s'adresse aux personnes qui veulent faire pousser chez elles sans jardin
 - [Contact](https://hydrofacile.fr/contact/)
 - [Politique de confidentialité](https://hydrofacile.fr/politique-confidentialite/)
 
-## Autre page utile
-
-- [Galerie](https://hydrofacile.fr/galerie/)
-
 ## Axes éditoriaux
 
 - comprendre la culture sans terre
