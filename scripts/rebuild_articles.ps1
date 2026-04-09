@@ -28,6 +28,7 @@ $primaryArticleSlugs = @(
   "cultures-faciles-hydroponie-appartement",
   "lumiere-hydroponie-appartement",
   "nutriments-hydroponie-debutant",
+  "quand-changer-eau-hydroponie",
   "laitue-hydroponique-appartement",
   "basilic-hydroponie-interieur",
   "nettoyer-systeme-hydroponique"
@@ -202,6 +203,39 @@ function Get-ImagePagePath {
 
   if ([string]::IsNullOrWhiteSpace($fileName)) { return "" }
   return "$pagePrefix$fileName"
+}
+
+function Get-ArticleCardImageFileName {
+  param([pscustomobject]$article)
+
+  if ($null -eq $article) { return "" }
+
+  $candidate = if ($article.PSObject.Properties.Match("CardImageFileName").Count -gt 0) {
+    [string]$article.CardImageFileName
+  } else {
+    ""
+  }
+
+  if (-not [string]::IsNullOrWhiteSpace($candidate)) {
+    $candidatePath = Join-Path $imagesDir $candidate
+    if (Test-Path $candidatePath) {
+      return $candidate
+    }
+  }
+
+  return [string]$article.ImageFileName
+}
+
+function Get-ArticleCardImageAlt {
+  param([pscustomobject]$article)
+
+  if ($null -eq $article) { return "" }
+
+  if ($article.PSObject.Properties.Match("CardImageAlt").Count -gt 0 -and -not [string]::IsNullOrWhiteSpace([string]$article.CardImageAlt)) {
+    return [string]$article.CardImageAlt
+  }
+
+  return [string]$article.ImageAlt
 }
 
 function Get-ArticleLegacyFileName {
@@ -931,6 +965,8 @@ function Apply-ArticleOverride {
     "Intro",
     "ImageFileName",
     "ImageAlt",
+    "CardImageFileName",
+    "CardImageAlt",
     "DatePublished",
     "DateModified",
     "TimeRequired",
@@ -958,6 +994,14 @@ function Apply-ArticleOverride {
 
   if ($data["ImageFileName"]) {
     $data["ImageCanonicalUrl"] = Get-ImageCanonicalUrl $data["ImageFileName"]
+  }
+
+  if (-not $data["CardImageFileName"]) {
+    $data["CardImageFileName"] = $data["ImageFileName"]
+  }
+
+  if (-not $data["CardImageAlt"]) {
+    $data["CardImageAlt"] = $data["ImageAlt"]
   }
 
   return [PSCustomObject]$data
@@ -1014,6 +1058,8 @@ function Get-ArticleSources {
         ImageFileName = $imageFileName
         ImageCanonicalUrl = Get-ImageCanonicalUrl $imageFileName
         ImageAlt = if ($heroCaption) { $heroCaption } else { [System.Net.WebUtility]::HtmlDecode($schema.description) }
+        CardImageFileName = ""
+        CardImageAlt = ""
         DatePublished = [string]$schema.datePublished
         DateModified = if ($schema.dateModified) { [string]$schema.dateModified } else { [string]$schema.datePublished }
         TimeRequired = [string]$schema.timeRequired
@@ -1705,13 +1751,15 @@ function Build-ArticleCardHtml {
   $searchText = Get-ArticleCardSearchText $article
   $summary = Get-CardExcerpt $article.Description
   $href = Get-ArticlePrettyHref -article $article -hrefPrefix $hrefPrefix
-  $imageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix $imagePrefix
-  $imageDimensions = Get-ArticleImageDimensionAttributes $article.ImageFileName
+  $cardImageFileName = Get-ArticleCardImageFileName $article
+  $cardImageAlt = Get-ArticleCardImageAlt $article
+  $imageSrc = Get-ImagePagePath -fileName $cardImageFileName -pagePrefix $imagePrefix
+  $imageDimensions = Get-ArticleImageDimensionAttributes $cardImageFileName
   $className = "article-card$extraClass"
 
   return @"
           <article class="$className" data-search-text="$(HtmlEscape $searchText)">
-            <img src="$imageSrc" alt="$(HtmlEscape $article.ImageAlt)" title="$(HtmlEscape $article.ImageAlt)" loading="lazy" decoding="async"$imageDimensions>
+            <img src="$imageSrc" alt="$(HtmlEscape $cardImageAlt)" title="$(HtmlEscape $cardImageAlt)" loading="lazy" decoding="async"$imageDimensions>
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">$(HtmlEscape $category)</span></div>
               <h3><a href="$href" aria-label="$(HtmlEscape $article.Title)" title="$(HtmlEscape $article.Title)">$(HtmlEscape $cardTitle)</a></h3>
@@ -1934,15 +1982,16 @@ $(Get-SiteFooterHtml -pagePrefix "")
     "hydroponie-sans-pompe-appartement"
   ) -fallbackIndex 0
   $weeklyFeatureHref = if ($weeklyFallbackArticle) { Get-ArticlePrettyHref -article $weeklyFallbackArticle -hrefPrefix "articles/" } else { "articles/" }
-  $weeklyFeatureImageSrc = if ($weeklyFallbackArticle) { Get-ImagePagePath -fileName $weeklyFallbackArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
-  $weeklyFeatureImageDimensions = if ($weeklyFallbackArticle) { Get-ArticleImageDimensionAttributes $weeklyFallbackArticle.ImageFileName } else { "" }
+  $weeklyFeatureImageSrc = if ($weeklyFallbackArticle) { Get-ImagePagePath -fileName (Get-ArticleCardImageFileName $weeklyFallbackArticle) -pagePrefix "images/articles/" } else { "" }
+  $weeklyFeatureImageDimensions = if ($weeklyFallbackArticle) { Get-ArticleImageDimensionAttributes (Get-ArticleCardImageFileName $weeklyFallbackArticle) } else { "" }
   $weeklyFeatureCategory = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Category } else { "À lire" }
   $weeklyFeatureTitle = if ($weeklyFallbackArticle) { Get-ArticleCardTitle $weeklyFallbackArticle } else { "À découvrir cette semaine" }
   $weeklyFeatureDescription = if ($weeklyFallbackArticle) { Get-CardExcerpt $weeklyFallbackArticle.Description 178 } else { "Une sélection pratique choisie automatiquement selon la période de l'année." }
-  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Sélection d'article HydroFacile de la semaine" }
+  $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { Get-ArticleCardImageAlt $weeklyFallbackArticle } else { "Sélection d'article HydroFacile de la semaine" }
   $weeklyArticlesForJs = @(
     $allArticles | ForEach-Object {
-      $imageDimensions = Get-ImageDimensions (Join-Path $imagesDir $_.ImageFileName)
+      $cardImageFileName = Get-ArticleCardImageFileName $_
+      $imageDimensions = Get-ImageDimensions (Join-Path $imagesDir $cardImageFileName)
       [ordered]@{
         slug = $_.Slug
         title = $_.Title
@@ -1950,8 +1999,8 @@ $(Get-SiteFooterHtml -pagePrefix "")
         description = $_.Description
         category = $_.Category
         href = Get-ArticlePrettyHref -article $_ -hrefPrefix "articles/"
-        imageSrc = Get-ImagePagePath -fileName $_.ImageFileName -pagePrefix "images/articles/"
-        imageAlt = $_.ImageAlt
+        imageSrc = Get-ImagePagePath -fileName $cardImageFileName -pagePrefix "images/articles/"
+        imageAlt = Get-ArticleCardImageAlt $_
         datePublished = $_.DatePublished
         width = if ($imageDimensions) { $imageDimensions.Width } else { $null }
         height = if ($imageDimensions) { $imageDimensions.Height } else { $null }
@@ -1994,8 +2043,8 @@ $(Get-SiteFooterHtml -pagePrefix "")
     "hydroponie-sans-pompe-appartement"
   ) -fallbackIndex 0
   $editorialFeatureHref = if ($editorialFeature) { Get-ArticlePrettyHref -article $editorialFeature -hrefPrefix "articles/" } else { "articles/" }
-  $editorialFeatureImageSrc = if ($editorialFeature) { Get-ImagePagePath -fileName $editorialFeature.ImageFileName -pagePrefix "images/articles/" } else { "" }
-  $editorialFeatureImageDimensions = if ($editorialFeature) { Get-ArticleImageDimensionAttributes $editorialFeature.ImageFileName } else { "" }
+  $editorialFeatureImageSrc = if ($editorialFeature) { Get-ImagePagePath -fileName (Get-ArticleCardImageFileName $editorialFeature) -pagePrefix "images/articles/" } else { "" }
+  $editorialFeatureImageDimensions = if ($editorialFeature) { Get-ArticleImageDimensionAttributes (Get-ArticleCardImageFileName $editorialFeature) } else { "" }
   $logoDimensions = Get-RootImageDimensionAttributes $siteLogoPath
   $editorialList = @(
     $allArticles |

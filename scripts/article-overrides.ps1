@@ -1499,11 +1499,13 @@
     TimeRequired = "PT8M"
     DatePublished = "2026-04-04T16:00:00+02:00"
     DateModified = "2026-04-04T16:00:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Camille Renaud"
+    AuthorType = "Person"
     Category = "Matériel & systèmes"
     ImageFileName = "hydroponie-sans-pompe-appartement.svg"
     ImageAlt = "Petit système hydroponique sans pompe avec réservoir opaque, laitue et basilic pour débuter en appartement"
+    CardImageFileName = "hydroponie-sans-pompe-appartement.jpg"
+    CardImageAlt = "Bocaux de culture en eau alignés sur une étagère pour illustrer une hydroponie simple sans pompe"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Format conseillé : petit bac sans pompe, stable et facile à ouvrir<br>Pour qui : débutant en appartement, peu de place, envie d’une routine simple<br>Plantes idéales : laitues, basilic, menthe, ciboulette, jeunes pousses<br>Matériel minimum : contenant opaque, couvercle, pots filet, substrat, nutriments, lumière correcte<br>Avantage principal : comprendre vite l’eau, l’air et la pousse sans ajouter de complexité<br>Erreur classique : choisir un bac trop grand ou une plante trop gourmande dès le premier essai</p>
@@ -1564,7 +1566,7 @@
               <li>contrôler la lumière et la distance avec le feuillage ;</li>
               <li>essuyer les petites éclaboussures et garder la zone nette.</li>
             </ul>
-            <p>Cette simplicité est exactement ce qui rend l’hydroponie plus rassurante pour beaucoup de débutants. Tu n’as pas besoin d’une surveillance permanente. Tu as besoin d’un rythme que tu peux tenir sans te fatiguer. Quand la routine est en place, le plus utile est souvent de savoir <a href="../nettoyer-systeme-hydroponique/">nettoyer un système hydroponique sans tout compliquer</a> plutôt que d’ajouter du matériel.</p>
+            <p>Cette simplicité est exactement ce qui rend l’hydroponie plus rassurante pour beaucoup de débutants. Tu n’as pas besoin d’une surveillance permanente. Tu as besoin d’un rythme que tu peux tenir sans te fatiguer. Quand la routine est en place, le plus utile est souvent de savoir <a href="../nettoyer-systeme-hydroponique/">nettoyer un système hydroponique sans tout compliquer</a> et de comprendre <a href="../quand-changer-eau-hydroponie/">quand changer l’eau en hydroponie</a> plutôt que d’ajouter du matériel.</p>
             <h2 id="erreurs-a-eviter">Les erreurs qui compliquent tout</h2>
             <ul>
               <li><strong>démarrer trop grand</strong> : plus de volume ne veut pas dire plus facile ;</li>
@@ -1635,8 +1637,8 @@
     TimeRequired = "PT7M"
     DatePublished = "2026-04-04T16:12:00+02:00"
     DateModified = "2026-04-04T16:12:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Léa Martel"
+    AuthorType = "Person"
     Category = "Débuter"
     ImageFileName = "plantes-fraiches-poussant-en-serre-A1aPWZqj2OIPnxby.webp"
     ImageAlt = "Plusieurs cultures hydroponiques faciles sur une étagère lumineuse en appartement"
@@ -1739,11 +1741,13 @@
     TimeRequired = "PT8M"
     DatePublished = "2026-04-04T16:20:00+02:00"
     DateModified = "2026-04-04T16:20:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Camille Renaud"
+    AuthorType = "Person"
     Category = "Matériel & systèmes"
     ImageFileName = "lumiere-hydroponie-appartement.svg"
     ImageAlt = "Lampe horticole simple au-dessus d'un petit système hydroponique en appartement"
+    CardImageFileName = "lumiere-hydroponie-appartement.jpg"
+    CardImageAlt = "Étagères de plantes cultivées sous éclairage artificiel en intérieur"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Question de départ : ta fenêtre donne-t-elle une lumière vraiment régulière ?<br>Fenêtre suffisante : possible pour des cultures faciles si l’emplacement reste clair plusieurs heures par jour<br>Lampe utile : quand la pièce manque de constance ou que la pousse devient lente et étirée<br>Plantes les plus tolérantes : laitue, basilic, jeunes pousses, petites aromatiques<br>Erreur classique : installer le bac dans une pièce agréable pour toi mais trop sombre pour les plantes</p>
@@ -1835,11 +1839,13 @@
     TimeRequired = "PT8M"
     DatePublished = "2026-04-04T16:28:00+02:00"
     DateModified = "2026-04-04T16:28:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Nicolas Aubert"
+    AuthorType = "Person"
     Category = "Routine & réglages"
     ImageFileName = "nutriments-hydroponie-debutant.svg"
     ImageAlt = "Flacons de nutriments hydroponiques simples à côté d'un petit réservoir pour débutant"
+    CardImageFileName = "nutriments-hydroponie-debutant.jpg"
+    CardImageAlt = "Petites plantes en flacons transparents évoquant une solution nutritive simple en hydroponie"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Les nutriments remplacent ce que la terre apporterait normalement<br>Point de départ : utiliser un produit prévu pour l’hydroponie<br>Bon réflexe : suivre le dosage indiqué sans le renforcer<br>Erreur classique : penser qu’une plante lente a forcément besoin de plus d’engrais<br>À vérifier avant tout : lumière, propreté du bac, état des racines, stabilité de la routine</p>
@@ -1861,7 +1867,7 @@
               <li>si le réservoir reste bien protégé de la lumière ;</li>
               <li>si la plante a simplement besoin de plus de temps pour s’installer.</li>
             </ul>
-            <p>Quand le bac devient moins propre, notre guide pour <a href="../nettoyer-systeme-hydroponique/">nettoyer un système hydroponique</a> est souvent plus utile qu’un changement de dosage improvisé.</p>
+            <p>Quand le bac devient moins propre, notre guide pour <a href="../nettoyer-systeme-hydroponique/">nettoyer un système hydroponique</a> est souvent plus utile qu’un changement de dosage improvisé. Et si ton vrai doute porte surtout sur le moment de repartir sur une solution neuve, garde aussi notre repère sur <a href="../quand-changer-eau-hydroponie/">quand changer l’eau en hydroponie</a>.</p>
             <h2 id="faut-il-tout-mesurer-des-le-depart">Faut-il tout mesurer dès le départ ?</h2>
             <p>Pas forcément. Mesurer finement peut devenir utile plus tard, mais ce n’est pas obligatoire pour comprendre la logique générale. Si tu débutes avec un petit système, des cultures faciles et une solution adaptée, tu peux déjà aller loin avec de la méthode, de l’observation et un peu de constance.</p>
             <p>Le vrai risque au début n’est pas de manquer d’outils. Le vrai risque est de se perdre dans des réglages trop nombreux avant d’avoir validé les bases.</p>
@@ -1932,8 +1938,8 @@
     TimeRequired = "PT7M"
     DatePublished = "2026-04-04T16:36:00+02:00"
     DateModified = "2026-04-04T16:36:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Léa Martel"
+    AuthorType = "Person"
     Category = "Cultures faciles"
     ImageFileName = "lettuce-5178889_1280-A1a5V3WepZHWp1W2.webp"
     ImageAlt = "Laitue hydroponique compacte et saine dans un petit système intérieur"
@@ -2030,8 +2036,8 @@
     TimeRequired = "PT7M"
     DatePublished = "2026-04-04T16:44:00+02:00"
     DateModified = "2026-04-04T16:44:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Léa Martel"
+    AuthorType = "Person"
     Category = "Cultures faciles"
     ImageFileName = "basilic-hydroponie-interieur.jpg"
     ImageAlt = "Plant de basilic sain et compact cultivé en hydroponie en intérieur"
@@ -2119,11 +2125,13 @@
     TimeRequired = "PT7M"
     DatePublished = "2026-04-04T16:52:00+02:00"
     DateModified = "2026-04-04T16:52:00+02:00"
-    AuthorName = "Équipe HydroFacile"
-    AuthorType = "Organization"
+    AuthorName = "Nicolas Aubert"
+    AuthorType = "Person"
     Category = "Routine & réglages"
     ImageFileName = "nettoyer-systeme-hydroponique.svg"
     ImageAlt = "Petit système hydroponique démonté et nettoyé sur un plan de travail clair"
+    CardImageFileName = "nettoyer-systeme-hydroponique.jpg"
+    CardImageAlt = "Nettoyage d'un verre au goupillon dans un évier pour illustrer l'entretien d'un système hydroponique"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Objectif : garder une eau propre, des racines saines et un bac facile à suivre<br>Quand agir : dès que des dépôts, une odeur ou une saleté visible s’installent<br>Routine utile : contrôle léger fréquent, nettoyage plus complet quand le système se dégrade<br>Erreur classique : attendre trop longtemps parce que “ça pousse encore”<br>Point clé : un réservoir opaque et un petit système simple se nettoient beaucoup plus facilement</p>
@@ -2141,7 +2149,7 @@
             <h3>3. Regarde les racines et les zones sensibles</h3>
             <p>Profite du nettoyage pour regarder l’état général. Si les racines sont nettes et que l’odeur reste normale, c’est déjà un très bon signe. Si quelque chose te semble inhabituel, reviens aussi vérifier la <a href="../lumiere-hydroponie-appartement/">lumière</a> et les <a href="../nutriments-hydroponie-debutant/">nutriments</a> plutôt que de corriger au hasard.</p>
             <h3>4. Repars sur une base propre</h3>
-            <p>Quand le bac est propre, remets une solution nette et replace les plantes calmement. Sur un petit système, cette étape suffit souvent à redonner de la clarté à toute la routine.</p>
+            <p>Quand le bac est propre, remets une solution nette et replace les plantes calmement. Sur un petit système, cette étape suffit souvent à redonner de la clarté à toute la routine. Si tu hésites entre simple rinçage, ajout d’eau ou renouvellement complet, appuie-toi aussi sur notre guide pour <a href="../quand-changer-eau-hydroponie/">savoir quand changer l’eau en hydroponie</a>.</p>
             <h2 id="les-points-qui-rendent-le-nettoyage-plus-facile">Les points qui rendent le nettoyage plus facile</h2>
             <ul>
               <li>un réservoir opaque qui limite l’entrée de lumière ;</li>
@@ -2207,6 +2215,115 @@
     }
   }
 
+  $overrides["quand-changer-eau-hydroponie"] = [ordered]@{
+    Title = "Quand changer l’eau en hydroponie ? Le repère simple pour débuter"
+    CardTitle = "Quand changer l’eau en hydroponie ?"
+    SeoTitle = "Quand changer l'eau en hydroponie"
+    Description = "Quand changer l’eau en hydroponie : comment reconnaître le bon moment, refaire une solution propre et garder un petit système stable en appartement."
+    Intro = "Au début, beaucoup de questions tournent autour des nutriments. Pourtant, le doute le plus concret arrive souvent un peu plus tard : faut-il simplement rajouter de l’eau, ou refaire toute la solution ? Sur un petit système en appartement, la bonne réponse tient moins à un calendrier rigide qu’à quelques signes faciles à lire."
+    TimeRequired = "PT6M"
+    DatePublished = "2026-04-09T19:20:00+02:00"
+    DateModified = "2026-04-09T19:20:00+02:00"
+    AuthorName = "Nicolas Aubert"
+    AuthorType = "Person"
+    Category = "Routine & réglages"
+    ImageFileName = "quand-changer-eau-hydroponie.svg"
+    ImageAlt = "Petit réservoir hydroponique en appartement avec niveau d’eau, solution renouvelée et repères simples pour débutant"
+    CardImageFileName = "quand-changer-eau-hydroponie.jpg"
+    CardImageAlt = "Racines visibles dans un vase d’eau pour illustrer le renouvellement de l’eau en hydroponie"
+    BodyHtml = @'
+            <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
+            <p>Pas besoin de changer toute l’eau tous les jours<br>Le bon réflexe : observer la clarté, l’odeur, les racines et la vitesse de pousse<br>Ajout simple d’eau : quand le niveau baisse mais que le système reste propre et lisible<br>Changement complet : quand la solution fatigue, que le bac se charge ou que tu ne lis plus bien ce qui se passe<br>Erreur classique : ajouter des nutriments dans une vieille solution au lieu de repartir proprement</p>
+            <h2 id="pourquoi-cette-question-revient-vite">Pourquoi cette question revient vite quand on débute</h2>
+            <p>Sur un petit système, le niveau baisse, les plantes évoluent, la solution change d’aspect, et on ne sait pas toujours si tout cela est normal. C’est exactement le moment où beaucoup de débutants cherchent une fréquence fixe. Le problème, c’est qu’un calendrier seul ne suffit pas : un petit bac très lumineux, une laitue qui pousse vite ou une semaine oubliée ne se lisent pas de la même façon.</p>
+            <p>Le bon objectif n’est donc pas de retenir une règle rigide. Le bon objectif est de savoir distinguer trois cas simples : le niveau baisse normalement, la solution commence à fatiguer, ou le système a besoin d’un vrai retour au propre. Si tu pars d’un format clair comme dans notre guide sur l’<a href="../hydroponie-sans-pompe-appartement/">hydroponie sans pompe en appartement</a>, cette lecture devient beaucoup plus facile.</p>
+            <h2 id="ajouter-de-l-eau-ou-refaire-toute-la-solution">Ajouter de l’eau ou refaire toute la solution ?</h2>
+            <h3>Quand un simple ajout d’eau suffit</h3>
+            <p>Si le niveau baisse, mais que l’eau reste nette, que l’odeur reste normale, que les racines sont propres et que la plante avance bien, tu n’es pas forcément face à un problème. Sur un petit système stable, compléter le niveau peut suffire à court terme.</p>
+            <p>Le bon sens de débutant est le suivant : si le bac reste lisible, garde le geste simple. Si, en revanche, tu commences à compenser sans trop savoir ce qu’il reste réellement dans la solution, il devient souvent plus rassurant de repartir sur une base propre.</p>
+            <h3>Quand il vaut mieux refaire la solution</h3>
+            <p>Le changement complet devient plus pertinent quand la solution ne raconte plus une histoire claire. C’est le cas si elle paraît moins nette, si des dépôts s’installent, si l’odeur change, si les racines sont moins lisibles ou si la plante ralentit alors que la <a href="../lumiere-hydroponie-appartement/">lumière</a> reste correcte.</p>
+            <p>Autrement dit : dès que tu n’es plus dans un simple “niveau qui baisse”, mais dans un bac que tu comprends moins bien, mieux vaut souvent refaire la solution que bricoler dessus.</p>
+            <h2 id="les-signes-qui-indiquent-que-la-solution-fatigue">Les signes qui indiquent que la solution fatigue</h2>
+            <ul>
+              <li>l’eau paraît moins claire ou moins agréable à lire ;</li>
+              <li>une odeur inhabituelle apparaît à l’ouverture ;</li>
+              <li>des traces, dépôts ou saletés s’installent dans le réservoir ;</li>
+              <li>les racines semblent moins nettes qu’au départ ;</li>
+              <li>la plante ralentit sans vraie explication évidente ;</li>
+              <li>tu as laissé filer la routine plusieurs jours et tu ne sais plus très bien où tu en es.</li>
+            </ul>
+            <p>Ces signaux ne veulent pas dire qu’il faut paniquer. Ils veulent simplement dire qu’un redémarrage propre apportera souvent plus de clarté qu’une correction à moitié improvisée. Dans ce cas, le duo le plus utile reste notre guide sur les <a href="../nutriments-hydroponie-debutant/">nutriments hydroponiques pour débutant</a> et celui sur le <a href="../nettoyer-systeme-hydroponique/">nettoyage du système</a>.</p>
+            <h2 id="le-repere-simple-pour-un-petit-systeme-en-appartement">Le repère simple pour un petit système en appartement</h2>
+            <p>Sur HydroFacile, le repère le plus simple n’est pas “je change à date fixe”, mais “je change quand le système devient moins lisible que d’habitude”. Plus le réservoir est petit, plus il faut regarder souvent. Plus le setup reste propre, compact et facile à ouvrir, plus la décision devient simple.</p>
+            <p>Avec des cultures faciles comme la <a href="../laitue-hydroponique-appartement/">laitue hydroponique en appartement</a> ou le <a href="../basilic-hydroponie-interieur/">basilic en hydroponie intérieure</a>, tu peux très vite apprendre à reconnaître ce moment. L’idée n’est pas de surveiller sans arrêt. L’idée est de garder un bac suffisamment lisible pour intervenir avant que tout se brouille.</p>
+            <h2 id="comment-changer-l-eau-sans-stresser-les-plantes">Comment changer l’eau sans stresser les plantes</h2>
+            <h3>1. Prépare une base propre</h3>
+            <p>Avant de toucher aux plantes, prépare ton espace, ton eau et ce qu’il faut pour remettre une solution nette. Plus tout est prêt, plus l’opération reste simple.</p>
+            <h3>2. Sors les plantes calmement si besoin</h3>
+            <p>Sur un petit système, déplace les plantes avec douceur, juste le temps nécessaire. L’objectif n’est pas de les manipuler longtemps, mais de te redonner un bac clair et propre.</p>
+            <h3>3. Vide, rince et relis le système</h3>
+            <p>Profite du changement pour regarder le réservoir, les racines et l’état général. Si tu vois que le bac s’est vraiment chargé, va plus loin avec notre routine pour <a href="../nettoyer-systeme-hydroponique/">nettoyer un système hydroponique</a>. Si tout restait globalement propre, un renouvellement simple suffit souvent.</p>
+            <h3>4. Repars sur une solution claire et mesurée</h3>
+            <p>Remets une solution propre, avec un dosage simple et stable. Le plus utile ici n’est pas d’optimiser, mais de repartir sur quelque chose que tu peux relire facilement les jours suivants.</p>
+            <h2 id="les-erreurs-qui-compliquent-la-routine">Les erreurs qui compliquent la routine</h2>
+            <ul>
+              <li>attendre un gros problème visible avant d’agir ;</li>
+              <li>rajouter sans fin de l’eau ou des nutriments dans une solution déjà fatiguée ;</li>
+              <li>changer l’eau, le dosage et la lumière en même temps ;</li>
+              <li>chercher une fréquence magique au lieu de regarder le bac réel ;</li>
+              <li>garder un réservoir trop grand ou trop pénible à ouvrir pour débuter.</li>
+            </ul>
+            <p>Le piège classique, c’est de croire qu’une solution doit être “sauvée” coûte que coûte. Pour un débutant, repartir proprement au bon moment est souvent plus simple, plus rassurant et plus formateur.</p>
+            <h2 id="faq">FAQ</h2>
+            <h3>Faut-il changer toute l’eau dès que le niveau baisse ?</h3>
+            <p>Non. Si le niveau baisse mais que la solution reste propre, sans odeur inhabituelle, et que la plante pousse bien, un simple complément peut suffire. Le changement complet devient plus utile quand le bac devient moins lisible ou moins net.</p>
+            <h3>Peut-on seulement rajouter de l’eau à chaque fois ?</h3>
+            <p>Pas indéfiniment. Sur un petit système, compléter peut dépanner, mais à un moment il devient plus clair de refaire toute la solution plutôt que de corriger un mélange vieillissant qu’on comprend de moins en moins.</p>
+            <h3>Faut-il mesurer le pH pour savoir quand changer l’eau ?</h3>
+            <p>Ce n’est pas obligatoire pour débuter. Le pH peut devenir utile plus tard, mais sur un petit système débutant, la clarté du bac, l’odeur, l’état des racines et la stabilité générale donnent déjà de très bons repères.</p>
+            <h2 id="conclusion">En résumé</h2>
+            <p>Savoir quand changer l’eau en hydroponie, ce n’est pas réciter un calendrier. C’est reconnaître le moment où le bac cesse d’être simple à lire. Si le système reste net, un complément peut suffire. S’il devient flou, chargé ou moins sain, repartir sur une solution propre est souvent la meilleure décision. Pour rester dans cette logique simple, complète ce guide avec nos repères sur les <a href="../nutriments-hydroponie-debutant/">nutriments</a>, la <a href="../lumiere-hydroponie-appartement/">lumière</a> et le <a href="../nettoyer-systeme-hydroponique/">nettoyage</a>.</p>
+'@
+    Faq = @(
+      [ordered]@{
+        Question = "À quelle fréquence faut-il changer l'eau en hydroponie ?"
+        Answer = "Il n'y a pas de fréquence universelle vraiment utile pour débuter. Le meilleur repère est l'état réel du bac : clarté de la solution, odeur, propreté du réservoir, état des racines et facilité à lire le système."
+      },
+      [ordered]@{
+        Question = "Comment savoir si je peux juste rajouter de l'eau ?"
+        Answer = "Si le niveau baisse mais que la solution reste propre, que les racines sont nettes et que la plante avance bien, un ajout d'eau peut suffire. Si le bac devient moins clair ou moins sain, mieux vaut refaire la solution."
+      },
+      [ordered]@{
+        Question = "Faut-il nettoyer le réservoir à chaque changement d'eau ?"
+        Answer = "Pas forcément comme un grand nettoyage complet à chaque fois. En revanche, il est utile de repartir au moins sur un bac propre et lisible, surtout si des dépôts ou une odeur commencent à s'installer."
+      }
+    )
+    HowTo = [ordered]@{
+      Name = "Comment changer simplement l'eau d'un petit système hydroponique"
+      Description = "Les étapes utiles pour savoir quand refaire la solution et repartir sur un petit système plus lisible en appartement."
+      Steps = @(
+        [ordered]@{
+          Name = "Observer le niveau et l'état du bac"
+          Text = "Regarde la clarté de la solution, l'odeur, la propreté du réservoir et l'état des racines avant de décider."
+        },
+        [ordered]@{
+          Name = "Distinguer ajout simple et renouvellement complet"
+          Text = "Complète seulement si tout reste propre et stable ; repars sur une solution neuve si le bac devient moins lisible."
+        },
+        [ordered]@{
+          Name = "Préparer une base propre"
+          Text = "Organise l'espace, vide le réservoir si besoin et garde de quoi remettre une solution claire et mesurée."
+        },
+        [ordered]@{
+          Name = "Relancer une routine simple"
+          Text = "Replace les plantes calmement puis surveille à nouveau l'eau, les racines et la vitesse de pousse les jours suivants."
+        }
+      )
+    }
+  }
+
   return $overrides
 }
+
 
