@@ -851,6 +851,7 @@ a {
 .card h3,
 .article-card h3 {
   margin: 0.2rem 0 0.55rem;
+  text-wrap: balance;
 }
 
 .card p,
@@ -1208,6 +1209,11 @@ a {
 .recipe-card h3,
 .template-note h3 {
   margin-top: 0;
+}
+
+.editorial-feature h3,
+.editorial-item h3 {
+  text-wrap: balance;
 }
 
 .article-note,

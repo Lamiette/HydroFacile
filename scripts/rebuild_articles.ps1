@@ -60,6 +60,42 @@ function HtmlEscape {
   return [System.Security.SecurityElement]::Escape([string]$text)
 }
 
+function Get-ArticleCardTitle {
+  param([pscustomobject]$article)
+
+  if ($null -eq $article) { return "" }
+
+  if ($article.PSObject.Properties.Match("CardTitle").Count -gt 0 -and -not [string]::IsNullOrWhiteSpace([string]$article.CardTitle)) {
+    return [string]$article.CardTitle
+  }
+
+  return [string]$article.Title
+}
+
+function Get-ArticleCardSearchText {
+  param([pscustomobject]$article)
+
+  if ($null -eq $article) { return "" }
+
+  $values = @()
+  foreach ($candidate in @(
+      (Get-ArticleCardTitle $article),
+      $article.Title,
+      $article.SeoTitle,
+      $article.Description,
+      $article.Category
+    )) {
+    if ([string]::IsNullOrWhiteSpace([string]$candidate)) { continue }
+
+    $trimmed = ([string]$candidate).Trim()
+    if ($values -notcontains $trimmed) {
+      $values += $trimmed
+    }
+  }
+
+  return ($values -join " ")
+}
+
 function Get-MinifiedCss {
   param([string]$css)
 
@@ -889,6 +925,7 @@ function Apply-ArticleOverride {
 
   $supportedKeys = @(
     "Title",
+    "CardTitle",
     "SeoTitle",
     "Description",
     "Intro",
@@ -970,6 +1007,7 @@ function Get-ArticleSources {
         Slug = $slug
         OutputName = Get-ArticleLegacyFileName ([PSCustomObject]@{ Slug = $slug })
         Title = [System.Net.WebUtility]::HtmlDecode($schema.name)
+        CardTitle = ""
         SeoTitle = ""
         Description = [System.Net.WebUtility]::HtmlDecode($schema.description)
         ImageRemoteUrl = $imageRemoteUrl
@@ -1663,6 +1701,8 @@ function Build-ArticleCardHtml {
   )
 
   $category = Get-CanonicalArticleCategory -slug $article.Slug -rawCategory $article.Category -title $article.Title -description $article.Description
+  $cardTitle = Get-ArticleCardTitle $article
+  $searchText = Get-ArticleCardSearchText $article
   $summary = Get-CardExcerpt $article.Description
   $href = Get-ArticlePrettyHref -article $article -hrefPrefix $hrefPrefix
   $imageSrc = Get-ImagePagePath -fileName $article.ImageFileName -pagePrefix $imagePrefix
@@ -1670,11 +1710,11 @@ function Build-ArticleCardHtml {
   $className = "article-card$extraClass"
 
   return @"
-          <article class="$className">
+          <article class="$className" data-search-text="$(HtmlEscape $searchText)">
             <img src="$imageSrc" alt="$(HtmlEscape $article.ImageAlt)" title="$(HtmlEscape $article.ImageAlt)" loading="lazy" decoding="async"$imageDimensions>
             <div class="article-card-body">
               <div class="pill-row"><span class="pill">$(HtmlEscape $category)</span></div>
-              <h3><a href="$href">$(HtmlEscape $article.Title)</a></h3>
+              <h3><a href="$href" aria-label="$(HtmlEscape $article.Title)" title="$(HtmlEscape $article.Title)">$(HtmlEscape $cardTitle)</a></h3>
               <p>$(HtmlEscape $summary)</p>
             </div>
           </article>
@@ -1897,7 +1937,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
   $weeklyFeatureImageSrc = if ($weeklyFallbackArticle) { Get-ImagePagePath -fileName $weeklyFallbackArticle.ImageFileName -pagePrefix "images/articles/" } else { "" }
   $weeklyFeatureImageDimensions = if ($weeklyFallbackArticle) { Get-ArticleImageDimensionAttributes $weeklyFallbackArticle.ImageFileName } else { "" }
   $weeklyFeatureCategory = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Category } else { "À lire" }
-  $weeklyFeatureTitle = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.Title } else { "À découvrir cette semaine" }
+  $weeklyFeatureTitle = if ($weeklyFallbackArticle) { Get-ArticleCardTitle $weeklyFallbackArticle } else { "À découvrir cette semaine" }
   $weeklyFeatureDescription = if ($weeklyFallbackArticle) { Get-CardExcerpt $weeklyFallbackArticle.Description 178 } else { "Une sélection pratique choisie automatiquement selon la période de l'année." }
   $weeklyFeatureImageAlt = if ($weeklyFallbackArticle) { $weeklyFallbackArticle.ImageAlt } else { "Sélection d'article HydroFacile de la semaine" }
   $weeklyArticlesForJs = @(
@@ -1906,6 +1946,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
       [ordered]@{
         slug = $_.Slug
         title = $_.Title
+        displayTitle = Get-ArticleCardTitle $_
         description = $_.Description
         category = $_.Category
         href = Get-ArticlePrettyHref -article $_ -hrefPrefix "articles/"
@@ -1966,7 +2007,7 @@ $(Get-SiteFooterHtml -pagePrefix "")
 @"
             <article class="editorial-item">
               <span class="pill">$(HtmlEscape $_.Category)</span>
-              <h3><a href="$href">$(HtmlEscape $_.Title)</a></h3>
+              <h3><a href="$href" aria-label="$(HtmlEscape $_.Title)" title="$(HtmlEscape $_.Title)">$(HtmlEscape (Get-ArticleCardTitle $_))</a></h3>
               <p>$(HtmlEscape (Get-CardExcerpt $_.Description 118))</p>
             </article>
 "@
@@ -2235,8 +2276,10 @@ $(Get-SiteFooterHtml -pagePrefix "")
       }
 
       weeklyCategory.textContent = chosen.category || weeklyCategory.textContent;
-      weeklyTitle.textContent = chosen.title || weeklyTitle.textContent;
+      weeklyTitle.textContent = chosen.displayTitle || chosen.title || weeklyTitle.textContent;
       weeklyTitle.href = chosen.href || weeklyTitle.href;
+      weeklyTitle.title = chosen.title || chosen.displayTitle || "";
+      weeklyTitle.setAttribute("aria-label", chosen.title || chosen.displayTitle || "");
       weeklyDescription.textContent = truncate(chosen.description || weeklyDescription.textContent, 178);
       weeklyLink.href = chosen.href || weeklyLink.href;
 
@@ -2613,6 +2656,11 @@ $(Get-SiteFooterHtml -pagePrefix "../")
       };
 
       const getCardTitleText = (card) => {
+        const searchText = card.dataset.searchText;
+        if (searchText) {
+          return normalizeText(searchText);
+        }
+
         const titleLink = card.querySelector("h3 a");
         return titleLink ? normalizeText(titleLink.textContent) : "";
       };

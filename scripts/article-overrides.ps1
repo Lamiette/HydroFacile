@@ -1492,6 +1492,7 @@
 
   $overrides["hydroponie-sans-pompe-appartement"] = [ordered]@{
     Title = "Hydroponie sans pompe : le système le plus simple pour débuter en appartement"
+    CardTitle = "Hydroponie sans pompe pour débuter"
     SeoTitle = "Hydroponie sans pompe en appartement"
     Description = "Hydroponie sans pompe en appartement : le guide simple pour monter un premier système propre, choisir le bon contenant et réussir ses premières cultures."
     Intro = "Si tu veux commencer l'hydroponie chez toi sans bruit, sans tuyaux et sans te perdre dans les réglages, le système sans pompe est souvent la meilleure porte d'entrée. Il reste compact, propre et suffisamment lisible pour comprendre vite ce qui fonctionne."
@@ -1627,6 +1628,7 @@
 
   $overrides["cultures-faciles-hydroponie-appartement"] = [ordered]@{
     Title = "7 cultures hydroponiques faciles pour débuter en appartement"
+    CardTitle = "7 cultures hydroponiques faciles"
     SeoTitle = "Cultures hydroponiques faciles appartement"
     Description = "Découvre 7 cultures hydroponiques faciles pour débuter en appartement, choisir des plantes simples et prendre confiance sans système compliqué."
     Intro = "Quand on commence l'hydroponie chez soi, le vrai sujet n'est pas seulement le système. C'est aussi le choix des plantes. Une culture facile te montre vite si la lumière, l'eau et la routine sont correctes. Une culture trop exigeante brouille tout. Pour débuter en appartement, mieux vaut viser simple, lisible et rapide."
@@ -1730,6 +1732,7 @@
 
   $overrides["lumiere-hydroponie-appartement"] = [ordered]@{
     Title = "Lumière hydroponie appartement : fenêtre ou lampe pour bien débuter ?"
+    CardTitle = "Lumière en hydroponie : fenêtre ou lampe ?"
     SeoTitle = "Lumière hydroponie appartement"
     Description = "Lumière hydroponie appartement : comment choisir entre fenêtre et lampe, repérer un manque de lumière et stabiliser ses premières cultures."
     Intro = "La lumière est souvent le point qui fait la différence entre une culture qui démarre bien et une culture qui stagne. En appartement, on surestime facilement la clarté d'une pièce. Le bon réflexe n'est pas de viser un éclairage compliqué, mais de comprendre si ta fenêtre suffit ou si une petite lampe fera gagner beaucoup de régularité."
@@ -1825,6 +1828,7 @@
 
   $overrides["nutriments-hydroponie-debutant"] = [ordered]@{
     Title = "Nutriments hydroponie débutant : comprendre sans se compliquer"
+    CardTitle = "Nutriments en hydroponie : les bases"
     SeoTitle = "Nutriments hydroponie débutant"
     Description = "Nutriments hydroponie débutant : comment comprendre la solution nutritive, doser simplement et éviter les erreurs les plus courantes."
     Intro = "Les nutriments font souvent peur au début parce qu'on imagine tout de suite des réglages compliqués. En pratique, le plus important est de comprendre leur rôle, de rester régulier et d'éviter deux pièges classiques : improviser avec un engrais non adapté ou vouloir en mettre trop pour aller plus vite."
@@ -1921,6 +1925,7 @@
 
   $overrides["laitue-hydroponique-appartement"] = [ordered]@{
     Title = "Laitue hydroponique en appartement : la culture la plus simple pour commencer"
+    CardTitle = "Laitue hydroponique en appartement"
     SeoTitle = "Laitue hydroponique appartement"
     Description = "Laitue hydroponique en appartement : le guide simple pour bien choisir, garder une belle lumière et récolter vite sans système compliqué."
     Intro = "Si tu veux une première culture vraiment rassurante, la laitue est difficile à battre. Elle pousse vite, prend peu de place et permet de comprendre facilement la lumière, l'eau et la propreté du système. Pour débuter en hydroponie en appartement, c'est souvent la meilleure plante école."
@@ -2018,6 +2023,7 @@
 
   $overrides["basilic-hydroponie-interieur"] = [ordered]@{
     Title = "Basilic hydroponie intérieur : facile, rapide et très utile"
+    CardTitle = "Basilic en hydroponie intérieure"
     SeoTitle = "Basilic hydroponie intérieur"
     Description = "Basilic hydroponie intérieur : comment réussir une plante dense, productive et simple à garder en appartement."
     Intro = "Le basilic fait partie des plantes les plus motivantes à cultiver chez soi. Il pousse assez vite, sert vraiment en cuisine et donne tout de suite l'impression que le système devient utile. En hydroponie intérieur, il reste accessible à condition de lui offrir surtout une lumière régulière et une taille simple."
@@ -2106,6 +2112,7 @@
 
   $overrides["nettoyer-systeme-hydroponique"] = [ordered]@{
     Title = "Nettoyer un système hydroponique : la routine simple pour garder un bac propre"
+    CardTitle = "Nettoyer son système hydroponique"
     SeoTitle = "Nettoyer un système hydroponique"
     Description = "Nettoyer un système hydroponique sans se compliquer : les bons gestes pour garder le réservoir, les racines et le matériel propres."
     Intro = "Un système hydroponique simple reste agréable tant qu'il reste propre. Quand le bac devient pénible à ouvrir, que des dépôts s'installent ou qu'une odeur apparaît, la routine perd en clarté. Bonne nouvelle : pour un débutant, le nettoyage n'a pas besoin d'être compliqué. Il doit surtout être régulier, simple et facile à refaire."
