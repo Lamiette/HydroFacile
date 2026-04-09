@@ -687,7 +687,7 @@ a {
 .search-panel-compact .search-input {
   min-height: 2.7rem;
   padding: 0.7rem 0.95rem;
-  background: var(--surface-mist);
+  background: #fff;
 }
 
 .search-input:focus {
