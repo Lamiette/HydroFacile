@@ -32,6 +32,13 @@
 
     gtag('config', 'G-QQH5R1ZY11');
   </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w96dagou9p");
+  </script>
 
   <link rel="icon" href="images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
@@ -257,49 +264,50 @@
         return;
       }
 
-      const slugKeywords = {
-        spring: ["printemps", "semis", "laitue", "laitues", "radis", "epinard", "epinards", "fraise", "fraises", "aromatiques", "calendrier"],
-        summer: ["ete", "chaleur", "canicule", "tomate", "tomates", "poivron", "poivrons", "arrosage", "soleil", "eau"],
-        autumn: ["automne", "compost", "paillage", "bulbes", "proteger", "recolte", "nuisibles", "pluie"],
-        winter: ["hiver", "materiel", "planifier", "preparer", "lunaire", "interieur", "structure"]
+      const articleBySlug = new Map(weeklyArticles.map((article) => [article.slug, article]));
+      const monthFeatureQueues = {
+        1: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement"],
+        2: ["lumiere-hydroponie-appartement", "laitue-hydroponique-appartement", "cultures-faciles-hydroponie-appartement", "hydroponie-sans-pompe-appartement"],
+        3: ["cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement", "hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement"],
+        4: ["laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "cultures-faciles-hydroponie-appartement", "hydroponie-sans-pompe-appartement"],
+        5: ["basilic-hydroponie-interieur", "cultures-faciles-hydroponie-appartement", "nutriments-hydroponie-debutant", "hydroponie-sans-pompe-appartement"],
+        6: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "nutriments-hydroponie-debutant", "lumiere-hydroponie-appartement"],
+        7: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "lumiere-hydroponie-appartement", "nutriments-hydroponie-debutant"],
+        8: ["nettoyer-systeme-hydroponique", "quand-changer-eau-hydroponie", "nutriments-hydroponie-debutant", "basilic-hydroponie-interieur"],
+        9: ["hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement", "cultures-faciles-hydroponie-appartement", "nutriments-hydroponie-debutant"],
+        10: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nettoyer-systeme-hydroponique", "nutriments-hydroponie-debutant"],
+        11: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nutriments-hydroponie-debutant", "quand-changer-eau-hydroponie"],
+        12: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "cultures-faciles-hydroponie-appartement", "nutriments-hydroponie-debutant"]
       };
-
-      const monthKeywords = {
-        1: ["materiel", "planifier", "lunaire", "compost"],
-        2: ["semis", "aromatiques", "laitue", "laitues"],
-        3: ["semis", "radis", "laitue", "laitues", "fraise", "fraises"],
-        4: ["tomate", "tomates", "radis", "fraises", "potager"],
-        5: ["tomate", "tomates", "poivron", "poivrons", "aromatiques", "grimpantes"],
-        6: ["canicule", "eau", "paillage", "poivrons", "tomates"],
-        7: ["canicule", "soleil", "arrosage", "eau", "pollinisateurs"],
-        8: ["canicule", "arrosage", "nuisibles", "eau", "recolte"],
-        9: ["recolte", "compost", "petits-fruits", "potager"],
-        10: ["compost", "paillage", "bulbes", "pluie"],
-        11: ["compost", "materiel", "preparer", "structure"],
-        12: ["materiel", "planifier", "lunaire", "durable"]
+      const seasonFeatureQueues = {
+        winter: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement"],
+        spring: ["cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement"],
+        summer: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "lumiere-hydroponie-appartement", "nutriments-hydroponie-debutant", "basilic-hydroponie-interieur"],
+        autumn: ["hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement", "nettoyer-systeme-hydroponique", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement"]
       };
+      const evergreenQueue = [
+        "hydroponie-sans-pompe-appartement",
+        "cultures-faciles-hydroponie-appartement",
+        "lumiere-hydroponie-appartement",
+        "nutriments-hydroponie-debutant",
+        "laitue-hydroponique-appartement",
+        "basilic-hydroponie-interieur",
+        "nettoyer-systeme-hydroponique",
+        "quand-changer-eau-hydroponie"
+      ];
 
-      const now = new Date();
-      const month = now.getMonth() + 1;
-      const season = getSeason(month);
-      const isoWeek = getIsoWeekNumber(now);
-      const weekKey = now.getFullYear() + "-" + String(isoWeek).padStart(2, "0");
+      const siteDateParts = getSiteDateParts();
+      const currentSelection = getWeeklySelection(getWeekContext(siteDateParts));
+      const previousSelection = getWeeklySelection(getWeekContext(addDaysToDateParts(siteDateParts, -7)));
+      let chosen = currentSelection.article;
 
-      const ranked = weeklyArticles
-        .map((article) => ({
-          article,
-          score: getArticleScore(article, season, month)
-        }))
-        .sort((left, right) => {
-          if (right.score !== left.score) {
-            return right.score - left.score;
-          }
+      if (chosen && previousSelection.article && currentSelection.pool.length > 1 && chosen.slug === previousSelection.article.slug) {
+        chosen = currentSelection.pool.find((article) => article.slug !== previousSelection.article.slug) || chosen;
+      }
 
-          return new Date(right.article.datePublished || 0) - new Date(left.article.datePublished || 0);
-        });
-
-      const shortlist = ranked.slice(0, Math.min(6, ranked.length));
-      const chosen = shortlist[hashString(weekKey) % shortlist.length].article;
+      if (!chosen) {
+        return;
+      }
 
       weeklyImage.src = chosen.imageSrc || weeklyImage.src;
       weeklyImage.alt = chosen.imageAlt || chosen.title || weeklyImage.alt;
@@ -337,41 +345,97 @@
         return "winter";
       }
 
-      function getIsoWeekNumber(date) {
-        const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-        const day = utcDate.getUTCDay() || 7;
-        utcDate.setUTCDate(utcDate.getUTCDate() + 4 - day);
-        const yearStart = new Date(Date.UTC(utcDate.getUTCFullYear(), 0, 1));
-        return Math.ceil((((utcDate - yearStart) / 86400000) + 1) / 7);
+      function getSiteDateParts(date = new Date()) {
+        const formatter = new Intl.DateTimeFormat("en-CA", {
+          timeZone: "Europe/Paris",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit"
+        });
+        const parts = formatter.formatToParts(date).reduce((result, part) => {
+          if (part.type !== "literal") {
+            result[part.type] = part.value;
+          }
+
+          return result;
+        }, {});
+
+        return {
+          year: Number(parts.year),
+          month: Number(parts.month),
+          day: Number(parts.day)
+        };
       }
 
-      function getArticleScore(article, currentSeason, currentMonth) {
-        const haystack = [article.slug || "", article.title || "", article.description || "", article.category || ""].join(" ").toLowerCase();
-        let score = 0;
+      function addDaysToDateParts(dateParts, dayOffset) {
+        const date = new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day));
+        date.setUTCDate(date.getUTCDate() + dayOffset);
 
-        (slugKeywords[currentSeason] || []).forEach((keyword) => {
-          if (haystack.includes(keyword)) {
-            score += 4;
+        return {
+          year: date.getUTCFullYear(),
+          month: date.getUTCMonth() + 1,
+          day: date.getUTCDate()
+        };
+      }
+
+      function getWeekContext(dateParts) {
+        const date = new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day));
+        const day = date.getUTCDay() || 7;
+        date.setUTCDate(date.getUTCDate() + 4 - day);
+
+        const isoYear = date.getUTCFullYear();
+        const yearStart = new Date(Date.UTC(isoYear, 0, 1));
+        const isoWeek = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+
+        return {
+          isoYear,
+          isoWeek,
+          month: dateParts.month,
+          season: getSeason(dateParts.month)
+        };
+      }
+
+      function getRotationPool(month, season) {
+        const seen = new Set();
+        const orderedSlugs = [
+          ...(monthFeatureQueues[month] || []),
+          ...(seasonFeatureQueues[season] || []),
+          ...evergreenQueue,
+          ...weeklyArticles.map((article) => article.slug)
+        ];
+
+        return orderedSlugs.flatMap((slug) => {
+          if (seen.has(slug)) {
+            return [];
           }
-        });
 
-        (monthKeywords[currentMonth] || []).forEach((keyword) => {
-          if (haystack.includes(keyword)) {
-            score += 3;
+          const article = articleBySlug.get(slug);
+          if (!article) {
+            return [];
           }
-        });
 
-        const publishedAt = Date.parse(article.datePublished || "");
-        if (!Number.isNaN(publishedAt)) {
-          const ageInDays = Math.max(0, (Date.now() - publishedAt) / 86400000);
-          score += Math.max(0, 6 - Math.floor(ageInDays / 120));
+          seen.add(slug);
+          return [article];
+        });
+      }
+
+      function getWeeklySelection(context) {
+        const pool = getRotationPool(context.month, context.season);
+
+        if (!pool.length) {
+          return {
+            article: null,
+            pool: []
+          };
         }
 
-        if (/guide|calendrier|hydro|culture|debut/i.test(haystack)) {
-          score += 1;
-        }
+        const index = ((context.isoYear * 53) + context.isoWeek) % pool.length;
 
-        return score;
+        return {
+          article: pool[index],
+          pool,
+          index
+        };
       }
 
       function truncate(text, maxLength) {
@@ -380,10 +444,6 @@
         }
 
         return text.slice(0, maxLength - 1).trimEnd() + "…";
-      }
-
-      function hashString(value) {
-        return Array.from(value).reduce((hash, character) => ((hash * 31) + character.charCodeAt(0)) >>> 0, 7);
       }
     })();
   </script>
