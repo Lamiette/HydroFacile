@@ -1502,10 +1502,8 @@
     AuthorName = "Camille Renaud"
     AuthorType = "Person"
     Category = "Matériel & systèmes"
-    ImageFileName = "hydroponie-sans-pompe-appartement.svg"
-    ImageAlt = "Petit système hydroponique sans pompe avec réservoir opaque, laitue et basilic pour débuter en appartement"
-    CardImageFileName = "hydroponie-sans-pompe-appartement.jpg"
-    CardImageAlt = "Bocaux de culture en eau alignés sur une étagère pour illustrer une hydroponie simple sans pompe"
+    ImageFileName = "hydroponie-sans-pompe-appartement.jpg"
+    ImageAlt = "Bocaux de culture en eau alignés sur une étagère pour illustrer une hydroponie simple sans pompe"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Format conseillé : petit bac sans pompe, stable et facile à ouvrir<br>Pour qui : débutant en appartement, peu de place, envie d’une routine simple<br>Plantes idéales : laitues, basilic, menthe, ciboulette, jeunes pousses<br>Matériel minimum : contenant opaque, couvercle, pots filet, substrat, nutriments, lumière correcte<br>Avantage principal : comprendre vite l’eau, l’air et la pousse sans ajouter de complexité<br>Erreur classique : choisir un bac trop grand ou une plante trop gourmande dès le premier essai</p>
@@ -1744,10 +1742,8 @@
     AuthorName = "Camille Renaud"
     AuthorType = "Person"
     Category = "Matériel & systèmes"
-    ImageFileName = "lumiere-hydroponie-appartement.svg"
-    ImageAlt = "Lampe horticole simple au-dessus d'un petit système hydroponique en appartement"
-    CardImageFileName = "lumiere-hydroponie-appartement.jpg"
-    CardImageAlt = "Étagères de plantes cultivées sous éclairage artificiel en intérieur"
+    ImageFileName = "lumiere-hydroponie-appartement.jpg"
+    ImageAlt = "Étagères de plantes cultivées sous éclairage artificiel en intérieur"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Question de départ : ta fenêtre donne-t-elle une lumière vraiment régulière ?<br>Fenêtre suffisante : possible pour des cultures faciles si l’emplacement reste clair plusieurs heures par jour<br>Lampe utile : quand la pièce manque de constance ou que la pousse devient lente et étirée<br>Plantes les plus tolérantes : laitue, basilic, jeunes pousses, petites aromatiques<br>Erreur classique : installer le bac dans une pièce agréable pour toi mais trop sombre pour les plantes</p>
@@ -1842,10 +1838,8 @@
     AuthorName = "Nicolas Aubert"
     AuthorType = "Person"
     Category = "Routine & réglages"
-    ImageFileName = "nutriments-hydroponie-debutant.svg"
-    ImageAlt = "Flacons de nutriments hydroponiques simples à côté d'un petit réservoir pour débutant"
-    CardImageFileName = "nutriments-hydroponie-debutant.jpg"
-    CardImageAlt = "Petites plantes en flacons transparents évoquant une solution nutritive simple en hydroponie"
+    ImageFileName = "nutriments-hydroponie-debutant.jpg"
+    ImageAlt = "Petites plantes en flacons transparents évoquant une solution nutritive simple en hydroponie"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Les nutriments remplacent ce que la terre apporterait normalement<br>Point de départ : utiliser un produit prévu pour l’hydroponie<br>Bon réflexe : suivre le dosage indiqué sans le renforcer<br>Erreur classique : penser qu’une plante lente a forcément besoin de plus d’engrais<br>À vérifier avant tout : lumière, propreté du bac, état des racines, stabilité de la routine</p>
@@ -2128,10 +2122,8 @@
     AuthorName = "Nicolas Aubert"
     AuthorType = "Person"
     Category = "Routine & réglages"
-    ImageFileName = "nettoyer-systeme-hydroponique.svg"
-    ImageAlt = "Petit système hydroponique démonté et nettoyé sur un plan de travail clair"
-    CardImageFileName = "nettoyer-systeme-hydroponique.jpg"
-    CardImageAlt = "Nettoyage d'un verre au goupillon dans un évier pour illustrer l'entretien d'un système hydroponique"
+    ImageFileName = "nettoyer-systeme-hydroponique.jpg"
+    ImageAlt = "Nettoyage d'un verre au goupillon dans un évier pour illustrer l'entretien d'un système hydroponique"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Objectif : garder une eau propre, des racines saines et un bac facile à suivre<br>Quand agir : dès que des dépôts, une odeur ou une saleté visible s’installent<br>Routine utile : contrôle léger fréquent, nettoyage plus complet quand le système se dégrade<br>Erreur classique : attendre trop longtemps parce que “ça pousse encore”<br>Point clé : un réservoir opaque et un petit système simple se nettoient beaucoup plus facilement</p>
@@ -2227,10 +2219,8 @@
     AuthorName = "Nicolas Aubert"
     AuthorType = "Person"
     Category = "Routine & réglages"
-    ImageFileName = "quand-changer-eau-hydroponie.svg"
-    ImageAlt = "Petit réservoir hydroponique en appartement avec niveau d’eau, solution renouvelée et repères simples pour débutant"
-    CardImageFileName = "quand-changer-eau-hydroponie.jpg"
-    CardImageAlt = "Racines visibles dans un vase d’eau pour illustrer le renouvellement de l’eau en hydroponie"
+    ImageFileName = "quand-changer-eau-hydroponie.jpg"
+    ImageAlt = "Racines visibles dans un vase d’eau pour illustrer le renouvellement de l’eau en hydroponie"
     BodyHtml = @'
             <h2 id="ce-qu-il-faut-savoir">Ce qu’il faut savoir en un coup d’œil</h2>
             <p>Pas besoin de changer toute l’eau tous les jours<br>Le bon réflexe : observer la clarté, l’odeur, les racines et la vitesse de pousse<br>Ajout simple d’eau : quand le niveau baisse mais que le système reste propre et lisible<br>Changement complet : quand la solution fatigue, que le bac se charge ou que tu ne lis plus bien ce qui se passe<br>Erreur classique : ajouter des nutriments dans une vieille solution au lieu de repartir proprement</p>

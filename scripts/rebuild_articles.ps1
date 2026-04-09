@@ -23,6 +23,7 @@ $siteContactEmail = "ecobalcon21@gmail.com"
 $siteContactFormAction = "https://formsubmit.co/$siteContactEmail"
 $siteLogoPath = "images\logo-site.png"
 $siteLogoUrl = "$siteUrl/images/logo-site.png"
+$googleAnalyticsMeasurementId = "G-QQH5R1ZY11"
 $primaryArticleSlugs = @(
   "hydroponie-sans-pompe-appartement",
   "cultures-faciles-hydroponie-appartement",
@@ -120,7 +121,21 @@ function Write-MinifiedStylesheet {
 }
 
 function Get-TagManagerHeadHtml {
-  return ""
+  if ([string]::IsNullOrWhiteSpace($googleAnalyticsMeasurementId)) {
+    return ""
+  }
+
+  return @"
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=$googleAnalyticsMeasurementId"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '$googleAnalyticsMeasurementId');
+  </script>
+"@
 }
 
 function Get-TagManagerBodyHtml {
@@ -266,6 +281,8 @@ function Get-RedirectHtml {
     [string]$description = "Cette page a changé d'adresse."
   )
 
+  $tagManagerHead = Get-TagManagerHeadHtml
+
   return @"
 <!doctype html>
 <html lang="fr">
@@ -277,6 +294,7 @@ function Get-RedirectHtml {
   <meta name="description" content="$(HtmlEscape $description)">
   <link rel="canonical" href="$targetUrl">
   <meta http-equiv="refresh" content="0; url=$targetUrl">
+$tagManagerHead
   <script>window.location.replace("$targetUrl");</script>
 </head>
 <body>
@@ -2483,7 +2501,7 @@ $tagManagerBody
       <div class="section-inner">
         <div class="page-hero" data-reveal>
           <div class="page-hero-copy">
-            <h1 class="page-title">Guides hydroponie pour débuter en appartement</h1>
+            <h1 class="page-title">Guides hydroponie pour débuter</h1>
             <p class="page-intro">
               Cette section rassemblera des contenus simples pour comprendre la culture sans terre, choisir un petit système et débuter avec des plantes faciles, même dans peu d'espace.
             </p>
@@ -2592,7 +2610,7 @@ $tagManagerBody
       <div class="section-inner">
         <div class="page-hero" data-reveal>
           <div class="page-hero-copy">
-            <h1 class="page-title">Guides hydroponie pour d&eacute;buter en appartement</h1>
+            <h1 class="page-title">Guides hydroponie pour d&eacute;buter</h1>
             <p class="page-intro">
               Une base claire pour comprendre la culture hydroponique facile, choisir un syst&egrave;me hydroponique d&eacute;butant et r&eacute;ussir un potager int&eacute;rieur hydroponique simple &agrave; maintenir.
             </p>
