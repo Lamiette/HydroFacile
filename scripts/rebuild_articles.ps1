@@ -28,6 +28,7 @@ $microsoftClarityProjectId = "w96dagou9p"
 $primaryArticleSlugs = @(
   "hydroponie-sans-pompe-appartement",
   "cultures-faciles-hydroponie-appartement",
+  "faire-germer-graines-hydroponie",
   "lumiere-hydroponie-appartement",
   "nutriments-hydroponie-debutant",
   "quand-changer-eau-hydroponie",
@@ -460,6 +461,7 @@ function Get-CanonicalArticleCategory {
   $categoryBySlug = @{
     "hydroponie-sans-pompe-appartement" = "Matériel & systèmes"
     "cultures-faciles-hydroponie-appartement" = "Débuter"
+    "faire-germer-graines-hydroponie" = "Débuter"
     "lumiere-hydroponie-appartement" = "Matériel & systèmes"
     "nutriments-hydroponie-debutant" = "Routine & réglages"
     "laitue-hydroponique-appartement" = "Cultures faciles"
@@ -2310,8 +2312,8 @@ $(Get-SiteFooterHtml -pagePrefix "")
         1: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement"],
         2: ["lumiere-hydroponie-appartement", "laitue-hydroponique-appartement", "cultures-faciles-hydroponie-appartement", "hydroponie-sans-pompe-appartement"],
         3: ["cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement", "hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement"],
-        4: ["laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "cultures-faciles-hydroponie-appartement", "hydroponie-sans-pompe-appartement"],
-        5: ["basilic-hydroponie-interieur", "cultures-faciles-hydroponie-appartement", "nutriments-hydroponie-debutant", "hydroponie-sans-pompe-appartement"],
+        4: ["faire-germer-graines-hydroponie", "laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "cultures-faciles-hydroponie-appartement", "hydroponie-sans-pompe-appartement"],
+        5: ["basilic-hydroponie-interieur", "faire-germer-graines-hydroponie", "cultures-faciles-hydroponie-appartement", "nutriments-hydroponie-debutant", "hydroponie-sans-pompe-appartement"],
         6: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "nutriments-hydroponie-debutant", "lumiere-hydroponie-appartement"],
         7: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "lumiere-hydroponie-appartement", "nutriments-hydroponie-debutant"],
         8: ["nettoyer-systeme-hydroponique", "quand-changer-eau-hydroponie", "nutriments-hydroponie-debutant", "basilic-hydroponie-interieur"],
@@ -2322,13 +2324,14 @@ $(Get-SiteFooterHtml -pagePrefix "")
       };
       const seasonFeatureQueues = {
         winter: ["lumiere-hydroponie-appartement", "hydroponie-sans-pompe-appartement", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement"],
-        spring: ["cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement"],
+        spring: ["faire-germer-graines-hydroponie", "cultures-faciles-hydroponie-appartement", "laitue-hydroponique-appartement", "basilic-hydroponie-interieur", "hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement"],
         summer: ["quand-changer-eau-hydroponie", "nettoyer-systeme-hydroponique", "lumiere-hydroponie-appartement", "nutriments-hydroponie-debutant", "basilic-hydroponie-interieur"],
         autumn: ["hydroponie-sans-pompe-appartement", "lumiere-hydroponie-appartement", "nettoyer-systeme-hydroponique", "nutriments-hydroponie-debutant", "cultures-faciles-hydroponie-appartement"]
       };
       const evergreenQueue = [
         "hydroponie-sans-pompe-appartement",
         "cultures-faciles-hydroponie-appartement",
+        "faire-germer-graines-hydroponie",
         "lumiere-hydroponie-appartement",
         "nutriments-hydroponie-debutant",
         "laitue-hydroponique-appartement",

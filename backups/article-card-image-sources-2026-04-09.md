@@ -31,3 +31,9 @@ Licence de référence : https://www.pexels.com/license/
   - Source : https://www.pexels.com/photo/close-up-of-plant-roots-in-water-vase-34030218/
   - Photographe : KAROLINA GRABOWSKA
   - Usage : vignette de carte uniquement
+
+- `faire-germer-graines-hydroponie.jpg`
+  - Article : `faire-germer-graines-hydroponie`
+  - Source : https://www.pexels.com/photo/green-seedlings-on-black-plastic-trays-11573787/
+  - Photographe : Alfo Medeiros
+  - Usage : vignette de carte et image hero de l'article

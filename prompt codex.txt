@@ -65,9 +65,11 @@ Maillage interne :
 - si pertinent, ajouter aussi des liens retour depuis quelques anciens contenus
 
 Image :
-- trouver une image libre de droit cohérente avec le sujet
-- si téléchargement/intégration possible, le faire proprement
-- sinon préparer tout ce qu’il faut : nom de fichier SEO, alt, source, crédit, emplacement recommandé
+- trouver une vraie image libre de droit cohérente avec le sujet, récupérée sur internet si possible
+- si téléchargement/intégration possible, le faire proprement et l’utiliser à la fois pour la vignette de l’article et l’image dans l’article
+- privilégier une vraie photo libre de droit plutôt qu’une illustration ou un SVG de remplacement
+- noter systématiquement la source, le crédit, la licence et le nom de fichier SEO retenu
+- sinon préparer tout ce qu’il faut : nom de fichier SEO, alt, source, crédit, licence, emplacement recommandé
 
 Intégration :
 - créer réellement l’article
