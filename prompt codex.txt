@@ -1,94 +1,268 @@
-Analyse tout le projet HydroFacile et crée le meilleur nouvel article SEO possible pour le site, en respectant strictement la structure existante.
+Tu travailles dans mon projet de site statique **HydroFacile**, dédié à l’hydroponie pour débutants en appartement.
 
-Ta mission complète :
-1. auditer les contenus existants
-2. identifier le meilleur sujet d’article à créer maintenant
-3. rédiger l’article
-4. l’intégrer au bon endroit dans le projet
-5. mettre à jour les fichiers liés (index, sitemap, flux, données, liens internes, etc.)
-6. préparer ou intégrer une image libre de droit cohérente
-7. faire un récapitulatif final clair
+## Mission
 
-Contraintes importantes :
-- site statique
-- ne pas casser la structure actuelle
-- réutiliser les conventions déjà en place
-- rester cohérent avec le ton HydroFacile : simple, pédagogue, rassurant, concret
-- cible : débutants en hydroponie en appartement
-- éviter les sujets trop larges ou trop concurrentiels
-- privilégier les sujets utiles, précis, maillables et à potentiel SEO réaliste
-- français naturel uniquement, sans style robotique
-- ne pas inventer de données précises non vérifiables
+Analyse le site existant, choisis **le meilleur sujet de nouvel article à créer maintenant**, puis **rédige et intègre cet article directement dans le projet** avec une vraie logique SEO, un ton naturel et une intégration propre dans l’écosystème du site.
 
-Audit à réaliser :
-- articles existants
-- structure H1/H2/H3
-- sujets déjà couverts
-- manques éditoriaux
-- opportunités longue traîne
-- maillage interne existant
-- métadonnées SEO
-- structure des templates/articles
-- sitemap, RSS, pages d’index, catégories/tags si présents
+L’objectif est de produire un article :
 
-Choix du sujet :
-- sélectionne le meilleur sujet de nouvel article
-- justifie brièvement le choix dans un commentaire ou un fichier de travail
-- définis :
-  - mot-clé principal
-  - mots-clés secondaires
-  - intention de recherche
-  - articles à lier
+* utile pour un lecteur français
+* cohérent avec les contenus déjà publiés
+* pertinent pour des débutants en hydroponie en intérieur
+* crédible, pratique et agréable à lire
+* intéressant pour le référencement naturel
+* bien relié aux autres contenus du site
+* réaliste en potentiel SEO, sans viser un sujet trop large ou trop concurrentiel
 
-Rédaction :
-- crée un article complet, utile, crédible et agréable à lire
-- H1 naturel et optimisé
-- introduction engageante
-- H2/H3 clairs
-- conseils pratiques
-- erreurs à éviter si pertinent
-- FAQ de fin seulement si elle apporte un vrai plus
-- conclusion naturelle
+---
 
-SEO :
-- title
-- meta description
-- slug
-- Hn propres
-- intégration naturelle du mot-clé principal
-- champ sémantique cohérent
-- alt image
-- Open Graph / Twitter / schema / canonical si le projet les gère déjà
+## 1. Analyse du site
 
-Maillage interne :
-- ajouter des liens depuis le nouvel article vers les contenus existants pertinents
-- si pertinent, ajouter aussi des liens retour depuis quelques anciens contenus
+Commence par analyser l’ensemble du projet :
 
-Image :
-- trouver une vraie image libre de droit cohérente avec le sujet, récupérée sur internet si possible
-- si téléchargement/intégration possible, le faire proprement et l’utiliser à la fois pour la vignette de l’article et l’image dans l’article
-- privilégier une vraie photo libre de droit plutôt qu’une illustration ou un SVG de remplacement
-- noter systématiquement la source, le crédit, la licence et le nom de fichier SEO retenu
-- sinon préparer tout ce qu’il faut : nom de fichier SEO, alt, source, crédit, licence, emplacement recommandé
+* articles existants
+* titres H1, H2, H3
+* sujets déjà traités
+* mots-clés déjà couverts
+* structure des fichiers d’articles
+* métadonnées SEO
+* maillage interne existant
+* sitemap, flux RSS, index d’articles, catégories, tags ou pages annexes si présents
+* images utilisées
+* ton éditorial global
+* conventions de structure et d’intégration du projet
 
-Intégration :
-- créer réellement l’article
-- mettre à jour les fichiers nécessaires
-- respecter exactement l’architecture du projet
+Identifie ensuite :
 
-Qualité :
-- vérifier doublons et cannibalisation
-- corriger le style, l’orthographe, la lisibilité
-- vérifier les liens
-- vérifier les métadonnées
-- livrer un résultat propre et cohérent
+* les sujets déjà bien couverts
+* les angles proches mais incomplets
+* les manques éditoriaux
+* les opportunités de longue traîne SEO
+* le sujet le plus pertinent à traiter maintenant
 
-À la fin :
-fais un récapitulatif court avec
-- sujet choisi
-- mot-clé principal
-- raison du choix
-- fichiers modifiés/créés
-- SEO ajouté
-- liens internes ajoutés
-- éventuelles actions manuelles restantes
+Ne choisis pas un sujet trop large si un angle plus précis, plus utile et plus accessible SEO est meilleur.
+
+Privilégie un sujet :
+
+* utile pour un débutant
+* cohérent avec l’hydroponie en appartement
+* facile à relier aux contenus existants
+* concret, maillable et à potentiel SEO réaliste
+
+---
+
+## 2. Choix du sujet
+
+Avant la rédaction, consigne brièvement dans un commentaire ou un fichier de travail :
+
+* sujet retenu
+* mot-clé principal
+* mots-clés secondaires
+* intention de recherche
+* raison du choix
+* articles existants vers lesquels faire des liens internes
+
+Puis passe directement à la création.
+
+---
+
+## 3. Exigence forte sur les titres
+
+Les titres doivent être **SEO-friendly mais surtout naturels et agréables à lire**.
+
+Règles :
+
+* éviter les titres rigides ou qui ressemblent à une liste de mots-clés
+* éviter les formulations lourdes, mécaniques ou sur-optimisées
+* privilégier un français naturel, fluide, clair et humain
+* le titre doit bien fonctionner à la fois :
+
+  * sur Google
+  * sur une carte d’article
+  * dans la page elle-même
+* si plusieurs formulations sont possibles, choisir la plus élégante et lisible
+* éviter les titres inutilement longs
+
+Avant de retenir le titre final, vérifier :
+
+* est-ce qu’il sonne bien à voix haute ?
+* est-ce qu’il donne envie d’être lu ?
+* est-ce qu’il semble écrit pour un humain ?
+* est-ce qu’il reste bon pour le SEO sans être artificiel ?
+
+Tu peux générer plusieurs variantes en interne, mais ne garder que la meilleure.
+
+---
+
+## 4. Rédaction de l’article
+
+Rédige un article :
+
+* original
+* utile
+* crédible
+* naturel
+* fluide
+* concret
+* agréable à lire
+
+Le texte doit être en **français naturel**, sans ton robotique ni remplissage SEO.
+
+### Style attendu
+
+* simple
+* pédagogue
+* rassurant
+* accessible
+* pratique
+* humain
+* cohérent avec le branding HydroFacile
+
+### Public visé
+
+Débutants en hydroponie en appartement, sans expertise technique.
+
+### Structure attendue
+
+* un H1 naturel et optimisé
+* une introduction engageante
+* plusieurs H2/H3 utiles
+* paragraphes lisibles
+* listes à puces si pertinent
+* conseils pratiques
+* erreurs à éviter si utile
+* FAQ de fin seulement si elle apporte une vraie valeur
+* conclusion naturelle avec ouverture vers d’autres contenus du site
+
+Ne gonfle pas artificiellement la longueur. Fais la bonne longueur pour le sujet.
+
+---
+
+## 5. SEO on-page
+
+Optimise l’article avec :
+
+* un title SEO unique
+* une meta description naturelle et engageante
+* un slug pertinent
+* une structure Hn propre
+* le mot-clé principal intégré naturellement
+* des variantes sémantiques bien réparties
+* un alt d’image pertinent
+* Open Graph / Twitter / schema.org Article / canonical si le projet les utilise déjà
+
+Objectif :
+
+* bonne lisibilité
+* bon alignement avec l’intention de recherche
+* bon potentiel de clic
+* cohérence avec le reste du site
+* pas de sur-optimisation
+
+Le title SEO et le H1 peuvent être proches, mais ne doivent pas devenir lourds ou artificiels.
+
+---
+
+## 6. Maillage interne
+
+Ajoute des liens internes intelligents :
+
+* depuis le nouvel article vers les contenus existants les plus pertinents
+* et si c’est cohérent, depuis quelques anciens contenus vers ce nouvel article
+
+Les liens doivent être naturels, utiles et non forcés.
+
+---
+
+## 7. Image
+
+Pour l’image principale, **cherche et utilise une nouvelle vraie photo libre de droit trouvée sur internet**.
+
+Règles :
+
+* ne pas réutiliser une image déjà présente dans le projet sauf demande explicite
+* privilégier une photo crédible et naturelle plutôt qu’une illustration générique ou un simple SVG
+* choisir une image cohérente avec l’hydroponie en appartement et le sujet de l’article
+* éviter les visuels kitsch, artificiels ou hors sujet
+
+Si possible :
+
+* télécharge l’image
+* optimise-la si le workflow le permet
+* place-la dans le bon dossier
+* utilise-la à la fois pour la vignette de l’article et l’image dans l’article
+
+Toujours noter :
+
+* la source
+* le crédit
+* la licence
+* le nom de fichier SEO retenu
+* le texte alt
+
+Si l’intégration complète n’est pas possible, prépare tout proprement avec les informations nécessaires et l’emplacement recommandé.
+
+---
+
+## 8. Intégration dans le projet
+
+Crée réellement l’article dans le bon format utilisé par le site.
+
+Respecte exactement la structure existante.
+
+Mets aussi à jour ce qui est nécessaire :
+
+* listing des articles
+* archive/blog si besoin
+* sitemap
+* flux RSS/Atom si présent
+* fichiers JSON / YAML / TS si utilisés
+* navigation liée au blog
+* catégories / tags si le site fonctionne ainsi
+* image preview sociale si prévue
+
+Fais des modifications propres, minimales et cohérentes.
+
+---
+
+## 9. Contrôle qualité
+
+Avant de finaliser, vérifie :
+
+* qu’il n’y a pas de doublon avec un article existant
+* qu’il n’y a pas de cannibalisation SEO évidente
+* que le texte est vraiment utile
+* que le ton reste cohérent avec HydroFacile
+* que l’orthographe et la grammaire sont correctes
+* que les liens internes fonctionnent
+* que les métadonnées sont complètes
+* que le titre final est bon à lire, pas seulement bon pour le SEO
+
+---
+
+## 10. Livrable final
+
+À la fin, donne un court récapitulatif avec :
+
+* sujet choisi
+* mot-clé principal
+* raison du choix
+* titre final retenu
+* fichiers créés ou modifiés
+* éléments SEO ajoutés
+* liens internes ajoutés
+* source, crédit et licence de l’image
+* éventuelles limites ou actions manuelles restantes
+
+---
+
+## Règles importantes
+
+* Ne me demande pas quoi écrire : décide après analyse
+* Ne choisis pas un sujet déjà traité sauf si l’angle est nettement meilleur
+* Ne produis pas de texte générique SEO
+* N’invente pas de faits précis non vérifiables
+* Ne casse pas la structure du projet
+* Respecte le style existant
+* Si tu hésites entre plusieurs sujets, choisis celui qui offre le meilleur compromis entre utilité lecteur, cohérence éditoriale et potentiel SEO
+* Si tu hésites entre plusieurs titres, choisis toujours celui qui paraît le plus naturel et le plus agréable à lire
