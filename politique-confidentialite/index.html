@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -18,16 +18,18 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Politique de confidentialit&eacute; | HydroFacile">
   <meta name="twitter:description" content="Informations sur la mesure d'audience, les cookies et le formulaire de contact utilisés sur HydroFacile.">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQH5R1ZY11"></script>
-  <script>
+  <script type="text/plain" data-consent-category="analytics" data-consent-src="https://www.googletagmanager.com/gtag/js?id=G-QQH5R1ZY11"></script>
+  <script type="text/plain" data-consent-category="analytics">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    window.gtag = window.gtag || gtag;
     gtag('js', new Date());
-
-    gtag('config', 'G-QQH5R1ZY11');
+    gtag('config', 'G-QQH5R1ZY11', {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
   </script>
-  <script type="text/javascript">
+  <script type="text/plain" data-consent-category="analytics">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -41,6 +43,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="manifest" href="../site.webmanifest">
   <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="stylesheet" href="../css/cookie-consent.css">
+  <script defer src="../scripts/cookie-consent.js"></script>
 </head>
 <body class="legal-page">
 
@@ -87,9 +91,10 @@
             <h2>En bref</h2>
             <ul class="article-list">
               <li>HydroFacile est un site &eacute;ditorial autour de l'hydroponie pour d&eacute;butants en appartement.</li>
-              <li>Le site ne charge pas actuellement d'outil de mesure d'audience ni de suivi publicitaire.</li>
+              <li>Les cookies strictement n&eacute;cessaires restent actifs, mais les outils de mesure d'audience restent d&eacute;sactiv&eacute;s tant que tu n'as pas donn&eacute; ton accord.</li>
+              <li>Le choix de consentement est m&eacute;moris&eacute; pendant 6 mois dans ton navigateur pour &eacute;viter de r&eacute;afficher la bannière &agrave; chaque visite.</li>
               <li>Le formulaire de contact transmet les messages via FormSubmit vers l'adresse de contact du site.</li>
-              <li>Les liens sortants et services tiers &eacute;ventuels suivent leurs propres r&egrave;gles.</li>
+              <li>Tu peux accepter, refuser ou retirer ton consentement &agrave; tout moment via le bandeau ou le bouton de gestion des cookies.</li>
             </ul>
           </aside>
         </section>
@@ -99,19 +104,46 @@
           <p>
             Lorsque tu visites HydroFacile, des informations techniques usuelles peuvent &ecirc;tre trait&eacute;es&nbsp;:
             pages consult&eacute;es, date et heure de visite, appareil, navigateur, langue, provenance de la visite ou
-            donn&eacute;es de performance. Elles servent surtout &agrave; comprendre l'usage du site et &agrave; l'am&eacute;liorer.
+            donn&eacute;es de performance. Elles servent surtout &agrave; faire fonctionner le site, &agrave; comprendre son usage et &agrave; l'am&eacute;liorer.
           </p>
 
-          <h2>Mesure d'audience</h2>
+          <h2>Cookies strictement n&eacute;cessaires</h2>
           <p>
-            Aucun outil de mesure d'audience ou de suivi marketing n'est actuellement charg&eacute; sur HydroFacile.
-            Si cela change plus tard, cette page sera mise &agrave; jour pour d&eacute;crire les services concern&eacute;s.
+            HydroFacile utilise un m&eacute;canisme local de stockage dans le navigateur pour conserver ton choix en mati&egrave;re de cookies
+            pendant 6 mois. Cette m&eacute;morisation permet de ne pas r&eacute;afficher la bannière &agrave; chaque page et fait partie du
+            fonctionnement normal du service.
           </p>
 
-          <h2>Cookies et technologies proches</h2>
+          <h2>Mesure d'audience sur consentement</h2>
           <p>
-            Le site peut utiliser des cookies strictement n&eacute;cessaires &agrave; son fonctionnement ou &agrave; certains services tiers.
-            Leur pr&eacute;sence d&eacute;pend notamment de ton navigateur, de l'h&eacute;bergement et des services effectivement utilis&eacute;s.
+            Si tu l'acceptes explicitement, HydroFacile active Google Analytics et Microsoft Clarity afin de mesurer
+            la fr&eacute;quentation du site, comprendre les parcours de navigation et rep&eacute;rer les contenus &agrave; am&eacute;liorer.
+            Ces outils restent bloqu&eacute;s par d&eacute;faut et ne sont pas charg&eacute;s tant que tu n'as pas donn&eacute; ton accord.
+          </p>
+          <p>
+            HydroFacile n'active pas de cookies publicitaires en propre. Les cookies et autres traceurs de mesure
+            d'audience ne sont d&eacute;pos&eacute;s qu'apr&egrave;s consentement.
+          </p>
+
+          <h2>G&eacute;rer ou retirer ton consentement</h2>
+          <p>
+            Tu peux modifier ton choix &agrave; tout moment depuis le bouton de gestion des cookies pr&eacute;sent sur le site.
+            Lorsque tu retires ton consentement, HydroFacile cesse de charger les outils concern&eacute;s pour la suite de la navigation.
+          </p>
+          <div class="hero-actions">
+            <button class="button-secondary" type="button" data-open-cookie-preferences>G&eacute;rer mes cookies</button>
+          </div>
+
+          <h2>Prestataires concern&eacute;s</h2>
+          <p>Si tu consens &agrave; la mesure d'audience, les prestataires suivants peuvent intervenir&nbsp;:</p>
+          <ul>
+            <li><a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Analytics / Google</a> pour les statistiques de fr&eacute;quentation.</li>
+            <li><a href="https://learn.microsoft.com/en-gb/clarity/setup-and-installation/cookie-list" rel="noopener noreferrer">Microsoft Clarity</a> pour l'analyse de navigation et la liste des cookies associ&eacute;s.</li>
+            <li><a href="https://privacy.microsoft.com/fr-fr/privacystatement" rel="noopener noreferrer">Microsoft</a> pour la politique de confidentialit&eacute; li&eacute;e &agrave; Clarity.</li>
+          </ul>
+          <p>
+            Les traitements r&eacute;alis&eacute;s par ces services restent soumis &agrave; leurs propres politiques de confidentialit&eacute;
+            et &agrave; leurs propres dur&eacute;es de conservation.
           </p>
 
           <h2>Formulaire de contact</h2>
@@ -124,7 +156,7 @@
           <h2>Liens et services tiers</h2>
           <p>
             Le site peut proposer des liens vers des plateformes ou services externes. Lorsque tu quittes HydroFacile
-            ou que tu utilises un service tiers comme FormSubmit, leurs propres politiques de confidentialit&eacute; peuvent aussi s'appliquer.
+            ou que tu utilises un service tiers comme FormSubmit, Google ou Microsoft apr&egrave;s consentement, leurs propres politiques de confidentialit&eacute; peuvent aussi s'appliquer.
           </p>
 
           <h2>&Eacute;volution de cette page</h2>

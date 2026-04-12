@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -23,16 +23,18 @@
   <meta name="twitter:image" content="https://hydrofacile.fr/images/articles/hydroponie-sans-pompe-appartement.svg">
   <meta name="twitter:image:alt" content="Petit système hydroponique sans pompe avec réservoir opaque, laitue et basilic pour débuter en appartement">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"HydroFacile","url":"https://hydrofacile.fr/","inLanguage":"fr","description":"Le site pour débuter l’hydroponie en appartement simplement, avec des guides clairs, des conseils pratiques et des cultures faciles à réussir.","potentialAction":{"@type":"SearchAction","target":"https://hydrofacile.fr/articles/?q={search_term_string}","query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","name":"HydroFacile","logo":{"@type":"ImageObject","url":"https://hydrofacile.fr/images/logo-site.png"}}}</script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQH5R1ZY11"></script>
-  <script>
+  <script type="text/plain" data-consent-category="analytics" data-consent-src="https://www.googletagmanager.com/gtag/js?id=G-QQH5R1ZY11"></script>
+  <script type="text/plain" data-consent-category="analytics">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    window.gtag = window.gtag || gtag;
     gtag('js', new Date());
-
-    gtag('config', 'G-QQH5R1ZY11');
+    gtag('config', 'G-QQH5R1ZY11', {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
   </script>
-  <script type="text/javascript">
+  <script type="text/plain" data-consent-category="analytics">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -47,6 +49,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/cookie-consent.css">
+  <script defer src="scripts/cookie-consent.js"></script>
 </head>
 <body class="home-page">
 
