@@ -1764,7 +1764,7 @@
               <li>les tiges deviennent fines et moins stables ;</li>
               <li>la culture consomme peu d’eau parce qu’elle avance peu.</li>
             </ul>
-            <p>Avant d’accuser les nutriments, il faut souvent regarder la lumière. D’ailleurs, notre guide sur les <a href="../nutriments-hydroponie-debutant/">nutriments hydroponiques pour débutant</a> aide justement à distinguer ce qui relève de la nutrition et ce qui relève surtout de l’éclairage.</p>
+            <p>Avant d’accuser les nutriments, il faut souvent regarder la lumière. D’ailleurs, notre guide sur les <a href="../nutriments-hydroponie-debutant/">nutriments hydroponiques pour débutant</a> aide justement à distinguer ce qui relève de la nutrition et ce qui relève surtout de l’éclairage. Si tes plants pâlissent ou jaunissent déjà, tu peux aussi suivre notre diagnostic simple sur <a href="../feuilles-jaunes-hydroponie/">les feuilles jaunes en hydroponie</a> avant de tout modifier.</p>
             <h2 id="ou-placer-son-systeme">Où placer son système dans un appartement</h2>
             <p>Le bon emplacement n’est pas forcément le plus esthétique. C’est celui où la lumière reste cohérente, où le bac ne gêne pas la vie quotidienne et où tu peux jeter un coup d’œil facilement. Un système qu’on voit bien est souvent un système qu’on suit mieux.</p>
             <p>Évite les coins trop loin des fenêtres, les meubles hauts qui coupent la lumière et les emplacements qui chauffent fort derrière une vitre. Le meilleur spot est souvent simple : une étagère près d’une vraie source lumineuse, avec assez d’air et un accès facile.</p>
@@ -1852,7 +1852,7 @@
             <h3>Suis le dosage de base</h3>
             <p>Quand on débute, on gagne rarement à modifier tout de suite les dosages. Une base propre et stable apprend beaucoup plus qu’un mélange “amélioré” à l’intuition. Une plante ne pousse pas mieux parce qu’on ajoute plus. Très souvent, on complique surtout le suivi.</p>
             <h3>Garde une routine simple</h3>
-            <p>Prépare ta solution proprement, garde ton réservoir net et observe les feuilles. Cette régularité suffit déjà à faire beaucoup. Si la culture ralentit, il faut d’abord vérifier la <a href="../lumiere-hydroponie-appartement/">lumière en hydroponie appartement</a> et l’état général du système avant de toucher au dosage.</p>
+            <p>Prépare ta solution proprement, garde ton réservoir net et observe les feuilles. Cette régularité suffit déjà à faire beaucoup. Si la culture ralentit, il faut d’abord vérifier la <a href="../lumiere-hydroponie-appartement/">lumière en hydroponie appartement</a> et l’état général du système avant de toucher au dosage. Et si le vrai signal qui t’inquiète est un feuillage qui pâlit, complète aussi avec notre guide sur <a href="../feuilles-jaunes-hydroponie/">les feuilles jaunes en hydroponie</a>.</p>
             <h2 id="les-signaux-a-lire-avant-de-modifier-quoi-que-ce-soit">Les signaux à lire avant de modifier quoi que ce soit</h2>
             <p>Beaucoup de débutants pensent “nutriments” dès qu’une plante ralentit. Pourtant, un manque de lumière, un bac sale ou des racines gênées donnent souvent des symptômes très proches. Avant de changer la solution, regarde :</p>
             <ul>
@@ -2232,7 +2232,7 @@
             <p>Si le niveau baisse, mais que l’eau reste nette, que l’odeur reste normale, que les racines sont propres et que la plante avance bien, tu n’es pas forcément face à un problème. Sur un petit système stable, compléter le niveau peut suffire à court terme.</p>
             <p>Le bon sens de débutant est le suivant : si le bac reste lisible, garde le geste simple. Si, en revanche, tu commences à compenser sans trop savoir ce qu’il reste réellement dans la solution, il devient souvent plus rassurant de repartir sur une base propre.</p>
             <h3>Quand il vaut mieux refaire la solution</h3>
-            <p>Le changement complet devient plus pertinent quand la solution ne raconte plus une histoire claire. C’est le cas si elle paraît moins nette, si des dépôts s’installent, si l’odeur change, si les racines sont moins lisibles ou si la plante ralentit alors que la <a href="../lumiere-hydroponie-appartement/">lumière</a> reste correcte.</p>
+            <p>Le changement complet devient plus pertinent quand la solution ne raconte plus une histoire claire. C’est le cas si elle paraît moins nette, si des dépôts s’installent, si l’odeur change, si les racines sont moins lisibles ou si la plante ralentit alors que la <a href="../lumiere-hydroponie-appartement/">lumière</a> reste correcte. Quand ce ralentissement s’accompagne de feuilles qui jaunissent, notre guide sur <a href="../feuilles-jaunes-hydroponie/">les feuilles jaunes en hydroponie</a> aide aussi à remettre les vérifications dans le bon ordre.</p>
             <p>Autrement dit : dès que tu n’es plus dans un simple “niveau qui baisse”, mais dans un bac que tu comprends moins bien, mieux vaut souvent refaire la solution que bricoler dessus.</p>
             <h2 id="les-signes-qui-indiquent-que-la-solution-fatigue">Les signes qui indiquent que la solution fatigue</h2>
             <ul>
@@ -2417,6 +2417,226 @@
         [ordered]@{
           Name = "Transferer au bon moment"
           Text = "Passe le jeune plant dans le système quand il tient bien dans son support et que sa croissance devient plus stable."
+        }
+      )
+    }
+  }
+
+  $overrides["feuilles-jaunes-hydroponie"] = [ordered]@{
+    Title = "Feuilles jaunes en hydroponie : quoi vérifier avant de tout changer"
+    CardTitle = "Feuilles jaunes en hydroponie"
+    SeoTitle = "Feuilles jaunes en hydroponie : que vérifier ?"
+    Description = "Feuilles jaunes en hydroponie : lumière, nutriments, eau, racines et signes simples à vérifier avant de corriger au hasard un système débutant en appartement."
+    Intro = "Quand une laitue ou un basilic commence à jaunir, on a vite envie de changer toute la solution, la lampe ou les nutriments d’un coup. En pratique, le plus utile consiste à regarder quelques repères simples dans le bon ordre, sans transformer l’installation en laboratoire."
+    TimeRequired = "PT7M"
+    DatePublished = "2026-04-18T12:00:00+02:00"
+    DateModified = "2026-04-18T12:00:00+02:00"
+    AuthorName = "Nicolas Aubert"
+    AuthorType = "Person"
+    Category = "Routine & réglages"
+    ImageFileName = "feuilles-jaunes-hydroponie.jpg"
+    ImageAlt = "Petites cultures hydroponiques en intérieur sous LED, manipulées pendant un contrôle de routine"
+    BodyHtml = @'
+            <h2>Ce qu’il faut savoir en un coup d’œil</h2>
+            <p>Premier réflexe : regarde quelles feuilles jaunissent en premier<br>Point de départ le plus fréquent : lumière insuffisante, solution mal dosée ou eau devenue moins lisible<br>À vérifier aussi : propreté du bac, état des racines et vitesse réelle de croissance<br>Erreur classique : corriger la lumière, les nutriments et l’eau le même jour<br>Bonne méthode : changer une seule chose à la fois et observer quelques jours<br>Repère utile : un ou deux vieux feuilles qui fatiguent ne racontent pas la même histoire qu’un jeune feuillage qui pâlit d’un coup</p>
+            <h2>Pourquoi les feuilles jaunes sont si fréquentes quand on débute</h2>
+            <p>En hydroponie, le feuillage parle vite. C’est un avantage, mais aussi une source de stress au début : dès qu’une feuille pâlit, on a l’impression que tout le système part de travers. Pourtant, le jaune ne veut pas toujours dire “gros problème”. Il signale surtout qu’il faut reprendre la lecture du bac calmement.</p>
+            <p>Le plus utile n’est donc pas de chercher tout de suite une cause compliquée. Le plus utile est de repartir des repères les plus simples : lumière, eau, racines, dosage et rythme général. Cette logique complète très bien nos bases sur la <a href="../lumiere-hydroponie-appartement/">lumière</a>, les <a href="../nutriments-hydroponie-debutant/">nutriments</a> et <a href="../quand-changer-eau-hydroponie/">le changement d’eau</a>.</p>
+            <h2>Commence par regarder où le jaunissement apparaît</h2>
+            <h3>Les feuilles du bas jaunissent d’abord</h3>
+            <p>Quand le jaunissement touche surtout une vieille feuille basse pendant que le reste de la plante reste tonique, il n’y a pas forcément urgence. Cela peut correspondre à une feuille en fin de cycle, à une petite phase de transition ou à une croissance qui se réorganise.</p>
+            <p>Sur une <a href="../laitue-hydroponique-appartement/">laitue hydroponique en appartement</a> ou sur un <a href="../basilic-hydroponie-interieur/">basilic en hydroponie intérieure</a>, ce contexte reste souvent beaucoup moins inquiétant qu’un cœur de plante qui pâlit d’un coup.</p>
+            <h3>Le jeune feuillage pâlit ou jaunit</h3>
+            <p>Si les nouvelles feuilles deviennent claires, molles ou franchement jaunes alors que la plante pousse encore, le message mérite plus d’attention. Dans ce cas, il faut surtout vérifier la lumière réelle, la stabilité de la solution et l’état des racines avant de toucher au reste.</p>
+            <p>Autrement dit : observe d’abord le schéma, pas seulement la couleur. Deux feuilles jaunes ne racontent pas la même histoire selon leur emplacement sur la plante.</p>
+            <h2>La lumière est souvent la première chose à vérifier</h2>
+            <p>En appartement, beaucoup de jaunissements commencent en réalité par un manque de lumière. La plante ne pousse pas assez franchement, les feuilles deviennent plus pâles, l’ensemble s’étire ou ralentit, puis on accuse les nutriments alors que le vrai blocage est plus haut.</p>
+            <p>Si ton installation repose surtout sur une fenêtre hésitante, ou si les jours ont changé sans que tu ajustes rien, repars d’abord de notre guide sur la <a href="../lumiere-hydroponie-appartement/">lumière en hydroponie appartement</a>. C’est souvent là que le diagnostic se simplifie.</p>
+            <ul>
+              <li>la plante s’étire en plus de jaunir ;</li>
+              <li>les nouvelles feuilles restent petites ;</li>
+              <li>la couleur générale se délave sans autre signe très net ;</li>
+              <li>le problème touche plusieurs plants placés au même endroit.</li>
+            </ul>
+            <h2>Regarde ensuite l’eau, le bac et les racines</h2>
+            <p>Une solution qui a perdu en netteté, un bac moins propre ou des racines plus difficiles à lire peuvent vite perturber la plante. Ce n’est pas toujours spectaculaire, mais c’est souvent ce qui fait glisser un système simple vers un système “flou”, dans lequel les feuilles commencent à réagir avant même qu’on identifie clairement la cause.</p>
+            <p>Si l’eau paraît moins propre, si le réservoir sent différemment ou si les racines ne sont plus aussi nettes, reviens à deux guides très concrets : <a href="../quand-changer-eau-hydroponie/">quand changer l’eau en hydroponie</a> et <a href="../nettoyer-systeme-hydroponique/">comment nettoyer le système</a>. Une remise à plat propre vaut souvent mieux qu’une correction improvisée.</p>
+            <h2>Les nutriments comptent, mais il ne faut pas les accuser trop vite</h2>
+            <p>Oui, un dosage mal ajusté peut faire jaunir une plante. Mais chez un débutant, le piège classique consiste à surcorriger trop tôt. On ajoute un peu plus, puis encore un peu, puis on ne sait plus si la plante réagit au problème de départ ou aux corrections successives.</p>
+            <p>La meilleure approche reste celle du guide <a href="../nutriments-hydroponie-debutant/">nutriments hydroponiques pour débutant</a> : garder un dosage simple, adapté, puis observer la réaction avant de toucher à autre chose. Si tout a changé en même temps, le diagnostic devient vite impossible.</p>
+            <h2>Et le pH dans tout ça ?</h2>
+            <p>Le pH peut jouer un rôle, surtout si la plante jaunit alors que la lumière paraît correcte, que la solution est propre et que le dosage n’a rien d’extrême. Mais pour un débutant en appartement, il ne faut pas commencer par là à chaque doute.</p>
+            <p>Le bon ordre reste simple : d’abord la lumière, ensuite la lisibilité du bac et de l’eau, puis la cohérence du dosage. Si malgré cela le jaunissement revient ou s’étend, alors oui, le pH ou un blocage d’assimilation peuvent devenir une piste sérieuse. L’idée n’est pas d’ignorer ce sujet. L’idée est d’éviter d’y courir trop tôt.</p>
+            <h2>La méthode simple pour corriger sans tout dérégler</h2>
+            <ol>
+              <li>Observe quelles feuilles jaunissent et si la croissance ralentit vraiment.</li>
+              <li>Vérifie d’abord la lumière et le placement du système.</li>
+              <li>Contrôle ensuite la propreté du bac, l’état de l’eau et des racines.</li>
+              <li>Reviens à un dosage simple si la solution a été modifiée plusieurs fois.</li>
+              <li>Ne change qu’un seul paramètre à la fois pendant quelques jours.</li>
+            </ol>
+            <p>Cette méthode paraît moins “active” qu’un grand ajustement immédiat, mais elle permet surtout de comprendre ce qui se passe réellement. Et c’est exactement ce qui aide à progresser sans s’épuiser.</p>
+            <h2>Les erreurs les plus fréquentes</h2>
+            <ul>
+              <li>augmenter les nutriments dès la première feuille pâle ;</li>
+              <li>oublier de vérifier la lumière avant toute autre chose ;</li>
+              <li>laisser un bac devenir flou, chargé ou moins propre trop longtemps ;</li>
+              <li>modifier l’eau, la lumière et le dosage dans la même journée ;</li>
+              <li>confondre une vieille feuille fatiguée avec un jaunissement généralisé du système.</li>
+            </ul>
+            <h2>FAQ</h2>
+            <h3>Une seule feuille jaune en hydroponie, est-ce grave ?</h3>
+            <p>Pas forcément. Si elle est basse, ancienne et que le reste de la plante pousse bien, ce n’est souvent pas un signal alarmant. Ce qui compte surtout, c’est la tendance globale et la vitesse à laquelle le problème s’étend.</p>
+            <h3>Faut-il changer toute l’eau dès que les feuilles jaunissent ?</h3>
+            <p>Pas automatiquement. Si l’eau reste propre et lisible, il vaut mieux d’abord regarder la lumière, le placement et le schéma de jaunissement. En revanche, si le bac est devenu flou ou moins sain, repartir sur une solution propre peut beaucoup aider.</p>
+            <h3>Les feuilles jaunes veulent-elles toujours dire carence ?</h3>
+            <p>Non. Une lumière insuffisante, un bac mal entretenu, des racines moins saines ou un excès de corrections peuvent produire un résultat visuel proche. D’où l’intérêt de reprendre les vérifications dans le bon ordre.</p>
+            <h2>En résumé</h2>
+            <p>Quand une plante hydroponique jaunit, le plus utile n’est pas de tout corriger en même temps. Le plus utile est de repartir d’un diagnostic simple : où le jaune commence, si la lumière suffit, si l’eau reste propre et si le dosage est resté lisible.</p>
+            <p>Si tu gardes cette logique, tu éviteras beaucoup de corrections inutiles. Et si tu veux consolider ce réflexe, enchaîne avec nos guides sur la <a href="../lumiere-hydroponie-appartement/">lumière</a>, les <a href="../nutriments-hydroponie-debutant/">nutriments</a>, <a href="../quand-changer-eau-hydroponie/">le changement d’eau</a> et <a href="../nettoyer-systeme-hydroponique/">le nettoyage du système</a>.</p>
+'@
+    Faq = @(
+      [ordered]@{
+        Question = "Une feuille jaune en hydroponie est-elle toujours un problème ?"
+        Answer = "Non. Une vieille feuille basse peut simplement arriver en fin de cycle. Le vrai signal à surveiller, c'est surtout un jaunissement qui touche le jeune feuillage, s'étend vite ou ralentit clairement la croissance."
+      },
+      [ordered]@{
+        Question = "Faut-il ajouter plus de nutriments quand les feuilles jaunissent ?"
+        Answer = "Pas forcément. Chez un débutant, il vaut mieux d'abord vérifier la lumière, l'état de l'eau et des racines, puis revenir à un dosage simple plutôt que de surcorriger immédiatement."
+      },
+      [ordered]@{
+        Question = "Le pH peut-il faire jaunir une plante hydroponique ?"
+        Answer = "Oui, mais ce n'est pas toujours la première piste à explorer. Si la lumière, l'eau et la routine générale semblent correctes alors que le problème persiste, le pH peut devenir une vraie piste de blocage."
+      }
+    )
+    HowTo = [ordered]@{
+      Name = "Comment réagir quand des feuilles jaunissent en hydroponie"
+      Description = "Les vérifications les plus utiles pour diagnostiquer un feuillage qui jaunit sans corriger toute l'installation au hasard."
+      Steps = @(
+        [ordered]@{
+          Name = "Observer le schéma du jaunissement"
+          Text = "Regarde si ce sont surtout les vieilles feuilles du bas ou le jeune feuillage qui pâlit en premier."
+        },
+        [ordered]@{
+          Name = "Contrôler la lumière"
+          Text = "Vérifie d'abord si la plante reçoit une lumière assez régulière pour pousser sans s'étirer ni pâlir."
+        },
+        [ordered]@{
+          Name = "Regarder l'eau et les racines"
+          Text = "Observe la propreté du bac, la lisibilité de la solution et l'état général des racines avant toute correction."
+        },
+        [ordered]@{
+          Name = "Revenir à un dosage simple"
+          Text = "Si la solution a été modifiée plusieurs fois, repars sur une routine plus claire au lieu d'ajouter encore un réglage."
+        },
+        [ordered]@{
+          Name = "Corriger un seul point à la fois"
+          Text = "Change un seul paramètre, puis laisse quelques jours à la plante pour montrer une vraie réaction."
+        }
+      )
+    }
+  }
+
+  $overrides["bouturer-basilic-dans-eau"] = [ordered]@{
+    Title = "Bouturer du basilic dans l’eau : la méthode simple avant l’hydroponie"
+    CardTitle = "Bouturer du basilic dans l’eau"
+    SeoTitle = "Bouturer du basilic dans l’eau"
+    Description = "Bouturer du basilic dans l’eau : choisir la bonne tige, faire apparaître les racines et passer ensuite en hydroponie ou en pot sans se compliquer."
+    Intro = "La bouture dans l’eau est une excellente porte d’entrée vers l’hydroponie, parce qu’elle permet de voir la reprise en direct et d’apprendre des gestes simples sans te noyer dans le matériel."
+    TimeRequired = "PT6M"
+    DatePublished = "2026-04-14T11:00:00+02:00"
+    DateModified = "2026-04-14T11:00:00+02:00"
+    AuthorName = "Camille Renaud"
+    AuthorType = "Person"
+    Category = "Débuter"
+    ImageFileName = "bouturer-basilic-eau-pexels-14064511.jpg"
+    ImageAlt = "Tige de basilic en train de faire des racines dans l’eau"
+    BodyHtml = @'
+            <h2>Ce qu’il faut savoir en un coup d’œil</h2>
+            <p>Le plus simple pour débuter : une tige saine, un verre d’eau propre et beaucoup de lumière douce<br>But recherché : faire apparaître des racines avant le passage en système ou en pot<br>Tige idéale : non fleurie, souple, vigoureuse et coupée juste sous un nœud<br>Point clé : ne pas laisser les feuilles tremper et garder l’eau nette<br>Erreur classique : vouloir transférer trop tôt ou laisser la bouture dans une eau fatiguée<br>Suite logique : passer vers un petit système hydroponique ou vers un pot selon l’objectif</p>
+            <h2>Pourquoi cette méthode plaît autant aux débutants</h2>
+            <p>La bouture dans l’eau a un énorme avantage : elle rend la reprise visible. Au lieu de se demander si la plante travaille sous le substrat, on voit les racines apparaître. Pour un débutant, c’est rassurant et très formateur.</p>
+            <p>Ce n’est pas encore de l’hydroponie complète au sens strict, mais c’est une excellente porte d’entrée. On apprend à garder une tige propre, à observer la lumière, à surveiller l’eau et à transférer au bon moment. C’est aussi une bonne façon d’obtenir rapidement un nouveau basilic avant de lancer un système plus structuré comme dans notre guide <a href="../hydroponie-sans-pompe-appartement/">hydroponie sans pompe en appartement</a>.</p>
+            <h2>Quelle tige choisir</h2>
+            <p>Le plus important n’est pas d’avoir une grande tige. Il faut surtout une pousse saine. Choisis une extrémité ou une tige latérale bien verte, sans fleur, avec plusieurs nœuds et quelques feuilles encore vigoureuses. Une tige trop jeune se fatigue vite. Une tige déjà ligneuse repart souvent moins franchement.</p>
+            <ul>
+              <li>Coupe juste sous un nœud avec un outil propre.</li>
+              <li>Retire les feuilles du bas pour dégager la zone qui fera les racines.</li>
+              <li>Garde seulement quelques feuilles en haut pour limiter l’évaporation.</li>
+              <li>Évite les tiges abîmées, molles ou déjà en floraison.</li>
+            </ul>
+            <h2>Comment faire raciner le basilic dans l’eau</h2>
+            <p>La logique est volontairement simple. Place la tige dans un petit verre ou un bocal propre avec juste assez d’eau pour couvrir le bas de la tige, sans immerger les feuilles. Installe ensuite le tout dans une lumière vive mais sans soleil brûlant.</p>
+            <p>Tu n’as pas besoin d’ajouter des nutriments à ce stade. Ici, l’objectif n’est pas de nourrir fortement une plante déjà installée, mais de déclencher une reprise nette et lisible. Si tu veux comprendre quand l’eau d’un contenant reste saine ou commence à fatiguer, garde aussi sous la main notre guide sur <a href="../quand-changer-eau-hydroponie/">quand changer l’eau en hydroponie</a>.</p>
+            <h2>Le pas à pas le plus simple</h2>
+            <ol>
+              <li>Prélève une tige de basilic saine d’environ 10 à 15 cm.</li>
+              <li>Fais une coupe nette sous un nœud.</li>
+              <li>Retire les feuilles du bas et garde-en seulement quelques-unes au sommet.</li>
+              <li>Place la tige dans un verre d’eau propre, sans noyer le feuillage.</li>
+              <li>Installe le verre dans un coin lumineux et stable.</li>
+              <li>Renouvelle l’eau régulièrement pour garder un environnement propre.</li>
+              <li>Attends que les racines soient visibles puis assez présentes avant le transfert.</li>
+            </ol>
+            <p>Sur une bouture en forme, les premières racines arrivent souvent vite. Ce qui compte ensuite, ce n’est pas de battre un record de vitesse, mais de laisser la jeune reprise devenir suffisamment lisible pour ne pas rater la suite.</p>
+            <h2>Quand transférer vers un système hydroponique</h2>
+            <p>Le bon moment arrive quand la bouture ne se contente plus de survivre dans l’eau, mais montre une vraie reprise. Les racines sont alors déjà visibles, la tige reste nette, le feuillage tient bien et l’ensemble ne donne plus l’impression d’être en phase fragile.</p>
+            <p>À partir de là, tu peux la passer dans un petit système simple, propre et facile à ouvrir. Inutile de viser compliqué. Le basilic s’adapte très bien à un format débutant tant que la lumière et la routine restent lisibles. Tu peux ensuite revenir à notre guide <a href="../basilic-hydroponie-interieur/">basilic en hydroponie intérieure</a> pour la suite de la culture.</p>
+            <h2>Et si on préfère finir en pot ?</h2>
+            <p>C’est tout à fait possible. La bouture dans l’eau ne t’oblige pas à rester en hydroponie. Si ton objectif est surtout d’obtenir un deuxième plant pour le balcon, tu peux très bien replanter en pot une fois les racines assez présentes. EcoBalcon détaille justement cette reprise côté extérieur dans son article sur <a href="https://ecobalcon.com/articles/bouturer-basilic-balcon/">la bouture de basilic sur un balcon</a>.</p>
+            <p>Ce point est utile si tu veux faire partir la tige à l’intérieur, puis sortir le jeune plant plus tard quand les températures deviennent plus stables.</p>
+            <h2>Les erreurs qui bloquent le plus souvent</h2>
+            <p>La première erreur consiste à noyer la bouture ou à laisser des feuilles dans l’eau. Cela salit vite le contenant et rend la reprise moins nette.</p>
+            <p>La deuxième, c’est de choisir une tige déjà fleurie. La plante a alors moins d’énergie pour refaire des racines propres.</p>
+            <p>La troisième, c’est de transférer trop tôt dans un système ou dans un pot, par impatience, alors que la reprise reste encore trop légère.</p>
+            <p>La quatrième, c’est d’oublier la lumière. Un basilic qui manque de lumière repart moins bien et s’étire vite. Si ton emplacement te paraît douteux, reviens à notre guide sur la <a href="../lumiere-hydroponie-appartement/">lumière en hydroponie appartement</a>.</p>
+            <h2>FAQ</h2>
+            <h3>Faut-il ajouter des nutriments dans l’eau de bouturage ?</h3>
+            <p>Pas au départ. Pour la phase de reprise, l’essentiel est surtout d’avoir une tige saine, une eau propre et une lumière régulière. Les nutriments deviennent utiles plus tard, quand la bouture rejoint un vrai système.</p>
+            <h3>Combien de boutures peut-on faire en même temps ?</h3>
+            <p>Pour débuter, mieux vaut en suivre peu mais bien. Deux ou trois boutures lisibles apprennent plus qu’un grand lot qu’on surveille mal.</p>
+            <h3>Peut-on bouturer du basilic toute l’année en intérieur ?</h3>
+            <p>Oui, si la plante mère est en forme et que la lumière reste correcte. En pratique, la reprise reste souvent plus simple quand la plante pousse déjà bien et que les conditions sont stables.</p>
+            <h2>En résumé</h2>
+            <p>Bouturer du basilic dans l’eau est une méthode très simple pour obtenir rapidement une nouvelle plante avant de passer à l’hydroponie ou au pot. Une bonne tige, un verre propre, de la lumière et un transfert pas trop précoce suffisent souvent. C’est une excellente étape intermédiaire pour gagner en confiance sans compliquer tout le système dès le départ.</p>
+'@
+    Faq = @(
+      [ordered]@{
+        Question = "Faut-il ajouter des nutriments dans l'eau de bouturage ?"
+        Answer = "Pas au départ. Pour la phase de reprise, l'essentiel est surtout d'avoir une tige saine, une eau propre et une lumière régulière. Les nutriments deviennent utiles plus tard, quand la bouture rejoint un vrai système."
+      },
+      [ordered]@{
+        Question = "Combien de boutures de basilic peut-on faire en même temps ?"
+        Answer = "Pour débuter, mieux vaut en suivre peu mais bien. Deux ou trois boutures lisibles apprennent plus qu'un grand lot qu'on surveille mal."
+      },
+      [ordered]@{
+        Question = "Peut-on bouturer du basilic toute l'année en intérieur ?"
+        Answer = "Oui, si la plante mère est en forme et que la lumière reste correcte. La reprise reste souvent plus simple quand la plante pousse déjà bien et que les conditions sont stables."
+      }
+    )
+    HowTo = [ordered]@{
+      Name = "Comment bouturer du basilic dans l’eau"
+      Description = "Les étapes utiles pour prélever une tige de basilic, la faire raciner dans l’eau puis la transférer vers un système hydroponique ou un pot."
+      Steps = @(
+        [ordered]@{
+          Name = "Prélever une tige saine"
+          Text = "Choisis une pousse vigoureuse, non fleurie, puis coupe proprement juste sous un nœud."
+        },
+        [ordered]@{
+          Name = "Retirer les feuilles du bas"
+          Text = "Garde quelques feuilles en haut et dégage la partie de tige qui devra produire les racines."
+        },
+        [ordered]@{
+          Name = "Installer dans de l’eau propre"
+          Text = "Place la bouture dans un verre lumineux en évitant que les feuilles restent immergées."
+        },
+        [ordered]@{
+          Name = "Surveiller la reprise"
+          Text = "Change l’eau régulièrement et attends que les racines deviennent visibles puis plus solides."
+        },
+        [ordered]@{
+          Name = "Transférer au bon moment"
+          Text = "Passe ensuite la bouture dans un petit système hydroponique ou dans un pot léger quand la reprise est bien engagée."
         }
       )
     }

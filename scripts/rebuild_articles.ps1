@@ -26,6 +26,8 @@ $siteLogoUrl = "$siteUrl/images/logo-site.png"
 $googleAnalyticsMeasurementId = "G-QQH5R1ZY11"
 $microsoftClarityProjectId = "w96dagou9p"
 $primaryArticleSlugs = @(
+  "bouturer-basilic-dans-eau",
+  "feuilles-jaunes-hydroponie",
   "hydroponie-sans-pompe-appartement",
   "cultures-faciles-hydroponie-appartement",
   "faire-germer-graines-hydroponie",
