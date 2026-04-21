@@ -1,14 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="24 36 88 100" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">HydroFacile</title>
-  <desc id="desc">Icône HydroFacile avec une goutte d'eau et une pousse, sans fond ni contour.</desc>
+  <desc id="desc">Icone HydroFacile avec une goutte bleue et une pousse verte sur fond blanc arrondi.</desc>
   <defs>
-    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18a47d"/>
-      <stop offset="100%" stop-color="#2bb7c8"/>
+    <linearGradient id="tileGradient" x1="18%" y1="10%" x2="88%" y2="92%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7fbfb"/>
     </linearGradient>
+    <linearGradient id="dropGradient" x1="35%" y1="8%" x2="72%" y2="96%">
+      <stop offset="0%" stop-color="#76d7f1"/>
+      <stop offset="47%" stop-color="#00a5d0"/>
+      <stop offset="100%" stop-color="#0069a8"/>
+    </linearGradient>
+    <linearGradient id="leafGradient" x1="20%" y1="12%" x2="86%" y2="88%">
+      <stop offset="0%" stop-color="#8edb27"/>
+      <stop offset="100%" stop-color="#19833d"/>
+    </linearGradient>
+    <filter id="tileShadow" x="-16%" y="-16%" width="132%" height="136%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0e2730" flood-opacity="0.18"/>
+    </filter>
+    <filter id="shapeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#05364d" flood-opacity="0.22"/>
+    </filter>
   </defs>
-  <path d="M70 43c18 23 28 41 28 57 0 19-12 32-30 32S38 119 38 100c0-14 8-30 24-49l8-8z" fill="url(#brandGradient)"/>
-  <path d="M70 43c11 12 18 23 22 33-7 6-15 9-24 9-10 0-18-3-25-9 5-11 14-22 27-33z" fill="#eafffb" opacity="0.58"/>
-  <path d="M69 60c0 20 9 34 25 44" fill="none" stroke="#0f6865" stroke-width="4" stroke-linecap="round"/>
-  <path d="M95 70c-16 0-26 10-30 25 17 1 29-7 34-21l2-4h-6z" fill="#0d7869"/>
+
+  <g filter="url(#tileShadow)">
+    <rect x="64" y="48" width="384" height="384" rx="72" fill="url(#tileGradient)"/>
+    <rect x="65.5" y="49.5" width="381" height="381" rx="70.5" fill="none" stroke="#eef3f4" stroke-width="3"/>
+  </g>
+
+  <g filter="url(#shapeShadow)">
+    <path d="M258 174c45 58 69 104 69 143 0 48-31 81-78 81s-79-33-79-81c0-35 20-75 61-123l27-20z" fill="url(#dropGradient)"/>
+    <path d="M244 225c18 23 43 33 76 30-10 17-28 28-53 31-31 4-58-5-82-26 13-20 32-31 59-35z" fill="#e8fbf9" opacity="0.62"/>
+    <path d="M263 191c0 56 25 99 75 131" fill="none" stroke="#006a8e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M267 191c40-26 54-65 42-116-38 35-50 72-36 116h-6z" fill="url(#leafGradient)"/>
+    <path d="M262 204c-37-30-75-37-116-21 38 29 76 34 116 21z" fill="url(#leafGradient)"/>
+    <path d="M157 184c44 4 76 13 98 27" fill="none" stroke="#f4ffe9" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+    <path d="M303 82c-9 42-21 76-36 103" fill="none" stroke="#f4ffe9" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+  </g>
 </svg>
