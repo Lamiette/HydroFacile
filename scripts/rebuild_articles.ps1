@@ -1,9 +1,6 @@
 ﻿$ErrorActionPreference = "Stop"
 
-# Safe by default: keep the current homepage unless the script is launched with
-# both -RebuildHome and -ForceRebuildHome.
-$RebuildHome = @($args | Where-Object { $_ -ieq "-RebuildHome" }).Count -gt 0
-$ForceRebuildHome = @($args | Where-Object { $_ -ieq "-ForceRebuildHome" }).Count -gt 0
+# Keep the homepage as a manual page. Article rebuilds must not rewrite index.html.
 
 $root = Split-Path -Parent $PSScriptRoot
 $rawDir = Join-Path $root "raw-singlefile"
@@ -3516,18 +3513,18 @@ function Build-404Html {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page introuvable | $siteName</title>
-  <meta name="description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
+  <meta name="description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles.">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Page introuvable | $siteName">
-  <meta property="og:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
+  <meta property="og:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Page introuvable | $siteName">
-  <meta name="twitter:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
+  <meta name="twitter:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles.">
   <script>document.write('<base href="' + (window.location.protocol === 'file:' ? './' : '/') + '">');</script>
 $tagManagerHead
   <link rel="icon" href="images/favicon.ico" sizes="any">
@@ -3552,7 +3549,6 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="./">Accueil</a>
             <a href="articles/">Articles</a>
-            <a href="galerie/">Galerie</a>
             <a href="contact/">Contact</a>
           </nav>
         </div>
@@ -3580,9 +3576,9 @@ $tagManagerBody
             <ul class="article-list">
               <li>Revenir &agrave; l'accueil pour repartir des contenus principaux.</li>
               <li>Parcourir les guides d&eacute;butants depuis la liste des articles.</li>
-              <li>Ouvrir la galerie pour retrouver des inspirations hydroponie en appartement.</li>
+              <li>Ouvrir la page contact pour signaler un lien cass&eacute; ou une page manquante.</li>
             </ul>
-            <a class="text-link" href="galerie/">Voir la galerie</a>
+            <a class="text-link" href="contact/">Ouvrir le contact</a>
           </aside>
         </section>
       </div>
@@ -3699,32 +3695,14 @@ Set-Content -Path (Join-Path $root "contact.html") -Value (Get-RedirectHtml -tar
 
 $homePath = Join-Path $root "index.html"
 $homeStatus = "Homepage preserved as-is (manual file kept)"
-$homeBackupStatus = ""
 
 if (-not (Test-Path $homePath)) {
   Set-Content -Path $homePath -Value (Build-HomeHtml $primaryArticles) -Encoding UTF8
   $homeStatus = "Homepage created from the script"
-} elseif ($RebuildHome -and $ForceRebuildHome) {
-  if (Test-Path $homePath) {
-    $homeBackupDir = Join-Path $root "backups\homepage"
-    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-    $homeBackupPath = Join-Path $homeBackupDir "index-$timestamp.html"
-    New-Item -ItemType Directory -Path $homeBackupDir -Force | Out-Null
-    Copy-Item -Path $homePath -Destination $homeBackupPath -Force
-    $homeBackupStatus = "Homepage backup created: $homeBackupPath"
-  }
-
-  Set-Content -Path $homePath -Value (Build-HomeHtml $primaryArticles) -Encoding UTF8
-  $homeStatus = "Homepage regenerated from the script (manual override confirmed)"
-} elseif ($RebuildHome) {
-  $homeStatus = "Homepage rebuild skipped to preserve manual edits (add -ForceRebuildHome to override)"
 }
 
 Set-Content -Path (Join-Path $root "sitemap.xml") -Value (Build-SitemapXml $primaryArticles) -Encoding UTF8
 Set-Content -Path (Join-Path $root "robots.txt") -Value (Build-RobotsTxt) -Encoding UTF8
 
 Write-Output "Updated style.min.css, articles index, 404.html, contact, politique-confidentialite.html, sitemap.xml and robots.txt"
-if ($homeBackupStatus) {
-  Write-Output $homeBackupStatus
-}
 Write-Output $homeStatus
