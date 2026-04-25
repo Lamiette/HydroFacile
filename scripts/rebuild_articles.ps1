@@ -3515,19 +3515,20 @@ function Build-404Html {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 Not Found | $siteName</title>
-  <meta name="description" content="Erreur 404 : cette page HydroFacile est introuvable. Recherche un guide ou repars vers les articles d'hydroponie pour d&eacute;buter.">
+  <title>Page introuvable | $siteName</title>
+  <meta name="description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="$canonicalUrl">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="$siteName">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="404 Not Found | $siteName">
-  <meta property="og:description" content="Erreur 404 : cette page HydroFacile est introuvable. Recherche un guide ou repars vers les articles d'hydroponie pour d&eacute;buter.">
+  <meta property="og:title" content="Page introuvable | $siteName">
+  <meta property="og:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
   <meta property="og:url" content="$canonicalUrl">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="404 Not Found | $siteName">
-  <meta name="twitter:description" content="Erreur 404 : cette page HydroFacile est introuvable. Recherche un guide ou repars vers les articles d'hydroponie pour d&eacute;buter.">
+  <meta name="twitter:title" content="Page introuvable | $siteName">
+  <meta name="twitter:description" content="La page demand&eacute;e est introuvable. Reviens &agrave; l'accueil $siteName ou explore les articles et la galerie.">
+  <script>document.write('<base href="' + (window.location.protocol === 'file:' ? './' : '/') + '">');</script>
 $tagManagerHead
   <link rel="icon" href="images/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
@@ -3535,7 +3536,7 @@ $tagManagerHead
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="$rootStylesheetHref">
+  <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body class="not-found-page">
 $tagManagerBody
@@ -3551,67 +3552,41 @@ $tagManagerBody
           <nav class="site-nav" aria-label="Navigation principale">
             <a href="./">Accueil</a>
             <a href="articles/">Articles</a>
+            <a href="galerie/">Galerie</a>
             <a href="contact/">Contact</a>
           </nav>
         </div>
       </div>
     </header>
 
-    <main class="not-found-main">
+    <main class="section">
       <div class="section-inner">
-        <section class="not-found-hero" aria-labelledby="not-found-title">
-          <div class="not-found-copy">
-            <span class="not-found-code" aria-hidden="true">404</span>
-            <span class="eyebrow">Not Found</span>
-            <h1 class="page-title" id="not-found-title">Cette page n'existe pas.</h1>
+        <section class="page-hero">
+          <div class="page-hero-copy">
+            <span class="eyebrow">404</span>
+            <h1 class="page-title">Page introuvable</h1>
             <p class="page-intro">
-              L'adresse demand&eacute;e ne correspond &agrave; aucun guide disponible sur $siteName. Tu peux rechercher un sujet,
-              revenir aux articles ou repartir de l'accueil.
+              L'adresse demand&eacute;e ne correspond &agrave; aucune page active du site. Tu peux revenir &agrave; l'accueil
+              ou repartir depuis les articles pour retrouver le bon contenu.
             </p>
-            <form class="not-found-search" id="not-found-search" action="articles/" method="get" role="search">
-              <label class="sr-only" for="not-found-query">Rechercher un guide HydroFacile</label>
-              <input class="search-input" id="not-found-query" name="q" type="search" placeholder="Rechercher : pH, basilic, lumi&egrave;re..." autocomplete="off">
-              <button class="button" type="submit">Rechercher</button>
-            </form>
             <div class="hero-actions">
               <a class="button" href="./">Retour &agrave; l'accueil</a>
-              <a class="button-secondary" href="articles/">Voir les guides</a>
+              <a class="button-secondary" href="articles/">Voir les articles</a>
             </div>
           </div>
 
-          <aside class="not-found-panel" aria-label="Liens utiles">
-            <img src="images/articles/hydro-systeme-debutant.svg" alt="" width="1200" height="800" loading="lazy" decoding="async">
-            <div class="not-found-panel-body">
-              <h2>Repartir au bon endroit</h2>
-              <ul class="article-list">
-                <li><a href="articles/hydroponie-sans-pompe-appartement/">Premier syst&egrave;me simple</a></li>
-                <li><a href="articles/cultures-faciles-hydroponie-appartement/">Cultures faciles</a></li>
-                <li><a href="articles/ph-hydroponie-debutant/">pH en hydroponie</a></li>
-                <li><a href="contact/">Signaler un lien cass&eacute;</a></li>
-              </ul>
-            </div>
+          <aside class="checklist utility-panel">
+            <h2>Tu peux essayer</h2>
+            <ul class="article-list">
+              <li>Revenir &agrave; l'accueil pour repartir des contenus principaux.</li>
+              <li>Parcourir les guides d&eacute;butants depuis la liste des articles.</li>
+              <li>Ouvrir la galerie pour retrouver des inspirations hydroponie en appartement.</li>
+            </ul>
+            <a class="text-link" href="galerie/">Voir la galerie</a>
           </aside>
         </section>
       </div>
     </main>
-
-    <script>
-      (function () {
-        const form = document.getElementById("not-found-search");
-        const input = document.getElementById("not-found-query");
-
-        if (!form || !input) return;
-
-        form.addEventListener("submit", function (event) {
-          const query = input.value.trim();
-
-          if (query === "") return;
-
-          event.preventDefault();
-          window.location.href = "articles/#q=" + encodeURIComponent(query);
-        });
-      })();
-    </script>
 
 $(Get-SiteFooterHtml -pagePrefix "")
   </div>
