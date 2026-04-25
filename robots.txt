@@ -3,8 +3,6 @@ Allow: /
 Disallow: /backups/
 Disallow: /raw-singlefile/
 Disallow: /scripts/
-Disallow: /.edge-profile/
-Disallow: /.edge-profile-gallery/
 Disallow: /articles/article-template.html
 Disallow: /SEO-AUDIT.md
 Disallow: /readme.md
