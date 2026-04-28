@@ -24,6 +24,7 @@ $googleAnalyticsMeasurementId = "G-QQH5R1ZY11"
 $microsoftClarityProjectId = "w96dagou9p"
 $primaryArticleSlugs = @(
   "bouturer-basilic-dans-eau",
+  "ec-hydroponie-debutant",
   "feuilles-jaunes-hydroponie",
   "hydroponie-sans-pompe-appartement",
   "cultures-faciles-hydroponie-appartement",
@@ -3706,3 +3707,4 @@ Set-Content -Path (Join-Path $root "robots.txt") -Value (Build-RobotsTxt) -Encod
 
 Write-Output "Updated style.min.css, articles index, 404.html, contact, politique-confidentialite.html, sitemap.xml and robots.txt"
 Write-Output $homeStatus
+

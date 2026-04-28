@@ -2642,7 +2642,91 @@
     }
   }
 
+  $overrides["ec-hydroponie-debutant"] = [ordered]@{
+    Title = "EC en hydroponie : comprendre la concentration sans se perdre"
+    CardTitle = "EC en hydroponie : les bases"
+    SeoTitle = "EC hydroponie débutant : comprendre la mesure"
+    Description = "EC hydroponie débutant : à quoi sert la mesure, quand la vérifier, comment l’interpréter simplement et éviter les surdosages dans un petit système en appartement."
+    Intro = "L’EC fait vite sérieux quand on débute en hydroponie. Pourtant, cette mesure peut rester très simple : elle indique surtout si ta solution nutritive est plutôt légère, chargée ou devenue difficile à lire. Le but n’est pas de transformer ton coin culture en laboratoire, mais d’éviter les gros écarts."
+    TimeRequired = "PT6M"
+    DatePublished = "2026-04-28T11:00:00+02:00"
+    DateModified = "2026-04-28T11:00:00+02:00"
+    AuthorName = "Léa Martel"
+    AuthorType = "Person"
+    Category = "Routine & réglages"
+    ImageFileName = "ec-hydroponie-debutant.jpg"
+    ImageAlt = "Jeunes laitues cultivées sur un rail hydroponique, utiles pour comprendre la concentration nutritive"
+    BodyHtml = @"
+            <h2>Ce qu’il faut savoir en un coup d’œil</h2>
+            <p>EC signifie conductivité électrique : c’est un indicateur de concentration de la solution nutritive<br>Ce que ça aide à repérer : une solution trop faible, trop chargée ou qui dérive avec le temps<br>À ne pas faire : corriger tous les jours pour atteindre un chiffre parfait<br>Le bon ordre : lumière, eau propre, dosage simple, puis mesure EC si besoin<br>Repère utile : l’EC complète le guide sur les <a href="../nutriments-hydroponie-debutant/">nutriments hydroponiques pour débutant</a>, elle ne le remplace pas</p>
+            <h2>À quoi sert l’EC, en langage simple</h2>
+            <p>L’EC ne mesure pas directement la “qualité” de ta plante. Elle donne une idée de la quantité de sels dissous dans l’eau, donc de la concentration globale de ta solution nutritive. Plus la solution contient de nutriments dissous, plus la mesure monte.</p>
+            <p>Pour un débutant, l’intérêt est surtout pratique : comprendre si la solution reste cohérente. Si tu ajoutes des nutriments au hasard, si l’eau s’évapore beaucoup ou si tu complètes sans réfléchir, l’EC peut devenir un signal de lecture très utile.</p>
+            <h2>Pourquoi ce n’est pas le premier réglage à surveiller</h2>
+            <p>Beaucoup de problèmes viennent d’abord d’une lumière insuffisante, d’un bac sale, d’une eau trop vieille ou d’un dosage mal compris. Si une plante pousse mal, mesurer l’EC peut aider, mais seulement après avoir vérifié les bases.</p>
+            <p>Avant de sortir le testeur, regarde donc la lumière réelle avec notre guide sur la <a href="../lumiere-hydroponie-appartement/">lumière en hydroponie appartement</a>, puis la propreté du système avec <a href="../nettoyer-systeme-hydroponique/">le nettoyage du bac</a>. Une mesure précise sur un système mal entretenu reste difficile à interpréter.</p>
+            <h2>Quand mesurer l’EC dans un petit système</h2>
+            <ul>
+              <li>quand tu prépares une nouvelle solution nutritive ;</li>
+              <li>après un vrai <a href="../quand-changer-eau-hydroponie/">changement d’eau</a> ;</li>
+              <li>si la plante ralentit alors que la lumière et les racines semblent correctes ;</li>
+              <li>si tu soupçonnes un surdosage après plusieurs apports successifs ;</li>
+              <li>si l’eau s’évapore beaucoup et que la solution paraît plus concentrée.</li>
+            </ul>
+            <p>Tu n’as pas besoin de mesurer par réflexe anxieux. Sur une installation simple et stable, quelques contrôles bien placés donnent souvent plus d’informations qu’une mesure quotidienne sans décision claire.</p>
+            <h2>Comment interpréter sans courir après un chiffre</h2>
+            <p>Chaque culture a ses préférences, mais au début il vaut mieux raisonner en tendance. Une EC trop basse peut indiquer une solution très légère. Une EC trop haute peut signaler une solution chargée, surtout si l’eau s’évapore et que tu ajoutes seulement un peu d’eau ou d’engrais au fil des jours.</p>
+            <p>Le plus important est de noter ce qui change : la mesure monte-t-elle parce que l’eau s’évapore ? baisse-t-elle parce que tu as dilué ? la plante réagit-elle bien ou mal ? Cette lecture progressive évite les corrections brutales.</p>
+            <h2>EC et pH : deux mesures différentes</h2>
+            <p>L’EC parle surtout de concentration. Le pH parle plutôt de disponibilité des éléments dans la solution. Les deux mesures peuvent se compléter, mais elles ne racontent pas la même chose.</p>
+            <p>Si tu débutes, commence par comprendre l’EC comme un repère de dosage, puis lis notre guide sur le <a href="../ph-hydroponie-debutant/">pH en hydroponie débutant</a> pour savoir quand ce deuxième paramètre mérite ton attention.</p>
+            <h2>La méthode simple pour corriger</h2>
+            <ol>
+              <li>Observe d’abord la plante, la lumière, les racines et la propreté de l’eau.</li>
+              <li>Mesure l’EC seulement si tu as une vraie question à vérifier.</li>
+              <li>Si la solution paraît trop chargée, dilue avec de l’eau propre plutôt que d’ajouter encore des produits.</li>
+              <li>Si elle paraît trop faible, reviens au dosage recommandé du fabricant, sans doubler les apports.</li>
+              <li>Attends quelques jours avant de conclure, sauf problème évident de propreté ou de racines.</li>
+            </ol>
+            <p>Cette méthode a l’air modeste, mais elle protège contre l’erreur la plus fréquente : changer trop de choses en même temps, puis ne plus savoir ce qui a aidé ou empiré la situation.</p>
+            <h2>Les erreurs fréquentes avec l’EC</h2>
+            <ul>
+              <li>confondre EC basse et carence certaine ;</li>
+              <li>corriger un chiffre sans regarder la plante ;</li>
+              <li>ajouter des nutriments alors que l’eau s’est surtout évaporée ;</li>
+              <li>oublier que les jeunes plants demandent souvent une solution plus douce ;</li>
+              <li>mesurer avec un testeur sale ou mal rincé.</li>
+            </ul>
+            <h2>FAQ</h2>
+            <h3>Faut-il un testeur EC pour débuter en hydroponie ?</h3>
+            <p>Pas toujours au tout début, surtout avec un petit système très simple et un dosage fabricant prudent. Il devient utile quand tu veux comprendre la concentration de la solution et éviter les corrections au hasard.</p>
+            <h3>Une EC élevée veut-elle dire que la plante a trop de nutriments ?</h3>
+            <p>Elle indique surtout une solution plus concentrée. Cela peut venir d’un surdosage, mais aussi de l’évaporation de l’eau. Il faut donc lire la mesure avec l’état de la plante et du bac.</p>
+            <h3>Doit-on mesurer l’EC et le pH le même jour ?</h3>
+            <p>Tu peux le faire lors d’une nouvelle solution ou d’un vrai changement d’eau, mais ce n’est pas une obligation quotidienne. L’important est de garder une routine compréhensible.</p>
+            <h2>En résumé</h2>
+            <p>L’EC en hydroponie est un repère de concentration, pas une note de réussite. Elle aide à garder une solution nutritive lisible, surtout quand tu changes l’eau, ajustes le dosage ou observes un ralentissement.</p>
+            <p>Pour progresser sans te perdre, lis ensuite les guides sur les <a href="../nutriments-hydroponie-debutant/">nutriments</a>, le <a href="../ph-hydroponie-debutant/">pH</a>, les <a href="../feuilles-jaunes-hydroponie/">feuilles jaunes</a> et le <a href="../nettoyer-systeme-hydroponique/">nettoyage du système</a>. C’est ce trio routine, observation et petits ajustements qui rend l’hydroponie beaucoup plus simple.</p>
+"@
+    Faq = @(
+      [ordered]@{ Question = "Faut-il un testeur EC pour débuter en hydroponie ?"; Answer = "Pas toujours au tout début, surtout avec un petit système très simple et un dosage fabricant prudent. Il devient utile quand tu veux comprendre la concentration de la solution et éviter les corrections au hasard." },
+      [ordered]@{ Question = "Une EC élevée veut-elle dire que la plante a trop de nutriments ?"; Answer = "Elle indique surtout une solution plus concentrée. Cela peut venir d’un surdosage, mais aussi de l’évaporation de l’eau. Il faut donc lire la mesure avec l’état de la plante et du bac." },
+      [ordered]@{ Question = "Doit-on mesurer l’EC et le pH le même jour ?"; Answer = "Tu peux le faire lors d’une nouvelle solution ou d’un vrai changement d’eau, mais ce n’est pas une obligation quotidienne. L’important est de garder une routine compréhensible." }
+    )
+    HowTo = [ordered]@{
+      Name = "Comment utiliser l’EC sans se compliquer"
+      Description = "Les étapes simples pour mesurer et interpréter l’EC dans un petit système hydroponique débutant."
+      Steps = @(
+        [ordered]@{ Name = "Vérifier les bases"; Text = "Observe d’abord la lumière, la propreté de l’eau, les racines et le dosage utilisé." },
+        [ordered]@{ Name = "Mesurer au bon moment"; Text = "Contrôle l’EC lors d’une nouvelle solution, après un changement d’eau ou quand un problème persiste." },
+        [ordered]@{ Name = "Lire une tendance"; Text = "Interprète la mesure comme un niveau de concentration, pas comme un chiffre parfait à atteindre." },
+        [ordered]@{ Name = "Corriger doucement"; Text = "Dilue ou reprends le dosage recommandé par petites étapes, sans multiplier les changements." },
+        [ordered]@{ Name = "Observer la réaction"; Text = "Laisse quelques jours à la plante pour montrer si la correction a réellement aidé." }
+      )
+    }
+  }
   return $overrides
 }
+
 
 
