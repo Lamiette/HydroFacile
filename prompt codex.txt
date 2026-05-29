@@ -31,6 +31,7 @@ Identifie :
 - les sujets déjà bien couverts ;
 - les angles proches mais incomplets ;
 - les risques de doublon ou de cannibalisation ;
+- les pages anciennes à mettre à jour, fusionner ou laisser tranquilles plutôt que créer un article de plus ;
 - les opportunités de longue traîne SEO ;
 - les sujets adaptés à des débutants en hydroponie en intérieur ;
 - les sujets concrets, utiles et faciles à relier aux articles existants.
@@ -47,6 +48,7 @@ Critères de choix :
 - pas de doublon évident avec un article déjà publié.
 
 Ne me demande pas de choisir le sujet. Décide en autonomie.
+Mais si un article existant répond déjà presque à l'intention de recherche, privilégie une mise à jour, une fusion ou un enrichissement plutôt qu'une nouvelle page trop proche.
 
 ────────────────────────
 2. NOTE DE DÉCISION
@@ -73,6 +75,8 @@ Règles :
 - privilégier un français fluide, clair et humain ;
 - choisir un titre qui fonctionne à la fois sur Google, dans une carte d’article et dans la page ;
 - éviter les titres inutilement longs ;
+- éviter les séries de titres construits sur le même moule, notamment X hydroponie : ..., Guide complet pour ... ou Tout savoir sur ... répétés plusieurs fois ;
+- varier les angles naturellement : problème lecteur, question concrète, bénéfice pratique, comparaison utile ou formulation conversationnelle ;
 - garder une vraie promesse de lecture.
 
 Avant de retenir le titre final, vérifie :
@@ -88,6 +92,13 @@ Tu peux réfléchir à plusieurs variantes en interne, mais ne garde que la meil
 ────────────────────────
 
 Rédige un article complet, original, naturel et utile.
+
+Workflow anti-contenu IA faible qualité :
+- utiliser l'IA pour cadrer, structurer et vérifier les angles, mais jamais pour publier une synthèse générique sans valeur ajoutée ;
+- partir d'un brief éditorial concret : lecteur visé, problème réel, contexte appartement, type de système, plantes concernées, contraintes d'espace, lumière, eau, nutriments et erreurs fréquentes ;
+- ajouter au moins un élément vraiment utile et spécifique : diagnostic rapide, tableau de décision, exemple de petit setup, méthode de vérification, cas où il vaut mieux éviter, ou repères d'entretien réalistes ;
+- supprimer les introductions vagues, les promesses trop larges et les paragraphes qui pourraient s'appliquer à n'importe quel site d'hydroponie ;
+- relire comme un débutant en appartement : chaque section doit aider à décider, faire, corriger ou éviter une erreur.
 
 Style attendu :
 - français naturel ;
@@ -143,6 +154,15 @@ Priorité :
 - potentiel de clic depuis Google.
 
 Le title SEO et le H1 peuvent être proches, mais ils ne doivent pas devenir lourds ou artificiels.
+Ne change pas une date de mise à jour uniquement pour donner une impression de fraîcheur : la date modifiée doit correspondre à une amélioration réelle du contenu.
+
+Après une grosse mise à jour SEO ou une baisse de trafic :
+- ne pas publier en masse pour compenser ;
+- commencer par identifier les pages les plus touchées, leurs requêtes et leur intention ;
+- améliorer, fusionner ou désindexer les contenus faibles ou redondants ;
+- vérifier les signaux techniques : canonical, sitemap, robots, redirections, liens internes, pages orphelines ;
+- éviter le netlinking artificiel ou les commentaires de forum posés uniquement pour manipuler le classement ;
+- privilégier les liens et mentions éditoriales utiles, les réseaux sociaux cohérents avec le sujet, et les contenus que l'on aurait envie de recommander hors Google.
 
 ────────────────────────
 6. MAILLAGE INTERNE
